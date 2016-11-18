@@ -1,0 +1,102 @@
+18 de nov 2016.
+===============
+
+Es importante ver el tipo de reserva en la pantalla?
+
+
+
+Estimación Versión 0.1 TripViajes.
+==================================
+
+El objetivo es lograr un MVP https://en.wikipedia.org/wiki/Minimum_viable_product
+con la funcionalidad principal de reservas mínima para poder usar la aplicación.
+
+Qué incluye esta entrega:
+--------------------------
+
+Pantalla de reservas funcionando (crear y eliminar) con todos los datos pre-cargados,
+el usuario va a poder crear y eliminar reservas, dar de alta clientes y servicios (ABM).
+Incluye el cambio de día.
+
+Qué no incluye esta entrega:
+----------------------------
+
+Login, Abm Choferes, ABM Zonas, ABM horarios.
+
+Tareas necesarias para la entrega:
+==================================
+
+- Diseñar la pantalla de reservas.
+  Primero en papel después un Html, Gustavo tiene que ver el diseño de la interfáz y estar de acuerdo
+  antes de empezar a programarla.
+
+- Análisis de las estructuras de datos (ya lo hicimos un poco para el presupuesto)
+
+- Crear los modelos de:
+  Clientes, Direcciones, Ciudad, Zonas, Servicios, Reservas, Tipo Reserva, Chofer.
+
+- Diseñar la pantalla de alta de reserva (contextual puede ser)
+
+- Agregar funcionalidad para cambiar de día (servicios).
+
++ Diseñar pantalla ABM clientes.
+
++ Diseñar pantalla ABM servicios.
+
+- Crear los choferes, horarios, zonas con un seed.
+
+- Tests de integración automatizados.
+
+- Instalar el servidor de pruebas y deployar la app.
+
+Tecnologías propuestas:
+=======================
+
+Sistema operativo:        Debian
+Lenguaje de programación: Ruby
+Framework:                Cuba
+Base de datos:            Redis / PostgreSql
+
+Tiempo de entrega: 5 semanas.
+
+Costo:
+=====                 
+
+$31.000 
+
+- 5 pagos de semanales de $6200.
+
+
+Preguntas
+==========
+
+1) En porcentaje cuantas veces el cliente sale desde su domicilio.
+
+2) Como se hace actualmente para cancelar una reserva?
+
+3) Los servicios son fijos? Se puede dejar para la primer versión que no se puedan editar?
+
+4) Necesitamos tener un repositorio de Git para el proyecto. Idelamente en github.
+
+Anotaciones
+-----------
+
+* Se tiene que poder ver facilmente los servicios y asientos disponibles del día.
+
+* Tiene que ser sencillo desde la página de reservación agregar la dirección origen y destino.
+
+* La cancelación se tiene que hacer 2hs antes.
+
+* Cambiar reservar para pasar de un horario a otro tiene
+  que ser fácil
+
+Datos que se le piden al cliente cuando llama
+----------------------------------------------
+
+Ciudad origen y destino
+Fecha (Hoy por ej)
+Hora (La telefonista tiene que ver asientos disp.)
+Domicilio origen
+
+Nombre apellido
+nro de telefono

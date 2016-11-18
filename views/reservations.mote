@@ -1,0 +1,44 @@
+<div class="header">
+  <h1>Reservas</h1>
+</div>  
+
+<table class="mq-table pure-table-bordered pure-table">
+  <thead>
+    <tr>
+      <th class="highlight">Horario</th>
+       <th class="highlight">Chofer</th>
+      <th class="highlight">Asientos</th>
+      <th class="highlight">Paquetes</th>
+      <th class="highlight"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="pure-table-odd">
+      <td>6:00</td>
+      <td>Gustavo Yarros</td>
+      <td><i class="fa fa-camera-retro"></i> fa-camera-retro</td>
+      <td><i class="fa fa-envelope"></i>
+          <i class="fa fa-envelope"></i>
+          <i class="fa fa-gift"></i></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>6:00</td>
+      <td>Gustavo Yarros</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td></td>
+    </tr>
+
+    <tr class="pure-table-odd">
+      <td>6:00</td>
+      <td>Gustavo Yarros</td>
+      <td>[]</td>
+      <td>[]</td>
+      <td></td>
+    </tr>
+
+  </tbody>
+  </table>
