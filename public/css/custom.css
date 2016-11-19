@@ -21,3 +21,7 @@ html, table, button, input, select, textarea, .pure-g [class*="pure-u"] {
     margin: 0;
 }
 
+.button-success {
+    background: #E1F5A9;
+}
+
