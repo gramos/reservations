@@ -1,0 +1,5 @@
+cuba -v 3.4.0
+mote -v 1.1.4
+tilt -v 2.0.1
+mote-render -v 1.1.0
+cuba-sugar -v 0.3.1
