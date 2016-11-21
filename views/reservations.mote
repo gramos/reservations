@@ -1,78 +1,160 @@
-<div class="header">
-  <h1>Reservas</h1>
-</div>  
+<div class="pure-g">
+  <div class="pure-u-1-2">
 
-<table class="mq-table pure-table">
-  <thead>
-    <tr>
-      <th class="highlight">Horario</th>
-       <th class="highlight">Chofer</th>
-      <th class="highlight">Asientos</th>
-      <th class="highlight">Paquetes</th>
-      <th class="highlight"></th>
-    </tr>
-  </thead>
+    <div class="header"><h1>Rosario</h1></div>
+    <table class="mq-table pure-table">
+      <thead>
+        <tr>
+          <th class="highlight">Horario</th>
+          <th class="highlight">Chofer</th>
+          <th class="highlight">Asientos</th>
+          <th class="highlight">Paquetes</th>
+          <th class="highlight"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <tr class="pure-table-odd">
-      <td>6:00</td>
-      <td>Gustavo Yarros</td>
-      <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-      </td>
-      <td><i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-gift"></i></td>
-      <td><a class="button-success pure-button" href="#">
-            <i class="fa fa-plus"></i>
-          </a>
-          <a class="button-success pure-button" href="#">
-            <i class="fa fa-list-ul"></i>
-          </a>
-      </td>
-    </tr>
+      <tbody>
+        <tr class="pure-table-odd">
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
 
         <tr>
-      <td>6:00</td>
-      <td>Gustavo Yarros</td>
-      <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-      </td>
-      <td><i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-gift fa-border"></i></td>
-      <td><a class="button-success pure-button" href="#">
-            <i class="fa fa-plus"></i>
-          </a>
-          <a class="button-success pure-button" href="#">
-            <i class="fa fa-list-ul"></i>
-          </a>
-      </td>
-    </tr>
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift fa-border"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
 
-    <tr class="pure-table-odd">
-      <td>6:00</td>
-      <td>Gustavo Yarros</td>
-      <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-      </td>
-      <td><i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-gift fa-border"></i></td>
-      <td><a class="button-success pure-button" href="#">
-            <i class="fa fa-plus"></i>
-          </a>
-          <a class="button-success pure-button" href="#">
-            <i class="fa fa-list-ul"></i>
-          </a>
-      </td>
-    </tr>
+        <tr class="pure-table-odd">
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift fa-border"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
 
-  </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pure-u-1-2">
+
+    <div class="header"><h1>San Nicolás</h1></div>
+    
+    <table class="mq-table pure-table">
+      <thead>
+        <tr>
+          <th class="highlight">Horario</th>
+          <th class="highlight">Chofer</th>
+          <th class="highlight">Asientos</th>
+          <th class="highlight">Paquetes</th>
+          <th class="highlight"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="pure-table-odd">
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift fa-border"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
+
+        <tr class="pure-table-odd">
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift fa-border"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

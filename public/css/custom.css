@@ -1,3 +1,10 @@
+.content {
+    line-height: 1.6em;
+    margin: 30 auto 50px;
+    max-width: 1500px;
+    padding: 0 2em;
+}
+
 html, table, button, input, select, textarea, .pure-g [class*="pure-u"] {
     font-family: sans-serif;
     font-weight: 100;
@@ -13,6 +20,7 @@ html, table, button, input, select, textarea, .pure-g [class*="pure-u"] {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     letter-spacing: 0.05em;
     text-align: center;
+    padding-bottom: 20px;
 }
 
 .header h1 {
