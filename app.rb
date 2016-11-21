@@ -3,6 +3,7 @@ require 'mote'
 require 'cuba/safe'
 require 'mote/render'
 require 'cuba/sugar/as'
+require 'sequel'
 
 Cuba.use Rack::Session::Cookie, :secret => "__a_very_long_string__"
 
@@ -19,6 +20,18 @@ Dir["./helpers/**/*.rb"].each { |rb| require rb }
 Cuba.use Rack::Static,
          urls: %w[/js /css /img],
          root: File.expand_path("./public", __dir__)
+
+# ----------------------------------------------------------------
+# Load settings and config var in ENV.
+#
+module Settings
+  File.read("env.sh").scan(/(.*?)="?(.*)"?$/).each do |key, value|
+    ENV[key] ||= value
+  end
+end
+
+DB = Sequel.postgres(ENV['DB_NAME'], :user => ENV['DB_USER'],
+                     :password => ENV['DB_PASSWORD'], :host => ENV['DB_HOST'])
 
 # ----------------------------------------------------------------
 # Main app.
