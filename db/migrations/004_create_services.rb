@@ -5,7 +5,7 @@ Sequel.migration do
       Date :date,   :null   => false
 
       foreign_key :driver_id, :drivers
-      foreign_key :scheduled_times_id, :scheduled_times
+      foreign_key :scheduled_time_id, :scheduled_times
     end
   end
 
