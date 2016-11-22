@@ -19,13 +19,18 @@ namespace :db do
            "#{ENV['DB_PORT']}/#{ENV['DB_NAME']}"
   end
 
+  desc 'Delete all tables'
+  task :delete do
+    DB[:scheduled_times].delete
+    DB[:cities].delete
+    DB[:drivers].delete
+  end
+
   desc 'Run seeds'
   task :seeds do
-
-    DB[:cities].delete
+    DBSeed::Drivers.run!
     DBSeed::Cities.run!
-
-    DB[:scheduled_times].delete
     DBSeed::ScheduledTimes.run!
   end
+
 end
