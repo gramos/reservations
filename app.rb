@@ -14,7 +14,6 @@ Cuba.plugin Mote::Render
 Cuba.plugin Cuba::Sugar::As
 
 Dir["./lib/**/*.rb"].each { |rb| require rb }
-Dir["./models/**/*.rb"].each { |rb| require rb }
 Dir["./routes/**/*.rb"].each { |rb| require rb }
 Dir["./filters/**/*.rb"].each { |rb| require rb }
 Dir["./helpers/**/*.rb"].each { |rb| require rb }
@@ -40,12 +39,14 @@ DB = Sequel.postgres(ENV['DB_NAME'], :user => ENV['DB_USER'],
                      :port => ENV['DB_PORT'])
 
 DB.loggers << Logger.new($stdout)
+Dir["./models/**/*.rb"].each { |rb| require rb }
 
 # ----------------------------------------------------------------
 # Main app.
 #
 Cuba.define do
   on root do
-    render 'reservations'
+    services = Service.where(:date => Date.today)
+    render 'reservations', { :services => services }
   end  
 end

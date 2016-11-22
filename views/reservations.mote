@@ -14,9 +14,10 @@
       </thead>
 
       <tbody>
+        % services.each do |s|
         <tr class="pure-table-odd">
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
+          <td>{{ s.scheduled_time.time }}</td>
+          <td>{{ s.driver.full_name }}</td>
           <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
             <i class="fa fa-male fa-border fa-2x"></i>
             <i class="fa fa-male fa-border fa-2x"></i>
@@ -33,47 +34,7 @@
             </a>
           </td>
         </tr>
-
-        <tr>
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift fa-border"></i></td>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
-
-        <tr class="pure-table-odd">
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift fa-border"></i></td>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
-
+        % end
       </tbody>
     </table>
   </div>
