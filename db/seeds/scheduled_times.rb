@@ -21,8 +21,7 @@ module DBSeed
         {:time => '22:00'}
       ]
 
-      ['Lunes', 'Martes', 'Miercoles', 'Jueves',
-       'Viernes', 'Sabado', 'Domingo'].each do |d|
+      [1, 2, 3, 4, 5, 6, 7].each do |d|
 
         st.each do |t|
           data = t.merge( :day => d, :city_id => DB[:cities].first )

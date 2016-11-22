@@ -5,6 +5,7 @@ require 'mote/render'
 require 'cuba/sugar/as'
 require 'sequel'
 require 'logger'
+require 'date'
 
 Cuba.use Rack::Session::Cookie, :secret => "__a_very_long_string__"
 

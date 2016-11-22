@@ -21,6 +21,7 @@ namespace :db do
 
   desc 'Delete all tables'
   task :delete do
+    DB[:services].delete
     DB[:scheduled_times].delete
     DB[:cities].delete
     DB[:drivers].delete
@@ -31,6 +32,7 @@ namespace :db do
     DBSeed::Drivers.run!
     DBSeed::Cities.run!
     DBSeed::ScheduledTimes.run!
+    DBSeed::Services.run!
   end
 
 end
