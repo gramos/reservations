@@ -9,12 +9,14 @@ html, table, button, input, select, textarea, .pure-g [class*="pure-u"] {
     font-family: sans-serif;
     font-weight: 100;
     letter-spacing: 0.01em;
+    font-size: 14px;
 }
 
 .mq-table th.highlight {
     background-color: #1b926c;
     color: #fff;
 }
+
 
 .header {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -24,7 +26,7 @@ html, table, button, input, select, textarea, .pure-g [class*="pure-u"] {
 }
 
 .header h1 {
-    font-size: 300%;
+    font-size: 200%;
     font-weight: 100;
     margin: 0;
 }
