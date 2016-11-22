@@ -1,18 +1,31 @@
 require_relative 'app'
+Dir["./db/seeds/*.rb"].each { |rb| require rb }
 
 Sequel.extension :migration
 
 namespace :db do
+
+  desc 'Run migrations in db/migrations'
   task :migrate do
 
-    if ENV['SCH_VERSION']
-      version = "-M #{ENV['SCH_VERSION']}"
+    if ENV['VERSION']
+      version = "-M #{ENV['VERSION']}"
     end
-    
-    system "sequel -E " + 
-           "#{version} " + 
+
+    system "sequel -E " +
+           "#{version} " +
            "-m db/migrations postgres://#{ENV['DB_USER']}:" +
            "#{ENV['DB_PASSWORD']}@#{ENV['DB_HOST']}:" +
            "#{ENV['DB_PORT']}/#{ENV['DB_NAME']}"
+  end
+
+  desc 'Run seeds'
+  task :seeds do
+
+    DB[:cities].delete
+    DBSeed::Cities.run!
+
+    DB[:scheduled_times].delete
+    DBSeed::ScheduledTimes.run!
   end
 end

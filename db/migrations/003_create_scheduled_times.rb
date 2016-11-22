@@ -3,7 +3,7 @@ Sequel.migration do
     create_table(:scheduled_times) do
       primary_key   :id
       String :day, :null => false
-      Time :time,  :null => false
+      String :time,  :null => false
 
       foreign_key :city_id, :cities
     end
