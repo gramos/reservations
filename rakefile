@@ -19,17 +19,6 @@ namespace :db do
            "#{ENV['DB_PORT']}/#{ENV['DB_NAME']}"
   end
 
-  desc 'Delete all tables'
-  task :delete do
-    DB[:customers].delete
-    DB[:addresses].delete
-    DB[:reservation_types].delete
-    DB[:services].delete
-    DB[:scheduled_times].delete
-    # DB[:cities].delete
-    DB[:drivers].delete
-  end
-
   desc 'Run seeds'
   task :seeds do
     DBSeed::ReservationTypes.run!
