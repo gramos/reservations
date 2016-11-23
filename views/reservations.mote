@@ -13,7 +13,7 @@
         <tr>
           <th class="highlight">Horario</th>
           <th class="highlight">Chofer</th>
-          <th class="highlight">Asientos</th>
+          <th class="highlight">Asientos Disp.</th>
           <th class="highlight">Paquetes</th>
           <th class="highlight"></th>
         </tr>
@@ -24,9 +24,7 @@
         <tr class="pure-table-odd">
           <td>{{ s.scheduled_time.time }}</td>
           <td>{{ s.driver.full_name }}</td>
-          <td><i class="fa fa-male fa-2x" style="color:red"></i>
-            <i class="fa fa-male  fa-2x"></i>
-            <i class="fa fa-male  fa-2x"></i>
+          <td>
             <i class="fa fa-male  fa-2x"></i>
             <i>( {{ s.available_seats }} )</i>
           </td>
