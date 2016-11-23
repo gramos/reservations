@@ -9,7 +9,7 @@ module DBSeed
                           :mobile     => '',
                           :car        => '',
                           :car_color  => '',
-                          :car_license=> '')
+                          :car_license=> '', :car_seats => 4)
 
       DB[:drivers].insert(:first_name => 'Marcelo',
                           :last_name  => 'Bissuti',
@@ -17,7 +17,7 @@ module DBSeed
                           :mobile     => '',
                           :car        => '',
                           :car_color  => '',
-                          :car_license=> '')
+                          :car_license=> '', :car_seats => 4)
 
       DB[:drivers].insert(:first_name => 'Andres',
                           :last_name  => 'Ricci',
@@ -25,7 +25,7 @@ module DBSeed
                           :mobile     => '',
                           :car        => '',
                           :car_color  => '',
-                          :car_license=> '')
+                          :car_license=> '', :car_seats => 4)
 
       DB[:drivers].insert(:first_name => 'Ariel',
                           :last_name  => 'Aguilar',
@@ -33,7 +33,7 @@ module DBSeed
                           :mobile     => '',
                           :car        => '',
                           :car_color  => '',
-                          :car_license=> '')
+                          :car_license=> '', :car_seats => 4)
 
       DB[:drivers].insert(:first_name => 'Gastón',
                           :last_name  => 'Petinari',
@@ -41,7 +41,7 @@ module DBSeed
                           :mobile     => '',
                           :car        => '',
                           :car_color  => '',
-                          :car_license=> '')
+                          :car_license=> '', :car_seats => 4)
 
       DB[:drivers].insert(:first_name => 'Fredy',
                           :last_name  => 'Fredy',
@@ -49,7 +49,7 @@ module DBSeed
                           :mobile     => '',
                           :car        => '',
                           :car_color  => '',
-                          :car_license=> '')
+                          :car_license=> '', :car_seats => 4)
 
       DB[:drivers].insert(:first_name => 'Juan Carlos',
                           :last_name  => 'Carlos',
@@ -57,7 +57,7 @@ module DBSeed
                           :mobile     => '',
                           :car        => '',
                           :car_color  => '',
-                          :car_license=> '')
+                          :car_license=> '', :car_seats => 4)
 
     end
   end
