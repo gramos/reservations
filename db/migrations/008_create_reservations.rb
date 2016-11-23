@@ -2,7 +2,7 @@ Sequel.migration do
   up do
     create_table(:reservations) do
       primary_key :id
-      String  :quantity,  :null => false
+      Integer  :quantity,  :null => false
 
       foreign_key :service_id,   :services
       foreign_key :type_id,      :reservation_types

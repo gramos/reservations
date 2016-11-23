@@ -3,7 +3,7 @@ module DBSeed
 
   class ReservationTypes
     def self.run!
-      %w(Común Paquete Abonox20 Abonox40 Sobre).each do |t|
+      %w(Comun Paquete Abonox20 Abonox40 Sobre).each do |t|
         DB[:reservation_types].insert(
            :name => t, :price => 100
         )

@@ -38,7 +38,7 @@ DB = Sequel.postgres(ENV['DB_NAME'], :user => ENV['DB_USER'],
                      :host => ENV['DB_HOST'],
                      :port => ENV['DB_PORT'])
 
-DB.loggers << Logger.new($stdout)
+# DB.loggers << Logger.new($stdout)
 Dir["./models/**/*.rb"].each { |rb| require rb }
 
 # ----------------------------------------------------------------
@@ -58,6 +58,7 @@ Cuba.define do
 
       reservation = Reservation.new(params['reservation'])
       reservation.customer_id = customer.id
+      reservation.service_id  = service_id
       reservation.save
 
       res.redirect '/'
