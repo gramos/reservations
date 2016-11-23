@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'irb'
+require_relative '../app'
+
+puts '==> TRIP VIAJES Console baby!'
+
+ARGV.clear
+IRB.start
