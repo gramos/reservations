@@ -5,11 +5,15 @@ Sequel.migration do
       String :first_name,     :null => false
       String :last_name,      :null => false
       String :dni,            :null => false
-      Date   :birthday,       :null => false
+      Date   :birthday,       :null => true
       String :phone_number,   :null => true
-      String :mobile,         :null => false
+      String :mobile,         :null => true
      
       foreign_key :address_id, :addresses
    end  
-  end  
+  end
+
+  down do
+    drop_table :customers
+  end
 end  

@@ -12,5 +12,9 @@ Sequel.migration do
       foreign_key :city_id, :cities
     end
   end
+
+  down do
+    drop_table(:addresses)
+  end
 end
 

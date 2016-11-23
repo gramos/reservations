@@ -6,5 +6,9 @@ Sequel.migration do
       Float   :price, :null => false
       Integer :seats, :null => true
     end
-  end  
+  end
+
+  down do
+    drop_table :reservation_types
+  end
 end  
