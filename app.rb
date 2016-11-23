@@ -45,8 +45,27 @@ Dir["./models/**/*.rb"].each { |rb| require rb }
 # Main app.
 #
 Cuba.define do
+
+  on post, 'services/:id/reservations/' do |service_id|
+
+    on param(:reservation) do |params|
+      address = Address.new(params['address'])
+      address.save
+
+      customer = Customer.new(params['customer'])
+      customer.address_id = address.id
+      customer.save
+
+      reservation = Reservation.new(params['reservation'])
+      reservation.customer_id = customer.id
+      reservation.save
+
+      res.redirect '/'
+    end
+  end
+
   on root do
     services = Service.where(:date => Date.today)
     render 'reservations', { :services => services }
-  end  
+  end
 end

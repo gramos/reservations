@@ -21,18 +21,22 @@ namespace :db do
 
   desc 'Delete all tables'
   task :delete do
+    DB[:customers].delete
+    DB[:addresses].delete
+    DB[:reservation_types].delete
     DB[:services].delete
     DB[:scheduled_times].delete
-    DB[:cities].delete
+    # DB[:cities].delete
     DB[:drivers].delete
   end
 
   desc 'Run seeds'
   task :seeds do
+    DBSeed::ReservationTypes.run!
     DBSeed::Drivers.run!
-    DBSeed::Cities.run!
     DBSeed::ScheduledTimes.run!
     DBSeed::Services.run!
+    DBSeed::Cities.run!
   end
 
 end
