@@ -2,10 +2,10 @@
   function showCreateReservation(id){
     var style = document.getElementById(id).style.display;
 
-    if (style == 'block') {
+    if (style == 'table-row') {
      document.getElementById(id).style.display = "none";
     } else {
-      document.getElementById(id).style.display = "block";
+     document.getElementById(id).style.display = "table-row";
     }
   }
 </script>
@@ -24,7 +24,7 @@
       </tr>
 
       % services.each do |s|
-      <tr class="pure-table-odd">
+      <tr class="pure-table-odd" id="servicio_#{{ s.id }}">
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
@@ -37,7 +37,7 @@
         <td> <i class="fa fa-envelope fa-border"> ( 0 )</i>
           | <i class="fa fa-gift">( 0 )</i>
         </td>
-        <td><a class="button-success pure-button" href="#"
+        <td><a class="button-success pure-button" href="#servicio_#{{ s.id }}"
                onclick="showCreateReservation('create-reservation-{{ s.id }}')">
 
             <i class="fa fa-plus"></i>
@@ -48,12 +48,15 @@
           </a>
         </td>
       </tr>
-      <tr>
+      
+      <tr style="display:none;" id="create-reservation-{{ s.id }}">
         <td colspan="5">
           {{ app.partial '_make_reservation', :s => s }}
         </td>
+        
       </tr>
-      <tr>
+      
+      <tr style="display:none;" id="list-reservations-{{ s.id }}">
         <td colspan="5">
           {{ app.partial '_list_reservations', :s => s }}
         </td>

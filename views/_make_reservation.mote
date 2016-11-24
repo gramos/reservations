@@ -1,4 +1,3 @@
-<div style="display:none;" id="create-reservation-{{ s.id }}">
   <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
     <fieldset>
       <legend>Reserva</legend>
@@ -65,4 +64,4 @@
       <button type="submit" class="pure-button pure-button-primary">Crear Reserva</button>
     </fieldset>
   </form>
-</div>
+
