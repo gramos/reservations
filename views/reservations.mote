@@ -11,9 +11,10 @@
 </script>
 
 <div class="pure-g">
-  <div class="pure-u-1-2">
+  <div class="pure-u-1 pure-u-md-1-2">
+
     <div class="header"><h1>Rosario</h1></div>
-    <table class="mq-table pure-table" border="1">
+    <table class="pure-table" border="1" style="width:95%">
       <tr>
         <th class="highlight">Horario</th>
         <th class="highlight">Chofer</th>
@@ -33,9 +34,8 @@
           <i class="fa fa-male fa-2x"></i> <i>( {{ s.available_seats }} )</i>
           % end
         </td>
-        <td><i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-gift"></i>
+        <td> <i class="fa fa-envelope fa-border"> ( 0 )</i>
+          | <i class="fa fa-gift">( 0 )</i>
         </td>
         <td><a class="button-success pure-button" href="#"
                onclick="showCreateReservation('create-reservation-{{ s.id }}')">
@@ -64,9 +64,9 @@
 
   </div>
 
-  <div class="pure-u-1-2">
+  <div class="pure-u-1 pure-u-md-1-2">
     <div class="header"><h1>San Nicolás</h1></div>
-    <table class="mq-table pure-table">
+    <table class="mq-table pure-table" style="width: 95%">
       <thead>
         <tr>
           <th class="highlight">Horario</th>
@@ -83,8 +83,7 @@
           <td>Gustavo Yarros</td>
           <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
             <i class="fa fa-male fa-border fa-2x"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
+
           </td>
           <td><i class="fa fa-envelope fa-border"></i>
             <i class="fa fa-envelope fa-border"></i>
@@ -103,12 +102,8 @@
           <td>Gustavo Yarros</td>
           <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
             <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
           </td>
           <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift fa-border"></i></td>
           <td><a class="button-success pure-button" href="#">
               <i class="fa fa-plus"></i>
             </a>
@@ -123,8 +118,6 @@
           <td>Gustavo Yarros</td>
           <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
             <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
           </td>
           <td><i class="fa fa-envelope fa-border"></i>
             <i class="fa fa-envelope fa-border"></i>
