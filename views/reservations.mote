@@ -1,6 +1,12 @@
 <script type="text/javascript">
   function showCreateReservation(id){
-  document.getElementById(id).style.display = "block";
+    var style = document.getElementById(id).style.display;
+
+    if (style == 'block') {
+     document.getElementById(id).style.display = "none";
+    } else {
+      document.getElementById(id).style.display = "block";
+    }
   }
 </script>
 
@@ -9,127 +15,130 @@
     <div class="header"><h1>Rosario</h1></div>
     <table class="mq-table pure-table" border="1">
       <tr>
-        <th class="highlight">Horario</td>
-<th class="highlight">Chofer</td>
-<th class="highlight">Asiento Disp.</td>
-<th class="highlight">Paquetes</td>
-<th class="highlight"></td>
-</tr>
-
-% services.each do |s|
-<tr class="pure-table-odd">
-  <td>{{ s.scheduled_time.time }}</td>
-  <td>{{ s.driver.full_name }}</td>
-  <td>
-    % if s.available_seats == 0
-    <b style="color:red" >( COMPLETO )</b>
-    % else
-    <i class="fa fa-male fa-2x"></i> <i>( {{ s.available_seats }} )</i>
-    % end
-  </td>
-  <td><i class="fa fa-envelope fa-border"></i>
-    <i class="fa fa-envelope fa-border"></i>
-    <i class="fa fa-gift"></i>
-  </td>
-  <td><a class="button-success pure-button" href="#" onclick="showCreateReservation('create-reservation-{{ s.id }}')">
-      <i class="fa fa-plus"></i>
-    </a>
-    <a class="button-success pure-button" href="#" onclick="showCreateReservation('list-reservations-{{ s.id }}')">
-      <i class="fa fa-list-ul"></i>
-    </a>
-  </td>
-</tr>
-<tr>
-  <td colspan="5">
-    {{ app.partial 'make_reservation', :s => s }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">
-    {{ app.partial 'list_reservations', :s => s }}
-  </td>
-</tr>
-
-% end
-</table>
-
-</div>
-
-<div class="pure-u-1-2">
-  <div class="header"><h1>San Nicolás</h1></div>
-  <table class="mq-table pure-table">
-    <thead>
-      <tr>
         <th class="highlight">Horario</th>
         <th class="highlight">Chofer</th>
-        <th class="highlight">Asientos</th>
+        <th class="highlight">Asiento Disp.</th>
         <th class="highlight">Paquetes</th>
         <th class="highlight"></th>
       </tr>
-    </thead>
 
-    <tbody>
+      % services.each do |s|
       <tr class="pure-table-odd">
-        <td>6:00</td>
-        <td>Gustavo Yarros</td>
-        <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
+        <td>{{ s.scheduled_time.time }}</td>
+        <td>{{ s.driver.full_name }}</td>
+        <td>
+          % if s.available_seats == 0
+          <b style="color:red" >( COMPLETO )</b>
+          % else
+          <i class="fa fa-male fa-2x"></i> <i>( {{ s.available_seats }} )</i>
+          % end
         </td>
         <td><i class="fa fa-envelope fa-border"></i>
           <i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-gift"></i></td>
-        <td><a class="button-success pure-button" href="#">
+          <i class="fa fa-gift"></i>
+        </td>
+        <td><a class="button-success pure-button" href="#"
+               onclick="showCreateReservation('create-reservation-{{ s.id }}')">
+
             <i class="fa fa-plus"></i>
           </a>
-          <a class="button-success pure-button" href="#">
+          <a class="button-success pure-button" href="#"
+             onclick="showCreateReservation('list-reservations-{{ s.id }}')">
             <i class="fa fa-list-ul"></i>
           </a>
         </td>
       </tr>
-
       <tr>
-        <td>6:00</td>
-        <td>Gustavo Yarros</td>
-        <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
+        <td colspan="5">
+          {{ app.partial '_make_reservation', :s => s }}
         </td>
-        <td><i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-gift fa-border"></i></td>
-        <td><a class="button-success pure-button" href="#">
-            <i class="fa fa-plus"></i>
-          </a>
-          <a class="button-success pure-button" href="#">
-            <i class="fa fa-list-ul"></i>
-          </a>
+      </tr>
+      <tr>
+        <td colspan="5">
+          {{ app.partial '_list_reservations', :s => s }}
         </td>
       </tr>
 
-      <tr class="pure-table-odd">
-        <td>6:00</td>
-        <td>Gustavo Yarros</td>
-        <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-          <i class="fa fa-male fa-border fa-2x"></i>
-        </td>
-        <td><i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-envelope fa-border"></i>
-          <i class="fa fa-gift fa-border"></i></td>
-        <td><a class="button-success pure-button" href="#">
-            <i class="fa fa-plus"></i>
-          </a>
-          <a class="button-success pure-button" href="#">
-            <i class="fa fa-list-ul"></i>
-          </a>
-        </td>
-      </tr>
+      % end
+    </table>
 
-    </tbody>
-  </table>
-</div>
+  </div>
+
+  <div class="pure-u-1-2">
+    <div class="header"><h1>San Nicolás</h1></div>
+    <table class="mq-table pure-table">
+      <thead>
+        <tr>
+          <th class="highlight">Horario</th>
+          <th class="highlight">Chofer</th>
+          <th class="highlight">Asientos</th>
+          <th class="highlight">Paquetes</th>
+          <th class="highlight"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="pure-table-odd">
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift fa-border"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
+
+        <tr class="pure-table-odd">
+          <td>6:00</td>
+          <td>Gustavo Yarros</td>
+          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+            <i class="fa fa-male fa-border fa-2x"></i>
+          </td>
+          <td><i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-envelope fa-border"></i>
+            <i class="fa fa-gift fa-border"></i></td>
+          <td><a class="button-success pure-button" href="#">
+              <i class="fa fa-plus"></i>
+            </a>
+            <a class="button-success pure-button" href="#">
+              <i class="fa fa-list-ul"></i>
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
 </div>
