@@ -25,10 +25,8 @@
   <body>
 
     <div class="content">
-      <div class="pure-g">
-      {{ content }}
+       {{ content }}
       </div>
-     </div>
   </body>
 
 </html>
