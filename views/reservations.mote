@@ -1,198 +1,200 @@
 <script type="text/javascript">
   function showCreateReservation(id){
-    document.getElementById(id).style.display = "block";
+  document.getElementById(id).style.display = "block";
   }
 </script>
 
 <div class="pure-g">
   <div class="pure-u-1-2">
-
     <div class="header"><h1>Rosario</h1></div>
-    <table class="mq-table pure-table">
-      <thead>
-        <tr>
-          <th class="highlight">Horario</th>
-          <th class="highlight">Chofer</th>
-          <th class="highlight">Asientos Disp.</th>
-          <th class="highlight">Paquetes</th>
-          <th class="highlight"></th>
-        </tr>
-      </thead>
+    <table class="mq-table pure-table" border="1">
+      <tr>
+        <th class="highlight">Horario</td>
+        <th class="highlight">Chofer</td>
+        <th class="highlight">Asiento Disp.</td>
+        <th class="highlight">Paquetes</td>
+        <th class="highlight"></td>
+      </tr>
 
-      <tbody>
-        % services.each do |s|
+      % services.each do |s|
         <tr class="pure-table-odd">
-          <td>{{ s.scheduled_time.time }}</td>
-          <td>{{ s.driver.full_name }}</td>
-          <td>
-            <i class="fa fa-male  fa-2x"></i>
-            <i>( {{ s.available_seats }} )</i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
+        <td>{{ s.scheduled_time.time }}</td>
+        <td>{{ s.driver.full_name }}</td>
+        <td>
+          <i class="fa fa-male  fa-2x"></i>
+          <i>< ( {{ s.available_seats }} ) ></i>
+        </td>
+        <td><i class="fa fa-envelope fa-border"></i>
             <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift"></i></td>
-          <td><a class="button-success pure-button" href="#" onclick="showCreateReservation('create-reservation-{{ s.id }}')">
+            <i class="fa fa-gift"></i>
+        </td>
+        <td><a class="button-success pure-button" href="#" onclick="showCreateReservation('create-reservation-{{ s.id }}')">
               <i class="fa fa-plus"></i>
             </a>
             <a class="button-success pure-button" href="#">
               <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
-          <tr id="create-reservation-{{ s.id }}" style="display: none;">
-            <td colspan="5">
+           </a>
+       </td>
+      </tr>
+ 
+<tr>
 
-              <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
-                <fieldset>
-                  <legend>Reserva</legend>
-                  <div class="pure-g">
+  <td colspan="5">
+    <div style="display:none;" id="create-reservation-{{ s.id }}">
+      <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
+        <fieldset>
+          <legend>Reserva</legend>
+          <div class="pure-g">
 
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[customer][dni]">DNI</label>
-                      <input id="reservation[customer][dni]" name="reservation[customer][dni]" class="pure-u-23-24" type="text">
-                    </div>
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[customer][dni]">DNI</label>
+              <input id="reservation[customer][dni]" name="reservation[customer][dni]" class="pure-u-23-24" type="text">
+            </div>
 
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[customer][last_name]">Apellido</label>
-                      <input id="reservation[customer][last_name]" name="reservation[customer][last_name]" class="pure-u-23-24" type="text">
-                    </div>
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[customer][last_name]">Apellido</label>
+              <input id="reservation[customer][last_name]" name="reservation[customer][last_name]" class="pure-u-23-24" type="text">
+            </div>
 
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[customer][first_name]">Nombre</label>
-                      <input id="reservation[customer][first_name]" name="reservation[customer][first_name]" class="pure-u-23-24" type="text">
-                    </div>
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[customer][first_name]">Nombre</label>
+              <input id="reservation[customer][first_name]" name="reservation[customer][first_name]" class="pure-u-23-24" type="text">
+            </div>
 
-                       
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[address][street]">Calle</label>
-                      <input id="reservation[address][street]" name="reservation[address][street]" class="pure-u-23-24" type="text">
-                    </div>
 
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[address][number]">Número</label>
-                      <input id="reservation[address][number]" name="reservation[address][number]" class="pure-u-23-24" type="text">
-                    </div>
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[address][street]">Calle</label>
+              <input id="reservation[address][street]" name="reservation[address][street]" class="pure-u-23-24" type="text">
+            </div>
 
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[address][apartment]">Depto</label>
-                      <input id="reservation[address][apartment]" name="apartment" class="pure-u-23-24" type="text">
-                    </div>
-                    
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[address][tower]">Torre</label>
-                      <input id="reservation[address][tower]" name="reservation[address][tower]" class="pure-u-23-24" type="text">
-                    </div>
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[address][number]">Número</label>
+              <input id="reservation[address][number]" name="reservation[address][number]" class="pure-u-23-24" type="text">
+            </div>
 
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[reservation][type_id]">Tipo Reserva</label>
-                      <select id="reservation[reservation][type_id]" name="reservation[reservation][type_id]" class="pure-input-1-2">
-                        % DB[:reservation_types].all.each do |rt|
-                          <option value="{{ rt[:id] }}">{{ rt[:name] }}</option>
-                        % end
-                        
-                        </select>
-                    </div>  
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[address][apartment]">Depto</label>
+              <input id="reservation[address][apartment]" name="apartment" class="pure-u-23-24" type="text">
+            </div>
 
-                    <div class="pure-u-1-2 pure-u-md-1-3">
-                      <label for="reservation[reservation][quantity]">Cantidad de asientos</label>
-                      <select id="reservation[reservation][quantity]" name="reservation[reservation][quantity]" class="pure-input-1-2">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                      </select>
-                    </div>  
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[address][tower]">Torre</label>
+              <input id="reservation[address][tower]" name="reservation[address][tower]" class="pure-u-23-24" type="text">
+            </div>
 
-                  </div>
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[reservation][type_id]">Tipo Reserva</label>
+              <select id="reservation[reservation][type_id]" name="reservation[reservation][type_id]" class="pure-input-1-2">
+                % DB[:reservation_types].all.each do |rt|
+                <option value="{{ rt[:id] }}">{{ rt[:name] }}</option>
+                % end
 
-                  <button type="submit" class="pure-button pure-button-primary">Crear Reserva</button>
-                </fieldset>
-                </form>
-            </td>
-          </tr>  
+              </select>
+            </div>
 
-        % end
-      </tbody>
-    </table>
-  </div>
+            <div class="pure-u-1-3 pure-u-md-1-3">
+              <label for="reservation[reservation][quantity]">Cantidad de asientos</label>
+              <select id="reservation[reservation][quantity]" name="reservation[reservation][quantity]" class="pure-input-1-2">
 
-  <div class="pure-u-1-2">
+                % s.available_seats.times.each do |c|
+                  <option>{{c + 1}}</option>
+                % end
+                  
+              </select>
+            </div>
 
-    <div class="header"><h1>San Nicolás</h1></div>
-    
-    <table class="mq-table pure-table">
-      <thead>
-        <tr>
-          <th class="highlight">Horario</th>
-          <th class="highlight">Chofer</th>
-          <th class="highlight">Asientos</th>
-          <th class="highlight">Paquetes</th>
-          <th class="highlight"></th>
-        </tr>
-      </thead>
+          </div>
 
-      <tbody>
-        <tr class="pure-table-odd">
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift"></i></td>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
+          <button type="submit" class="pure-button pure-button-primary">Crear Reserva</button>
+        </fieldset>
+      </form>
+    </div>
+  </td>
 
-        <tr>
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift fa-border"></i></td>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
+</tr>
 
-        <tr class="pure-table-odd">
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift fa-border"></i></td>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
+% end
+</table>
 
-      </tbody>
-    </table>
-  </div>
+</div>
+
+<div class="pure-u-1-2">
+
+  <div class="header"><h1>San Nicolás</h1></div>
+
+  <table class="mq-table pure-table">
+    <thead>
+      <tr>
+        <th class="highlight">Horario</th>
+        <th class="highlight">Chofer</th>
+        <th class="highlight">Asientos</th>
+        <th class="highlight">Paquetes</th>
+        <th class="highlight"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="pure-table-odd">
+        <td>6:00</td>
+        <td>Gustavo Yarros</td>
+        <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+          <i class="fa fa-male fa-border fa-2x"></i>
+          <i class="fa fa-male fa-border fa-2x"></i>
+          <i class="fa fa-male fa-border fa-2x"></i>
+        </td>
+        <td><i class="fa fa-envelope fa-border"></i>
+          <i class="fa fa-envelope fa-border"></i>
+          <i class="fa fa-gift"></i></td>
+        <td><a class="button-success pure-button" href="#">
+            <i class="fa fa-plus"></i>
+          </a>
+          <a class="button-success pure-button" href="#">
+            <i class="fa fa-list-ul"></i>
+          </a>
+        </td>
+      </tr>
+
+      <tr>
+        <td>6:00</td>
+        <td>Gustavo Yarros</td>
+        <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+          <i class="fa fa-male fa-border fa-2x"></i>
+        </td>
+        <td><i class="fa fa-envelope fa-border"></i>
+          <i class="fa fa-envelope fa-border"></i>
+          <i class="fa fa-gift fa-border"></i></td>
+        <td><a class="button-success pure-button" href="#">
+            <i class="fa fa-plus"></i>
+          </a>
+          <a class="button-success pure-button" href="#">
+            <i class="fa fa-list-ul"></i>
+          </a>
+        </td>
+      </tr>
+
+      <tr class="pure-table-odd">
+        <td>6:00</td>
+        <td>Gustavo Yarros</td>
+        <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+          <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
+          <i class="fa fa-male fa-border fa-2x"></i>
+          <i class="fa fa-male fa-border fa-2x"></i>
+        </td>
+        <td><i class="fa fa-envelope fa-border"></i>
+          <i class="fa fa-envelope fa-border"></i>
+          <i class="fa fa-gift fa-border"></i></td>
+        <td><a class="button-success pure-button" href="#">
+            <i class="fa fa-plus"></i>
+          </a>
+          <a class="button-success pure-button" href="#">
+            <i class="fa fa-list-ul"></i>
+          </a>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
 </div>
