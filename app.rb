@@ -59,6 +59,7 @@ Cuba.define do
       reservation = Reservation.new(params['reservation'])
       reservation.customer_id = customer.id
       reservation.service_id  = service_id
+      reservation.address_id  = address.id
       reservation.save
 
       res.redirect '/'

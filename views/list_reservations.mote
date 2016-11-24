@@ -1,0 +1,10 @@
+<div style="display:none;" id="list-reservations-{{ s.id }}">
+  <ul>
+    % s.reservations.each do |r|
+      <li>{{ r.customer.full_name }}
+        <b>Dirección:</b> {{ r.full_address }}
+        <b>Teléfono: {{ r.customer.phone_number }}</b>
+      </li>
+     % end
+  </ul>
+</div>
