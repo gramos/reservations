@@ -7,3 +7,5 @@ cuba-sugar -v 0.3.1
 sequel -v 4.40.0
 pg -v 0.19.0
 rake -v 10.3.2
+cutest -v 1.2.3
+capybara -v 2.10.1

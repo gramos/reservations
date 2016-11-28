@@ -16,16 +16,12 @@ namespace :db do
            "#{version} " +
            "-m db/migrations postgres://#{ENV['DB_USER']}:" +
            "#{ENV['DB_PASSWORD']}@#{ENV['DB_HOST']}:" +
-           "#{ENV['DB_PORT']}/#{ENV['DB_NAME']}"
+           "#{ENV['DB_PORT']}/#{DB_NAME}"
   end
 
   desc 'Run seeds'
   task :seeds do
-    DBSeed::ReservationTypes.run!
-    DBSeed::Drivers.run!
-    DBSeed::ScheduledTimes.run!
-    DBSeed::Services.run!
-    DBSeed::Cities.run!
+    DBSeed::Base.run_all!
   end
 
 end

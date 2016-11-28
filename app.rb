@@ -30,6 +30,17 @@ module Settings
   end
 end
 
+
+# ----------------------------------------------------------------
+# Set database name based on env
+#
+if ENV['ENV'] == 'test'
+  DB_NAME = ENV['DB_TEST_NAME']
+else
+  DB_NAME = ENV['DB_NAME']
+end
+  
+
 # ----------------------------------------------------------------
 # Sequel init.
 #
