@@ -1,3 +1,14 @@
+25-11
+=====
+
+Gustavo dice:
+--------------
+
+- El nro de telefono va en la address por que puede tener uno en cada ciudad
+- Un cliente puede tener varias direcciones en una misma ciudad
+- Resaltar el horario en agregar resreva.
+
+
 18 de nov 2016.
 ===============
 
