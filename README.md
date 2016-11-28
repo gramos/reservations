@@ -46,6 +46,11 @@ cd tripviajes
 dep install
 ```
 
+Crear env.sh editar y completar con datos reales.
+=================================================
+
+```cp env.example.sh env.sh```
+
 Production
 ==========
 
