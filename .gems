@@ -1,6 +1,9 @@
+rack -v 1.6.5
 cuba -v 3.8.0
 tilt -v 2.0.5
+mote -v 1.1.4
 mote-render -v 1.1.0
 cuba-sugar -v 0.3.1
 sequel -v 4.40.0
 pg -v 0.19.0
+rake -v 10.3.2
