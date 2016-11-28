@@ -3,6 +3,9 @@ Dir["./db/seeds/*.rb"].each { |rb| require rb }
 
 Sequel.extension :migration
 
+task :default => 'test:all'
+require 'cutest'
+
 namespace :db do
 
   desc 'Run migrations in db/migrations'
@@ -24,4 +27,26 @@ namespace :db do
     DBSeed::Base.run_all!
   end
 
+end
+
+namespace 'test' do
+  desc "Run tests in test/ folder"
+  task :integration do
+    puts "==> Runing integration tests"
+    Cutest.run Dir["test/integration/**/*_test.rb"]
+    puts '==> Finished!'
+  end
+
+  desc "Run model tests"
+  task :unit do
+    unit_files = Dir["test/models/*_test.rb"] +
+                 Dir["test/helpers/*_test.rb"]
+
+    puts "==> Runing unit tests"
+    Cutest.run unit_files
+    puts '==> Finished!'
+  end
+
+  desc "Run all tests acceptance + unit"
+  task :all => [:unit, :integration]
 end
