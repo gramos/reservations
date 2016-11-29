@@ -8,6 +8,12 @@ apt-get install build-essential
 apt-get install postgresql-9.6 postgresql-client
 ```
 
+Instalar dependecias para correr los test con webkit
+=====================================================
+
+```apt-get install qt5-default libqt5webkit5-dev \ 
+   gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x```
+
 Configurar Postgres.
 ====================
 
