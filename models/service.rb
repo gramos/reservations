@@ -14,4 +14,12 @@ class Service < Sequel::Model
     type = DB[:reservation_types].where(:name => type).first
     reservations.select{|r| r[:type_id] == type[:id] }
   end
+
+  def available_reservation_types
+    if  available_seats == 0
+      DB[:reservation_types].all.select{|rt| rt[:name] =~ /Paquete|Sobre/}
+    else
+      DB[:reservation_types].all
+    end
+  end
 end

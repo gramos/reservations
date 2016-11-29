@@ -41,23 +41,24 @@
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[reservation][type_id]">Tipo Reserva</label>
           <select id="reservation[reservation][type_id]" name="reservation[reservation][type_id]">
-            % DB[:reservation_types].all.each do |rt|
+            % s.available_reservation_types.each do |rt|
             <option value="{{ rt[:id] }}">{{ rt[:name] }}</option>
             % end
 
           </select>
         </div>
-
+        % if s.available_seats > 0
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[reservation][quantity]">Cantidad de asientos</label>
           <select id="reservation[reservation][quantity]" name="reservation[reservation][quantity]">
-
+          
             % s.available_seats.times.each do |c|
             <option>{{c + 1}}</option>
             % end
             
           </select>
         </div>
+        % end
        </div>
 
       <button type="submit" class="pure-button pure-button-primary">Crear Reserva</button>
