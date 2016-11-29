@@ -2,10 +2,10 @@ require "cuba/capybara"
 require "capybara-webkit"
 
 ENV['ENV'] = 'test'
-
 require_relative "../../app"
-
 Dir["./db/seeds/*.rb"].each { |rb| require rb }
+
+puts "[ USING ] #{DB_NAME} Database"
 
 prepare do
   DBSeed::Base.delete_all!

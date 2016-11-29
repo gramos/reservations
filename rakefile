@@ -1,16 +1,16 @@
-require_relative 'app'
 Dir["./db/seeds/*.rb"].each { |rb| require rb }
+require 'sequel'
 
 Sequel.extension :migration
 
 task :default => 'test:all'
-require 'cutest'
 
 namespace :db do
 
   desc 'Run migrations in db/migrations'
   task :migrate do
-
+    require_relative './app'
+    
     if ENV['VERSION']
       version = "-M #{ENV['VERSION']}"
     end
@@ -30,6 +30,8 @@ namespace :db do
 end
 
 namespace 'test' do
+  require 'cutest'
+
   desc "Run tests in test/ folder"
   task :integration do
     puts "==> Runing integration tests"

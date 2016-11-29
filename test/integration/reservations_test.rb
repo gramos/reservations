@@ -1,6 +1,5 @@
 require_relative "integration_helper"
 
-
 scope 'Daily Services' do
   setup do
     @service = Service.where(:date => Date.today).first

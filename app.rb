@@ -39,12 +39,11 @@ if ENV['ENV'] == 'test'
 else
   DB_NAME = ENV['DB_NAME']
 end
-  
 
 # ----------------------------------------------------------------
 # Sequel init.
 #
-DB = Sequel.postgres(ENV['DB_NAME'], :user => ENV['DB_USER'],
+DB = Sequel.postgres(DB_NAME, :user => ENV['DB_USER'],
                      :password => ENV['DB_PASSWORD'],
                      :host => ENV['DB_HOST'],
                      :port => ENV['DB_PORT'])
