@@ -35,12 +35,13 @@
           % s.available_seats.times do
             <i class="fa fa-male fa-2x"></i>
           % end
-            
           <i>( {{ s.available_seats }} )</i>
-
         </td>
-        <td> <i class="fa fa-envelope fa-border"> ( 0 )</i>
-          | <i class="fa fa-gift">( 0 )</i>
+
+        <td> <i class="fa fa-envelope fa-border">
+            ( {{ s.reservations_like('Sobre').size }})</i>
+          | <i class="fa fa-gift">
+            ( {{ s.reservations_like('Paquete').size }} )</i>
         </td>
         <td>
         
