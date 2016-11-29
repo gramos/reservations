@@ -28,11 +28,16 @@
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
-          % if s.available_seats == 0
-          <b style="color:red" >( COMPLETO )</b>
-          % else
-          <i class="fa fa-male fa-2x"></i> <i>( {{ s.available_seats }} )</i>
+          % (s.driver.car_seats - s.available_seats).times do
+            <i class="fa fa-male fa-2x" style="color:red"></i>   
           % end
+            
+          % s.available_seats.times do
+            <i class="fa fa-male fa-2x"></i>
+          % end
+            
+          <i>( {{ s.available_seats }} )</i>
+
         </td>
         <td> <i class="fa fa-envelope fa-border"> ( 0 )</i>
           | <i class="fa fa-gift">( 0 )</i>
