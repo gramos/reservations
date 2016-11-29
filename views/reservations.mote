@@ -24,7 +24,7 @@
       </tr>
 
       % services.each do |s|
-      <tr class="pure-table-odd" id="servicio_#{{ s.id }}">
+      <tr class="pure-table-odd" id="servicio_{{ s.id }}">
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
@@ -37,8 +37,9 @@
         <td> <i class="fa fa-envelope fa-border"> ( 0 )</i>
           | <i class="fa fa-gift">( 0 )</i>
         </td>
-        <td><a class="button-success pure-button" href="#servicio_#{{ s.id }}"
-               onclick="showCreateReservation('create-reservation-{{ s.id }}')">
+        <td><a class="button-success pure-button" href="#servicio_{{ s.id }}"
+               onclick="showCreateReservation('create-reservation-{{ s.id }}')"
+               id="button-create-reservation-{{ s.id }}">
 
             <i class="fa fa-plus"></i>
           </a>
