@@ -59,19 +59,8 @@ Cuba.define do
   on post, 'services/:id/reservations/' do |service_id|
 
     on param(:reservation) do |params|
-      address = Address.new(params['address'])
-      address.save
-
-      customer = Customer.new(params['customer'])
-      customer.address_id = address.id
-      customer.save
-
-      reservation = Reservation.new(params['reservation'])
-      reservation.customer_id = customer.id
-      reservation.service_id  = service_id
-      reservation.address_id  = address.id
-      reservation.save
-
+      params[:service_id] = service_id
+      Reservation.make params
       res.redirect '/'
     end
   end
