@@ -12,7 +12,7 @@ class Service < Sequel::Model
 
   def reservations_like(type)
     type = DB[:reservation_types].where(:name => type).first
-    reservations.select{|r| r[:type_id] == type[:id] }
+    reservations(true).select{|r| r[:type_id] == type[:id] }
   end
 
   def available_reservation_types

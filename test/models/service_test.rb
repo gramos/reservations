@@ -26,7 +26,6 @@ test '#available_reservation_types' do
   @reservation_params['reservation']['quantity'] = 4
   reservation = Reservation.make @reservation_params 
 
-  @service.reload
   assert @service.available_reservation_types.
     map{|rt| rt[:name]}.sort == ['Sobre', 'Paquete'].sort
 end
