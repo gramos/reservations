@@ -20,7 +20,7 @@ class Reservation < Sequel::Model
 
     reservation = Reservation.new params['reservation']
     reservation.customer_id = customer.id
-    reservation.service_id  = params[:service_id]
+    reservation.service_id  = params['service_id']
     reservation.address_id  = address.id
     reservation.save
 

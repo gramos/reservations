@@ -48,7 +48,6 @@ DB = Sequel.postgres(DB_NAME, :user => ENV['DB_USER'],
                      :host => ENV['DB_HOST'],
                      :port => ENV['DB_PORT'])
 
-# DB.loggers << Logger.new($stdout)
 Dir["./models/**/*.rb"].each { |rb| require rb }
 
 # ----------------------------------------------------------------
@@ -59,7 +58,7 @@ Cuba.define do
   on post, 'services/:id/reservations/' do |service_id|
 
     on param(:reservation) do |params|
-      params[:service_id] = service_id
+      params['service_id'] = service_id
       Reservation.make params
       res.redirect '/'
     end
