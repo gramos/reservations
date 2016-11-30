@@ -9,7 +9,7 @@ namespace :db do
 
   desc 'Run migrations in db/migrations'
   task :migrate do
-    require_relative './app'
+    require './app'
     
     if ENV['VERSION']
       version = "-M #{ENV['VERSION']}"
@@ -24,6 +24,8 @@ namespace :db do
 
   desc 'Run seeds'
   task :seeds do
+    require './app'
+
     DBSeed::Base.run_all!
   end
 
@@ -32,10 +34,15 @@ end
 namespace 'test' do
   require 'cutest'
 
+  ENV['ENV'] = 'test'
+  require './app'
+
   desc "Run tests in test/ folder"
   task :integration do
     puts "==> Runing integration tests"
+
     Cutest.run Dir["test/integration/**/*_test.rb"]
+
     puts '==> Finished!'
   end
 
