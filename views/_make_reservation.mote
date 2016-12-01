@@ -1,4 +1,4 @@
-  <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
+<form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
     <fieldset>
       <legend>Reserva</legend>
       <div class="pure-g">
@@ -9,7 +9,16 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[customer][last_name]">Apellido</label>
-          <input id="reservation[customer][last_name]" name="reservation[customer][last_name]" type="text">
+
+          <input id="reservation[customer][last_name]"
+                 onkeyup="showResult(this.value,'livesearch_{{ s.id }}')"
+                 name="reservation[customer][last_name]"
+                 type="text" autocomplete="off">
+
+          <div class="livesearch" id="livesearch_{{ s.id }}"></div>
+
+          <br />
+          <br />
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
@@ -51,11 +60,11 @@
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[reservation][quantity]">Cantidad de asientos</label>
           <select id="reservation[reservation][quantity]" name="reservation[reservation][quantity]">
-          
+
             % s.available_seats.times.each do |c|
             <option>{{c + 1}}</option>
             % end
-            
+
           </select>
         </div>
         % end
@@ -65,3 +74,41 @@
     </fieldset>
   </form>
 
+<script>
+
+ function showResult(str, div) {
+   str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+   var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
+
+    if (str.length == 0) {
+      document.getElementById(div).innerHTML     = "No Hay resultados";
+      document.getElementById(div).style.border  = "0px";
+      return;
+    }
+
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function() {
+ 
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+       results = JSON.parse( xmlhttp.response.replace(re, "<b>$1</b>") );
+
+       document.getElementById( div ).innerHTML = '';
+       
+       for(i = 0; i < results.length; i++) {
+         document.getElementById( div ).innerHTML += "<a href='#" + results[i]['id'] + "'>" + results[i]['name'] + "</a><br />";
+       }
+                      
+       document.getElementById( div ).style.border = "1px solid #A5ACB2";
+     }
+    }
+
+    xmlhttp.open("GET","/customers?q=" + str, true);
+    xmlhttp.send();
+  }
+
+</script>

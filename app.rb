@@ -56,11 +56,17 @@ Dir["./models/**/*.rb"].each { |rb| require rb }
 Cuba.define do
 
   on post, 'services/:id/reservations/' do |service_id|
-
     on param(:reservation) do |params|
       params['service_id'] = service_id
       Reservation.make params
       res.redirect '/'
+    end
+  end
+
+  on get, 'customers', param('q') do |q|
+    customers = DB[:customers].where(:first_name => /#{q}/i).all
+    as_json do
+      customers.map{ |c| { 'id' => c[:id], 'name' => "#{ c[:first_name] } #{ c[:last_name] }" } }
     end
   end
 
