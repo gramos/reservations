@@ -13,10 +13,13 @@ setup do
   @reservation_params = {'address' => {:street => 'Pje Lassaga',
                                       :number => '4732',
                                       :phone_number => '1223444'},
+
                          'customer' => {:first_name => 'Bruce',
                                        :last_name => 'Lee'},
+
                          'reservation' => {type_id: reservation_type[:id]},
-                        'service_id' => @service.id}
+
+                         'service_id' => @service.id}
 end
 
 

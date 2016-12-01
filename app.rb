@@ -64,9 +64,8 @@ Cuba.define do
   end
 
   on get, 'customers', param('q') do |q|
-    customers = DB[:customers].where(:first_name => /#{q}/i).all
     as_json do
-      customers.map{ |c| { 'id' => c[:id], 'name' => "#{ c[:first_name] } #{ c[:last_name] }" } }
+      DB[:customers].where(:last_name => /#{q}/i).all
     end
   end
 

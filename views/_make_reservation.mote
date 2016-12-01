@@ -4,14 +4,14 @@
       <div class="pure-g">
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][phone_number]">Telefono</label>
-          <input id="reservation[address][phone_number]" name="reservation[address][phone_number]" type="text">
+          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[customer][last_name]">Apellido</label>
 
-          <input id="reservation[customer][last_name]"
-                 onkeyup="showResult(this.value,'livesearch_{{ s.id }}')"
+          <input id="reservation[customer][last_name]_{{s.id}}"
+                 onkeyup="showResult(this.value,'livesearch_{{ s.id }}', {{ s.id }})"
                  name="reservation[customer][last_name]"
                  type="text" autocomplete="off">
 
@@ -23,33 +23,33 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[customer][first_name]">Nombre</label>
-          <input id="reservation[customer][first_name]" name="reservation[customer][first_name]" type="text">
+          <input id="reservation[customer][first_name]_{{s.id}}" name="reservation[customer][first_name]" type="text">
         </div>
 
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][street]">Calle</label>
-          <input id="reservation[address][street]" name="reservation[address][street]" type="text">
+          <input id="reservation[address][street]_{{s.id}}" name="reservation[address][street]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][number]">Número</label>
-          <input id="reservation[address][number]" name="reservation[address][number]" type="text">
+          <input id="reservation[address][number]_{{s.id}}" name="reservation[address][number]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][apartment]">Depto</label>
-          <input id="reservation[address][apartment]" name="apartment" type="text">
+          <input id="reservation[address][apartment]_{{s.id}}" name="apartment" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][tower]">Torre</label>
-          <input id="reservation[address][tower]" name="reservation[address][tower]" type="text">
+          <input id="reservation[address][tower]_{{s.id}}" name="reservation[address][tower]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[reservation][type_id]">Tipo Reserva</label>
-          <select id="reservation[reservation][type_id]" name="reservation[reservation][type_id]">
+          <select id="reservation[reservation][type_id]_{{s.id}}" name="reservation[reservation][type_id]">
             % s.available_reservation_types.each do |rt|
             <option value="{{ rt[:id] }}">{{ rt[:name] }}</option>
             % end
@@ -59,7 +59,7 @@
         % if s.available_seats > 0
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[reservation][quantity]">Cantidad de asientos</label>
-          <select id="reservation[reservation][quantity]" name="reservation[reservation][quantity]">
+          <select id="reservation[reservation][quantity]_{{s.id}}" name="reservation[reservation][quantity]">
 
             % s.available_seats.times.each do |c|
             <option>{{c + 1}}</option>
@@ -76,12 +76,20 @@
 
 <script>
 
- function showResult(str, div) {
+  function completeMakeForm(customer_json, service_id) {
+   var customer = JSON.parse(customer_json);
+
+   var id = 'reservation[customer][first_name]_' + service_id;
+  
+   document.getElementById(id).value = customer['first_name']; 
+ }
+
+ function showResult(str, div, service_id) {
    str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
    var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
 
     if (str.length == 0) {
-      document.getElementById(div).innerHTML     = "No Hay resultados";
+      document.getElementById(div).innerHTML     = "";
       document.getElementById(div).style.border  = "0px";
       return;
     }
@@ -100,7 +108,10 @@
        document.getElementById( div ).innerHTML = '';
        
        for(i = 0; i < results.length; i++) {
-         document.getElementById( div ).innerHTML += "<a href='#" + results[i]['id'] + "'>" + results[i]['name'] + "</a><br />";
+         document.getElementById( div ).
+                      
+         innerHTML += "<a href='#' onclick='completeMakeForm(&#39;" + JSON.stringify(results[i]) + "&#39;, " + service_id + ")'>" +
+         results[i]['last_name'] + " " + results[i]['first_name'] + "</a><br />";
        }
                       
        document.getElementById( div ).style.border = "1px solid #A5ACB2";
