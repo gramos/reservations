@@ -11,12 +11,13 @@ class Reservation < Sequel::Model
   end
 
   def self.make(params)
-    address = Address.new params['address']
-    address.save
 
     customer = Customer.new params['customer']
-    customer.address_id = address.id
     customer.save
+
+    address = Address.new params['address']
+    address.customer_id = customer.id
+    address.save
 
     reservation = Reservation.new params['reservation']
     reservation.customer_id = customer.id

@@ -1,6 +1,6 @@
 class Customer < Sequel::Model
 
-  many_to_one :address
+  one_to_many :addresses
 
   def full_name
     "#{first_name} #{last_name}"

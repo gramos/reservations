@@ -65,7 +65,12 @@ Cuba.define do
 
   on get, 'customers', param('q') do |q|
     as_json do
-      DB[:customers].where(:last_name => /#{q}/i).all
+      Customer.where(:last_name => /#{q}/i).all.map do |c|
+
+        address = Address.where(:customer_id => c.id).first
+        address ||= {}
+        c.to_hash.merge({:address => address.to_hash})
+      end
     end
   end
 
