@@ -1,2 +1,13 @@
+29 nov 2016
+-----------
+- Deshabilitar botones (crear reserva y listar).
+- Reserva paquetes y sobres.
+- Reserva Abono?
+- Ver botón crear servicios.
+- Agregar San Nicolás.
+
+----------------------------------------------------
+
 - Leer configuracion de Postgres para produccion
+
 **** SEPARAR ENVS PROD TEST DEV *****
