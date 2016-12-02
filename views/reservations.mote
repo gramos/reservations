@@ -1,3 +1,5 @@
+<!-- ó FORCE UTF-8 -->
+
 <script type="text/javascript">
   function showCreateReservation(id){
     var style = document.getElementById(id).style.display;
