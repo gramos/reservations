@@ -27,7 +27,9 @@
 
     <div class="content">
        {{ content }}
-      </div>
+    </div>
+
+    <script src="/js/reservations.js"></script>
   </body>
 
 </html>
