@@ -1,5 +1,5 @@
     <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
-      <input type="hidden" name="reservation[customer_id]" id="reservation[customer][id_hidden]_{{s.id}}">
+      <input type="hidden" name="reservation[customer_id]" id="reservation[customer][id]_{{s.id}}" value="">
     <fieldset>
       <legend>Reserva</legend>
       <div class="pure-g">

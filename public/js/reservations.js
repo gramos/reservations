@@ -25,7 +25,7 @@ function completeMakeForm(customer_json, service_id) {
                   '[address][apartment]',
                   '[address][number]',
                   '[address][tower]',
-                  '[customer][id_hidden]'];
+                  '[customer][id]'];
 
     for(i = 0; i < field_list.length; i++) {
         fillField( field_list[i], customer, service_id );
@@ -35,7 +35,7 @@ function completeMakeForm(customer_json, service_id) {
 function showResult(str, div, service_id) {
     str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
-    var hidden_customer_id = 'reservation[customer][id_hidden]_' + service_id;
+    var hidden_customer_id = 'reservation[customer][id]_' + service_id;
 
     if (str.length == 0) {
         document.getElementById(div).innerHTML     = "";
