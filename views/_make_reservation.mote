@@ -4,11 +4,6 @@
       <legend>Reserva</legend>
       <div class="pure-g">
         <div class="pure-u-1 pure-u-md-1-3">
-          <label for="reservation[address][phone_number]">Telefono</label>
-          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text">
-        </div>
-
-        <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[customer][last_name]">Apellido</label>
 
           <input id="reservation[customer][last_name]_{{s.id}}"
@@ -27,6 +22,10 @@
           <input id="reservation[customer][first_name]_{{s.id}}" name="reservation[customer][first_name]" type="text">
         </div>
 
+        <div class="pure-u-1 pure-u-md-1-3">
+          <label for="reservation[address][phone_number]">Telefono</label>
+          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text">
+        </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][street]">Calle</label>
@@ -40,17 +39,20 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][apartment]">Depto</label>
-          <input id="reservation[address][apartment]_{{s.id}}" name="apartment" type="text">
+          <input id="reservation[address][apartment]_{{s.id}}"
+                 name="reservation[address][apartment]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][tower]">Torre</label>
-          <input id="reservation[address][tower]_{{s.id}}" name="reservation[address][tower]" type="text">
+          <input id="reservation[address][tower]_{{s.id}}"
+                 name="reservation[address][tower]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[reservation][type_id]">Tipo Reserva</label>
-          <select id="reservation[reservation][type_id]_{{s.id}}" name="reservation[reservation][type_id]">
+          <select id="reservation[reservation][type_id]_{{s.id}}"
+                  name="reservation[reservation][type_id]">
             % s.available_reservation_types.each do |rt|
             <option value="{{ rt[:id] }}">{{ rt[:name] }}</option>
             % end
@@ -75,67 +77,4 @@
     </fieldset>
   </form>
 
-<script>
-
-  function completeMakeForm(customer_json, service_id) {
-     var customer = JSON.parse(customer_json);
-     var first_name   = 'reservation[customer][first_name]_' + service_id;
-     var last_name    = 'reservation[customer][last_name]_' + service_id;
-     var phone_number = 'reservation[address][phone_number]_' + service_id;
-     var street       = 'reservation[address][street]_' + service_id;
-     var number       = 'reservation[address][number]_' + service_id;
-     var apartment    = 'reservation[address][apartment]_' + service_id;
-     var tower    = 'reservation[address][tower]_' + service_id;
-     var hidden_customer_id = 'reservation[customer][id_hidden]_' + service_id;
-     
-     document.getElementById(first_name).value = customer['first_name'];
-     document.getElementById(last_name).value = customer['last_name'];
-     document.getElementById(phone_number).value = customer['address']['phone_number'];
-      document.getElementById(number).value = customer['address']['number'];
-      document.getElementById(street).value = customer['address']['street'];
-      document.getElementById(apartment).value = customer['address']['apartment'];
-      document.getElementById(tower).value = customer['address']['towe'];
-      document.getElementById(hidden_customer_id).value = customer['id'];
-     
-  }
-
- function showResult(str, div, service_id) {
-   str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-   var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
-   var hidden_customer_id = 'reservation[customer][id_hidden]_' + service_id;
-
-    if (str.length == 0) {
-      document.getElementById(div).innerHTML     = "";
-      document.getElementById(div).style.border  = "0px";
-      return;
-    }
-
-    if (window.XMLHttpRequest) {
-      xmlhttp = new XMLHttpRequest();
-    } else {
-      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xmlhttp.onreadystatechange = function() {
-
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-       results = JSON.parse( xmlhttp.response.replace(re, "<b>$1</b>") );
-       var plain_results = JSON.parse( xmlhttp.response);
-       document.getElementById( div ).innerHTML = '';
-       document.getElementById(hidden_customer_id).value = '';
-       for(i = 0; i < results.length; i++) {
-         document.getElementById( div ).
-
-         innerHTML += "<a href='#' onclick='completeMakeForm(&#39;" + JSON.stringify(plain_results[i]) + "&#39;, " + service_id + ")'>" +
-         results[i]['last_name'] + " " + results[i]['first_name'] + "</a><br />";
-       }
-
-       document.getElementById( div ).style.border = "1px solid #A5ACB2";
-     }
-    }
-
-    xmlhttp.open("GET","/customers?q=" + str, true);
-    xmlhttp.send();
-  }
-
-</script>
+  <script src="/js/reservations.js"></script>

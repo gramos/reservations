@@ -13,7 +13,7 @@ class Reservation < Sequel::Model
   def self.make(params)
     address = Address.new params['address']
 
-    if params['customer_id'].empty?
+    if params['customer_id'].nil? or params['customer_id'].empty?
       customer = Customer.new params['customer']
       customer.save
       address.customer_id = customer.id
