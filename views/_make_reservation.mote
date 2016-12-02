@@ -1,4 +1,5 @@
-<form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
+    <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
+      <input type="hidden" name="reservation[customer_id]" id="reservation[customer][id_hidden]_{{s.id}}">
     <fieldset>
       <legend>Reserva</legend>
       <div class="pure-g">
@@ -77,16 +78,31 @@
 <script>
 
   function completeMakeForm(customer_json, service_id) {
-   var customer = JSON.parse(customer_json);
-
-   var id = 'reservation[customer][first_name]_' + service_id;
-  
-   document.getElementById(id).value = customer['first_name']; 
- }
+     var customer = JSON.parse(customer_json);
+     var first_name   = 'reservation[customer][first_name]_' + service_id;
+     var last_name    = 'reservation[customer][last_name]_' + service_id;
+     var phone_number = 'reservation[address][phone_number]_' + service_id;
+     var street       = 'reservation[address][street]_' + service_id;
+     var number       = 'reservation[address][number]_' + service_id;
+     var apartment    = 'reservation[address][apartment]_' + service_id;
+     var tower    = 'reservation[address][tower]_' + service_id;
+     var hidden_customer_id = 'reservation[customer][id_hidden]_' + service_id;
+     
+     document.getElementById(first_name).value = customer['first_name'];
+     document.getElementById(last_name).value = customer['last_name'];
+     document.getElementById(phone_number).value = customer['address']['phone_number'];
+      document.getElementById(number).value = customer['address']['number'];
+      document.getElementById(street).value = customer['address']['street'];
+      document.getElementById(apartment).value = customer['address']['apartment'];
+      document.getElementById(tower).value = customer['address']['towe'];
+      document.getElementById(hidden_customer_id).value = customer['id'];
+     
+  }
 
  function showResult(str, div, service_id) {
    str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
    var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
+   var hidden_customer_id = 'reservation[customer][id_hidden]_' + service_id;
 
     if (str.length == 0) {
       document.getElementById(div).innerHTML     = "";
@@ -101,19 +117,19 @@
     }
 
     xmlhttp.onreadystatechange = function() {
- 
+
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
        results = JSON.parse( xmlhttp.response.replace(re, "<b>$1</b>") );
-
+       var plain_results = JSON.parse( xmlhttp.response);
        document.getElementById( div ).innerHTML = '';
-       
+       document.getElementById(hidden_customer_id).value = '';
        for(i = 0; i < results.length; i++) {
          document.getElementById( div ).
-                      
-         innerHTML += "<a href='#' onclick='completeMakeForm(&#39;" + JSON.stringify(results[i]) + "&#39;, " + service_id + ")'>" +
+
+         innerHTML += "<a href='#' onclick='completeMakeForm(&#39;" + JSON.stringify(plain_results[i]) + "&#39;, " + service_id + ")'>" +
          results[i]['last_name'] + " " + results[i]['first_name'] + "</a><br />";
        }
-                      
+
        document.getElementById( div ).style.border = "1px solid #A5ACB2";
      }
     }
