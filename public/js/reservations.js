@@ -56,6 +56,7 @@ function showResult(str, div, service_id) {
             var plain_results = JSON.parse( xmlhttp.response);
             document.getElementById( div ).innerHTML = '';
             document.getElementById(hidden_customer_id).value = '';
+
             for(i = 0; i < results.length; i++) {
                 document.getElementById( div ).
 

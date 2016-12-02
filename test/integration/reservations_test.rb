@@ -10,7 +10,7 @@ scope 'Daily Services' do
     assert has_content? @service.driver.full_name
   end
 
-  test_js 'Hago una reserva de un servicio' do
+  test_js 'Hago una reserva de un servicio con un cliente que no existe' do
     visit '/'
 
     within "#servicio_#{@service.id}" do
@@ -30,4 +30,35 @@ scope 'Daily Services' do
       page.has_content?('( 3 )')
     end
   end
+
+  test_js 'Hago una reserva de un servicio con un cliente que SI existe' do
+    customer = Customer.create(:first_name => 'Bruce',
+                               :last_name => 'Lee')
+
+    address = Address.create(:street => 'Hollywood Boulevard',
+                             :number => '1234')
+
+    customers_count = Customer.count
+
+    visit '/'
+
+    within "#servicio_#{@service.id}" do
+      page.has_content?('( 4 )')
+    end
+
+    click_link "button-create-reservation-#{@service.id}"
+
+    fill_in 'reservation[customer][last_name]', with: 'Lee'
+    click_link "Lee Bruce"
+
+    select 'Comun', from: 'reservation[reservation][type_id]'
+    click_button 'Crear Reserva'
+
+    within "#servicio_#{@service.id}" do
+      page.has_content?('( 3 )')
+    end
+
+    assert customers_count == Customer.count
+  end
+
 end
