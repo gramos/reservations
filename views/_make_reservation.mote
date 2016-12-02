@@ -33,7 +33,7 @@
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
-          <label for="reservation[address][number]">Número</label>
+          <label for="reservation[address][number]">N?mero</label>
           <input id="reservation[address][number]_{{s.id}}" name="reservation[address][number]" type="text">
         </div>
 
