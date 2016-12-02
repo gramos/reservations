@@ -23,15 +23,15 @@
         <th class="highlight"></th>
       </tr>
 
-      % services.each do |s|
+      % services.by_city('rosario').each do |s|
       <tr class="pure-table-odd" id="servicio_{{ s.id }}">
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
           % (s.driver.car_seats - s.available_seats).times do
-            <i class="fa fa-male fa-2x" style="color:red"></i>   
+            <i class="fa fa-male fa-2x" style="color:red"></i>
           % end
-            
+
           % s.available_seats.times do
             <i class="fa fa-male fa-2x"></i>
           % end
@@ -44,7 +44,7 @@
             ( {{ s.reservations_like('Paquete').size }} )</i>
         </td>
         <td>
-        
+
          <a class="button-success pure-button" href="#servicio_{{ s.id }}"
                onclick="showCreateReservation('create-reservation-{{ s.id }}')"
                id="button-create-reservation-{{ s.id }}">
@@ -61,14 +61,14 @@
           </a>
         </td>
       </tr>
-      
+
       <tr style="display:none;" id="create-reservation-{{ s.id }}">
         <td colspan="5">
           {{ app.partial '_make_reservation', :s => s }}
         </td>
-        
+
       </tr>
-      
+
       <tr style="display:none;" id="list-reservations-{{ s.id }}">
         <td colspan="5">
           {{ app.partial '_list_reservations', :s => s }}
@@ -80,74 +80,72 @@
 
   </div>
 
-  <div class="pure-u-1 pure-u-md-1-2">
-    <div class="header"><h1>San Nicolás</h1></div>
-    <table class="mq-table pure-table" style="width: 95%">
-      <thead>
-        <tr>
-          <th class="highlight">Horario</th>
-          <th class="highlight">Chofer</th>
-          <th class="highlight">Asientos</th>
-          <th class="highlight">Paquetes</th>
-          <th class="highlight"></th>
-        </tr>
-      </thead>
+   <div class="pure-u-1 pure-u-md-1-2">
 
-      <tbody>
-        <tr class="pure-table-odd">
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x"></i>
+    <div class="header"><h1>San Nicolas</h1></div>
+    <table class="pure-table" border="1" style="width:95%">
+      <tr>
+        <th class="highlight">Horario</th>
+        <th class="highlight">Chofer</th>
+        <th class="highlight">Asiento Disp.</th>
+        <th class="highlight">Paquetes</th>
+        <th class="highlight"></th>
+      </tr>
 
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift"></i></td>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
+      % services.by_city('san nicolas').each do |s|
+      <tr class="pure-table-odd" id="servicio_{{ s.id }}">
+        <td>{{ s.scheduled_time.time }}</td>
+        <td>{{ s.driver.full_name }}</td>
+        <td>
+          % (s.driver.car_seats - s.available_seats).times do
+            <i class="fa fa-male fa-2x" style="color:red"></i>
+          % end
 
-        <tr>
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
+          % s.available_seats.times do
+            <i class="fa fa-male fa-2x"></i>
+          % end
+          <i>( {{ s.available_seats }} )</i>
+        </td>
 
-        <tr class="pure-table-odd">
-          <td>6:00</td>
-          <td>Gustavo Yarros</td>
-          <td><i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-            <i class="fa fa-male fa-border fa-2x" style="color:red"></i>
-          </td>
-          <td><i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-envelope fa-border"></i>
-            <i class="fa fa-gift fa-border"></i></td>
-          <td><a class="button-success pure-button" href="#">
-              <i class="fa fa-plus"></i>
-            </a>
-            <a class="button-success pure-button" href="#">
-              <i class="fa fa-list-ul"></i>
-            </a>
-          </td>
-        </tr>
+        <td> <i class="fa fa-envelope fa-border">
+            ( {{ s.reservations_like('Sobre').size }})</i>
+          | <i class="fa fa-gift">
+            ( {{ s.reservations_like('Paquete').size }} )</i>
+        </td>
+        <td>
 
-      </tbody>
+         <a class="button-success pure-button" href="#servicio_{{ s.id }}"
+               onclick="showCreateReservation('create-reservation-{{ s.id }}')"
+               id="button-create-reservation-{{ s.id }}">
+
+            <i class="fa fa-plus"></i>
+          </a>
+
+          <a class="button-success pure-button" href="#"
+             % if s.reservations.empty?
+               disabled
+             % end
+             onclick="showCreateReservation('list-reservations-{{ s.id }}')">
+            <i class="fa fa-list-ul"></i>
+          </a>
+        </td>
+      </tr>
+
+      <tr style="display:none;" id="create-reservation-{{ s.id }}">
+        <td colspan="5">
+          {{ app.partial '_make_reservation', :s => s }}
+        </td>
+
+      </tr>
+
+      <tr style="display:none;" id="list-reservations-{{ s.id }}">
+        <td colspan="5">
+          {{ app.partial '_list_reservations', :s => s }}
+        </td>
+      </tr>
+
+      % end
     </table>
+
   </div>
 </div>

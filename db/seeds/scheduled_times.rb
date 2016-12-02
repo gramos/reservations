@@ -22,10 +22,14 @@ module DBSeed
       ]
 
       [1, 2, 3, 4, 5, 6, 7].each do |d|
-
         st.each do |t|
-          data = t.merge( :day => d, :city_id => DB[:cities].first )
-          DB[:scheduled_times].insert(t.merge( :day => d ) )
+          city = DB[:cities].where(:name => /rosario/i).first
+          data = t.merge( :day => d, :city_id => city[:id] )
+          DB[:scheduled_times].insert data
+
+          city = DB[:cities].where(:name => /san nicolas/i).first
+          data = t.merge( :day => d, :city_id => city[:id] )
+          DB[:scheduled_times].insert data
         end
 
       end

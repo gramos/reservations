@@ -23,3 +23,14 @@ class Service < Sequel::Model
     end
   end
 end
+
+Service.dataset_module do
+
+  def by_city(city_name)
+    city_id = DB[:cities].where(:name => /#{city_name}/i ).first[:id]
+    s_times_ids = DB[:scheduled_times].
+                  where(:city_id => city_id).select_map(:id)
+
+    where(:scheduled_time_id => s_times_ids)
+  end
+end
