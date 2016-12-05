@@ -63,7 +63,7 @@ function showResult(str, div, service_id) {
               for(i = 0; i < results.length; i++) {
                   document.getElementById( div ).
 
-                  innerHTML += "<a href='#' onclick='completeMakeForm(&#39;" +
+                  innerHTML += "<a class='suggestion' href='#' onclick='completeMakeForm(&#39;" +
                       JSON.stringify( plain_results[i] ) + "&#39;, " +
                       service_id + ",&#39" + div + "&#39)'>" +
 

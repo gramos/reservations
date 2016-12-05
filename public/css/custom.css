@@ -64,3 +64,12 @@ html, table, button, input, select, textarea, .pure-g [class*="pure-u"] {
 
 .livesearch b { font-weight: normal; color: #1f8dd6; }
 box-shadow: -1px 1px 3px rgba(0,0,0,.1);                                          |.autocomplete-suggestion.selected { background: #f0f0f0; }
+
+.suggestion {
+  text-decoration: none;
+  color: black;
+}
+
+.suggestion:hover {
+    color: green;
+}
