@@ -73,7 +73,7 @@ Cuba.define do
     Reservation[id].delete
     res.redirect '/'
   end
-  
+
   on get, 'customers', param('q') do |q|
     as_json do
       Customer.where(:last_name => /#{q}/i).all.map do |c|
@@ -86,6 +86,13 @@ Cuba.define do
   end
 
   on root do
+    on param('date') do |d|
+      date = Date.parse d
+      services = Service.where(:date => date)
+
+      render 'reservations', { :services => services }
+    end
+
     services = Service.where(:date => Date.today)
     render 'reservations', { :services => services }
   end

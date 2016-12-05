@@ -10,10 +10,16 @@
   }
 </script>
 
-<div><input type="text" id="datepicker"></div>
+<div>
+  <form action="/" method="GET">
+    <b>Fecha:</b><input type="text" id="datepicker" name="date"
+                        value="{{app.req.params['date']}}">
+    <button type="submit" class="pure-button pure-button-primary">Ir</button>
+  </form>
+</div>
 
 <div class="pure-g">
-  
+
   <div class="pure-u-1 pure-u-md-1-2">
 
     <div class="header"><h1>Rosario</h1></div>
@@ -152,7 +158,7 @@
 
    </div>
 
- % if services.empty?  
+ % if services.empty?
    <br /> <br />
   <p>
     <form class="pure-form pure-form-stacked" action="/services/today" method="POST">
