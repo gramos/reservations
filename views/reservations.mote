@@ -10,15 +10,25 @@
   }
 </script>
 
-<div>
-  <form action="/" method="GET">
-    <b>Fecha:</b><input type="text" id="datepicker" name="date"
-                        value="{{app.req.params['date']}}">
-    <button type="submit" class="pure-button pure-button-primary">Ir</button>
-  </form>
-</div>
+
+<form action="/" method="GET" class="pure-form pure-form-aligned">
+
+  <fieldset>
+   <div class="pure-g">
+     <div class="pure-u-1 pure-u-md-1-3">
+      <label for="datepicker">Fecha: </label>
+      <input type="text" id="datepicker" name="date" class="pure-input-rounded"
+             value="{{app.req.params['date']}}">
+      <button type="submit" class="pure-button pure-button-primary">Ir</button>
+
+    </div>
+    </div>
+  </fieldset>
+</form>
+
 
 <div class="pure-g">
+
 
   <div class="pure-u-1 pure-u-md-1-2">
 
