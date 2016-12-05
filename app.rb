@@ -60,7 +60,9 @@ Cuba.define do
     on param(:reservation) do |params|
       params['service_id'] = service_id
       Reservation.make params
-      res.redirect '/'
+
+      date = Service[service_id].date.strftime('%a %b %d %Y')
+      res.redirect "/?date=#{URI.escape( date )}"
     end
   end
 
@@ -71,8 +73,11 @@ Cuba.define do
   end
 
   on post, 'reservations/:id' do |id|
-    Reservation[id].delete
-    res.redirect '/'
+    reservation = Reservation[id]
+
+    date = reservation.service.date.strftime('%a %b %d %Y')
+    reservation.delete
+    res.redirect "/?date=#{URI.escape( date )}"
   end
 
   on get, 'customers', param('q') do |q|

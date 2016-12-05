@@ -17,7 +17,7 @@
        <div class="pure-menu pure-menu-horizontal">
          <ul class="pure-menu-list">
            <li class="pure-menu-item pure-menu-selected">
-             <a href="#" class="pure-menu-link">Reservas</a>
+             <a href="/" class="pure-menu-link">Reservas</a>
            </li>
            <li class="pure-menu-item">
              <a href="#" class="pure-menu-link">Servicios</a>
