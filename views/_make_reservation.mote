@@ -9,7 +9,7 @@
           <input id="reservation[customer][last_name]_{{s.id}}"
                  onkeyup="showResult(this.value,'livesearch_{{ s.id }}', {{ s.id }})"
                  name="reservation[customer][last_name]"
-                 type="text" autocomplete="off">
+                 type="text" autocomplete="off" required>
 
           <div class="livesearch" id="livesearch_{{ s.id }}"></div>
 
@@ -19,17 +19,17 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[customer][first_name]">Nombre</label>
-          <input id="reservation[customer][first_name]_{{s.id}}" name="reservation[customer][first_name]" type="text">
+          <input id="reservation[customer][first_name]_{{s.id}}" name="reservation[customer][first_name]" type="text" required>
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][phone_number]">Telefono</label>
-          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text">
+          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text"required>
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][street]">Calle</label>
-          <input id="reservation[address][street]_{{s.id}}" name="reservation[address][street]" type="text">
+          <input id="reservation[address][street]_{{s.id}}" name="reservation[address][street]" type="text" required>
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">

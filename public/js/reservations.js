@@ -15,7 +15,7 @@ function fillField(name, customer, service_id) {
     }
 }
 
-function completeMakeForm(customer_json, service_id) {
+function completeMakeForm(customer_json, service_id, div_id) {
     var customer = JSON.parse(customer_json);
 
     field_list = ['[customer][first_name]',
@@ -30,38 +30,42 @@ function completeMakeForm(customer_json, service_id) {
     for(i = 0; i < field_list.length; i++) {
         fillField( field_list[i], customer, service_id );
     }
+   
+    document.getElementById(div_id).style.display = "none";
 }
 
 function showResult(str, div, service_id) {
-    str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-    var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
-    var hidden_customer_id = 'reservation[customer][id]_' + service_id;
+    if (str.length > 2) {
+      str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
+      var hidden_customer_id = 'reservation[customer][id]_' + service_id;
 
-    if (str.length == 0) {
-        document.getElementById(div).innerHTML     = "";
-        document.getElementById(div).style.border  = "0px";
-        return;
-    }
+      if (str.length == 0) {
+          document.getElementById(div).innerHTML     = "";
+          document.getElementById(div).style.border  = "0px";
+          return;
+       }
 
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+      if (window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
 
-    xmlhttp.onreadystatechange = function() {
+      xmlhttp.onreadystatechange = function() {
 
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            results = JSON.parse( xmlhttp.response.replace(re, "<b>$1</b>") );
-            var plain_results = JSON.parse( xmlhttp.response);
-            document.getElementById( div ).innerHTML = '';
-            document.getElementById(hidden_customer_id).value = '';
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              results = JSON.parse( xmlhttp.response.replace(re, "<b>$1</b>") );
+              var plain_results = JSON.parse( xmlhttp.response);
+              document.getElementById( div ).innerHTML = '';
+              document.getElementById(hidden_customer_id).value = '';
 
-            for(i = 0; i < results.length; i++) {
-                document.getElementById( div ).
+              for(i = 0; i < results.length; i++) {
+                  document.getElementById( div ).
 
-                innerHTML += "<a href='#' onclick='completeMakeForm(&#39;" +
-                    JSON.stringify( plain_results[i] ) + "&#39;, " + service_id + ")'>" +
+                  innerHTML += "<a href='#' onclick='completeMakeForm(&#39;" +
+                      JSON.stringify( plain_results[i] ) + "&#39;, " +
+                      service_id + ",&#39" + div + "&#39)'>" +
 
                 results[i]['last_name'] + " " + results[i]['first_name'] + "</a><br />";
             }
@@ -72,4 +76,6 @@ function showResult(str, div, service_id) {
 
     xmlhttp.open("GET","/customers?q=" + str, true);
     xmlhttp.send();
+
+ }
 }

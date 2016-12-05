@@ -1,15 +1,17 @@
 <script type="text/javascript">
-  function showCreateReservation(id){
+  function showCreateReservation(id, id_parent){
     var style = document.getElementById(id).style.display;
 
     if (style == 'table-row') {
      document.getElementById(id).style.display = "none";
+     document.getElementById(id_parent).style.background = "#fff";
     } else {
-     document.getElementById(id).style.display = "table-row";
+      document.getElementById(id).style.display = "table-row";
+      document.getElementById(id).style.background = "#f2f9fc";
+      document.getElementById(id_parent).style.background = "#f2f9fc";
     }
   }
 </script>
-
 
 <form action="/" method="GET" class="pure-form pure-form-aligned">
 
@@ -43,7 +45,7 @@
       </tr>
 
       % services.by_city('rosario').each do |s|
-      <tr class="pure-table-odd" id="servicio_{{ s.id }}">
+      <tr class="pure-table" id="servicio_{{ s.id }}">
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
@@ -65,7 +67,7 @@
         <td>
 
          <a class="button-success pure-button" href="#servicio_{{ s.id }}"
-               onclick="showCreateReservation('create-reservation-{{ s.id }}')"
+               onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
                id="button-create-reservation-{{ s.id }}">
 
             <i class="fa fa-plus"></i>
@@ -112,7 +114,7 @@
       </tr>
 
       % services.by_city('san nicolas').each do |s|
-      <tr class="pure-table-odd" id="servicio_{{ s.id }}">
+      <tr class="pure-table" id="servicio_{{ s.id }}">
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
@@ -134,8 +136,8 @@
         <td>
 
          <a class="button-success pure-button" href="#servicio_{{ s.id }}"
-               onclick="showCreateReservation('create-reservation-{{ s.id }}')"
-               id="button-create-reservation-{{ s.id }}">
+            onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
+            id="button-create-reservation-{{ s.id }}">
 
             <i class="fa fa-plus"></i>
           </a>

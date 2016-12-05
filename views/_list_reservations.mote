@@ -10,7 +10,7 @@
     % end
       
     <form class="pure-form pure-form-stacked"
-          action="/reservations/{{r.id}}" method="POST">
+          action="/reservations/{{r.id}}" method="POST" onsubmit="return confirm('Esta seguro?');">
       <button type="submit"
               class="pure-button fa fa-trash">borrar
       </button></form>
