@@ -147,5 +147,14 @@
       % end
     </table>
 
-  </div>
+   </div>
+
+ % if services.empty?  
+   <br /> <br />
+  <p>
+    <form class="pure-form pure-form-stacked" action="/services/today" method="POST">
+      <button type="submit" class="pure-button pure-button-primary">Crear Servicios del dia</button>
+    </form>
+  </p>
+ % end
 </div>

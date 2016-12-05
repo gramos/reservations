@@ -17,7 +17,7 @@ Dir["./lib/**/*.rb"].each { |rb| require rb }
 Dir["./routes/**/*.rb"].each { |rb| require rb }
 Dir["./filters/**/*.rb"].each { |rb| require rb }
 Dir["./helpers/**/*.rb"].each { |rb| require rb }
-
+Dir["./db/seeds/*.rb"].each { |rb| require rb }
 Cuba.use Rack::Static,
          urls: %w[/js /css /img],
          root: File.expand_path("./public", __dir__)
@@ -63,6 +63,11 @@ Cuba.define do
     end
   end
 
+  on post, 'services/today' do
+    DBSeed::Services.run!
+    res.redirect '/'
+  end
+  
   on get, 'customers', param('q') do |q|
     as_json do
       Customer.where(:last_name => /#{q}/i).all.map do |c|
