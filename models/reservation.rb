@@ -3,7 +3,7 @@ class Reservation < Sequel::Model
   many_to_one :service
   many_to_one :customer
   many_to_one :address
-  many_to_one :reservation_type
+  many_to_one :reservation_type, :key => :type_id
 
   def full_address
     a = address
@@ -31,5 +31,9 @@ class Reservation < Sequel::Model
     reservation.save
 
     reservation
+  end
+
+  def use_seat?
+    ! ['Sobre', 'Paquete'].include? reservation_type.name
   end
 end

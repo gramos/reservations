@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:200">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="/vendor/Pikaday/css/pikaday.css">
+    <link rel="stylesheet" href="/vendor/Pikaday/css/site.css">
 
   </head>
 
@@ -30,6 +31,11 @@
     </div>
 
     <script src="/js/reservations.js"></script>
+    
+    <script src="/vendor/Pikaday/pikaday.js"></script>
+    <script>
+      var picker = new Pikaday({ field: document.getElementById('datepicker') });
+      </script>
   </body>
 
 </html>

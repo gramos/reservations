@@ -1,9 +1,14 @@
 <ul>
   % s.reservations.each do |r|
-  <li>{{ r.customer.full_name }} 
-    <b>Direccion:</b> {{ r.full_address }}
-    <b>Telofono: {{ r.customer.phone_number }}</b>
-    <b>Cantidad de asientos:</b> {{ r.quantity }}
+  <li>{{ r.customer.full_name }} |
+    <b>Direccion:</b> {{ r.full_address }} |
+    <b>Telofono:</b> {{ r.customer.phone_number }} |
+    <b>Tipo:</b> {{ r.reservation_type.name }} |
+
+    % if r.use_seat?
+      <b>Cantidad de asientos:</b> {{ r.quantity }}
+    % end
+      
     <form class="pure-form pure-form-stacked"
           action="/reservations/{{r.id}}" method="POST">
       <button type="submit"
