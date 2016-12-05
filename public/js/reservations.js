@@ -30,21 +30,18 @@ function completeMakeForm(customer_json, service_id, div_id) {
     for(i = 0; i < field_list.length; i++) {
         fillField( field_list[i], customer, service_id );
     }
-   
+
     document.getElementById(div_id).style.display = "none";
 }
 
 function showResult(str, div, service_id) {
     if (str.length > 2) {
+      document.getElementById(div).style.display = "block";
       str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
       var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
       var hidden_customer_id = 'reservation[customer][id]_' + service_id;
 
-      if (str.length == 0) {
-          document.getElementById(div).innerHTML     = "";
-          document.getElementById(div).style.border  = "0px";
-          return;
-       }
 
       if (window.XMLHttpRequest) {
           xmlhttp = new XMLHttpRequest();
@@ -59,6 +56,9 @@ function showResult(str, div, service_id) {
               var plain_results = JSON.parse( xmlhttp.response);
               document.getElementById( div ).innerHTML = '';
               document.getElementById(hidden_customer_id).value = '';
+
+              if (plain_results == '') {
+                 document.getElementById( div ).innerHTML = 'No hay coincidencias...';              }
 
               for(i = 0; i < results.length; i++) {
                   document.getElementById( div ).
