@@ -73,3 +73,11 @@ box-shadow: -1px 1px 3px rgba(0,0,0,.1);                                        
 .suggestion:hover {
     color: green;
 }
+
+.pure-menu-item {
+    height: 0;
+}
+
+.header{
+    #background-color: #2d3e50;
+}

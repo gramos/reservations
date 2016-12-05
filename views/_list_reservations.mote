@@ -8,13 +8,15 @@
     % if r.use_seat?
       <b>Cantidad de asientos:</b> {{ r.quantity }}
     % end
-      
+
     <form class="pure-form pure-form-stacked"
-          action="/reservations/{{r.id}}" method="POST" onsubmit="return confirm('Esta seguro?');">
+          action="/reservations/{{r.id}}" method="POST"
+          onsubmit="return confirm('Esta seguro?');">
+
       <button type="submit"
               class="pure-button fa fa-trash">borrar
-      </button></form>
+      </button>
+    </form>
   </li> <br />
   % end
 </ul>
-
