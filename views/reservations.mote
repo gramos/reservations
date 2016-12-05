@@ -11,6 +11,8 @@
       document.getElementById(id_parent).style.background = "#f2f9fc";
     }
   }
+
+
 </script>
 
 <div class="header">
@@ -26,11 +28,15 @@
              <a href="#" class="pure-menu-link">Clientes</a>
            </li>
            <li class="pure-menu-item">
-             <form action="/" method="GET" class="pure-form pure-form-aligned">
+             <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
                <fieldset>
                  <label for="datepicker">&nbsp;&nbsp;Fecha: </label>
+
+                 % date   = app.req.params['date']
+                 % date ||= Date.today.strftime('%a %b %d %Y')
+
                  <input type="text" id="datepicker" name="date" class="pure-input-rounded"
-                        value="{{app.req.params['date']}}">
+                        value="{{date}}">
                  <button type="submit" class="pure-button pure-button-primary">Ir</button>
                </fieldset>
              </form>

@@ -31,11 +31,18 @@
     </div>
 
     <script src="/js/reservations.js"></script>
-    
+
     <script src="/vendor/Pikaday/pikaday.js"></script>
     <script>
-      var picker = new Pikaday({ field: document.getElementById('datepicker') });
-      </script>
+
+      var picker = new Pikaday({
+      field: document.getElementById('datepicker'),
+      onSelect: function() {
+        document.getElementById('date_form').submit()
+      }
+      });
+
+    </script>
   </body>
 
 </html>
