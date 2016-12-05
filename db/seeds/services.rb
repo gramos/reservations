@@ -3,7 +3,7 @@ module DBSeed
   class Services
     def self.run!(date = Date.today)
       stimes = DB[:scheduled_times].where('day = ?', date.wday)
-      
+
       stimes.each do |st|
         DB[:services] << { :date => date,
                            :driver_id => DB[:drivers].first[:id],

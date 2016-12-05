@@ -21,7 +21,7 @@ module DBSeed
         {:time => '22:00'}
       ]
 
-      [1, 2, 3, 4, 5, 6, 7].each do |d|
+      [0, 1, 2, 3, 4, 5, 6].each do |d|
         st.each do |t|
           city = DB[:cities].where(:name => /rosario/i).first
           data = t.merge( :day => d, :city_id => city[:id] )
