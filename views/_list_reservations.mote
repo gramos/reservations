@@ -1,9 +1,15 @@
 <ul>
   % s.reservations.each do |r|
-  <li>{{ r.customer.full_name }}
-    <b>Direcci?n:</b> {{ r.full_address }}
-    <b>Tel?fono: {{ r.customer.phone_number }}</b>
-  </li>
+  <li>{{ r.customer.full_name }} 
+    <b>Direccion:</b> {{ r.full_address }}
+    <b>Telofono: {{ r.customer.phone_number }}</b>
+    <b>Cantidad de asientos:</b> {{ r.quantity }}
+    <form class="pure-form pure-form-stacked"
+          action="/reservations/{{r.id}}" method="POST">
+      <button type="submit"
+              class="pure-button fa fa-trash">borrar
+      </button></form>
+  </li> <br />
   % end
 </ul>
 
