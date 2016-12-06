@@ -32,6 +32,17 @@ function completeMakeForm(customer_json, service_id, div_id) {
     }
 
     document.getElementById(div_id).style.display = "none";
+    preloadAddress(customer, service_id);
+}
+
+function preloadAddress(customer, service_id){
+    var div_id = 'livesearch_street_' + service_id;
+    var div = document.getElementById(div_id);
+    div.innerHTML = '';
+
+    for(i = 0; i < customer['addresses'].length; i++) {
+        div.innerHTML += customer['addresses'][i]['street'] + '<br/> ';
+    }
 }
 
 function showResult(str, div, service_id) {
@@ -41,7 +52,6 @@ function showResult(str, div, service_id) {
 
       var re = new RegExp("(" + str.split(' ').join('|') + ")", "gi");
       var hidden_customer_id = 'reservation[customer][id]_' + service_id;
-
 
       if (window.XMLHttpRequest) {
           xmlhttp = new XMLHttpRequest();

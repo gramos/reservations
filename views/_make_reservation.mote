@@ -1,5 +1,7 @@
     <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
       <input type="hidden" name="reservation[customer_id]" id="reservation[customer][id]_{{s.id}}" value="">
+
+
     <fieldset>
       <legend>Reserva</legend>
       <div class="pure-g">
@@ -30,6 +32,7 @@
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][street]">Calle</label>
           <input id="reservation[address][street]_{{s.id}}" name="reservation[address][street]" type="text" required>
+          <div class="livesearch_street" id="livesearch_street_{{ s.id }}"></div>
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
@@ -76,5 +79,3 @@
       <button type="submit" class="pure-button pure-button-primary">Crear Reserva</button>
     </fieldset>
   </form>
-
-

@@ -86,7 +86,11 @@ Cuba.define do
 
         address = Address.where(:customer_id => c.id).first
         address ||= {}
-        c.to_hash.merge({:address => address.to_hash})
+
+        addresses   = Address.where(:customer_id => c.id).map{|a| a.to_hash}
+        addresses ||= []
+
+        c.to_hash.merge({:address => address.to_hash, :addresses => addresses})
       end
     end
   end
