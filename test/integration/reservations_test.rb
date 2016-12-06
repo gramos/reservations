@@ -61,4 +61,10 @@ scope 'Daily Services' do
     assert customers_count == Customer.count
   end
 
+  test 'creo los servicios del dia de hoy sin seleccionar desde el calendario' do
+    DB[:services].where(:date => Date.today).delete
+    visit '/'
+    click_button "Crear Servicios del dia"
+    assert !DB[:services].where(:date => Date.today).all.empty?
+  end
 end

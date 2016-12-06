@@ -188,7 +188,7 @@
    <br /> <br />
   <p>
     <form class="pure-form pure-form-stacked" action="/services" method="POST">
-      <input type="text" name="create_service_date" value="{{app.req.params['date']}}">
+      <input type="text" name="create_service_date" value="{{ date }}">
       <button type="submit" class="pure-button pure-button-primary">Crear Servicios del dia</button>
 
     </form>
