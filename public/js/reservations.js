@@ -25,6 +25,7 @@ function completeMakeForm(customer_json, service_id, div_id) {
                   '[address][street]',
                   '[address][apartment]',
                   '[address][number]',
+                  '[address][floor]',
                   '[address][tower]',
                   '[customer][id]'];
 

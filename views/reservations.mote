@@ -85,7 +85,7 @@
             <i class="fa fa-plus"></i>
           </a>
 
-          <a class="button-secondary pure-button" href="#"
+          <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
              % if s.reservations.empty?
                disabled
              % end
@@ -154,7 +154,7 @@
             <i class="fa fa-plus"></i>
           </a>
 
-          <a class="button-secondary pure-button" href="#"
+          <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
              % if s.reservations.empty?
                disabled
              % end
