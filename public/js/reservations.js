@@ -32,39 +32,53 @@ function completeMakeForm(customer_json, service_id, div_id) {
     }
 
     document.getElementById(div_id).style.display = "none";
-    preloadAddress(customer, service_id);
+    return customer;
 }
 
-function preloadAddress(customer, service_id){
-    var div_id = 'livesearch_street_hidden_' + service_id;
-    var div = document.getElementById(div_id);
-    div.innerHTML = '';
+function completeAddressInfo(address_id, service_id){
 
-    for(i = 0; i < customer['addresses'].length; i++) {
-        div.innerHTML += customer['addresses'][i]['street'] + '<br/> ';
-    }
+    address = customer['addresses'].filter(function(a){
+        return a['id'] == address_id;})[0];
+
+    var street =  document.getElementById('reservation[address][street]_' + service_id);
+    var number = document.getElementById('reservation[address][number]_' + service_id);
+    var tower =  document.getElementById('reservation[address][tower]_' + service_id);
+    var apartment =  document.getElementById('reservation[address][apartment]_' + service_id);
+    var id  =  document.getElementById('reservation[address][id]_' + service_id)
+
+    street.value = address['street'];
+    number.value = address['number'];
+    tower.value  = address['tower'];
+    apartment.value = address['apartment'];
+    id.value = address['id'];
+    document.getElementById('livesearch_street_' + service_id).style.display = "none";
+
+
 }
 
-function showAddressResult(str, service_id) {
-    div_hidden = document.getElementById('livesearch_street_hidden_' + service_id)
+function showAddressResult(str, customer, service_id) {
     div = document.getElementById('livesearch_street_' + service_id)
 
-    address_list = div_hidden.innerHTML.split("<br>");
+    addresses = customer['addresses'];
 
-    filtered_list = address_list.filter( function(val){
+    filtered_list = addresses.filter( function(a){
         var re = new RegExp(str, 'gi');
-        return val.match(re);
+        return a['street'].match(re);
     } )
 
+    div.style.display = "block";
     div.innerHTML = '';
+    document.getElementById('reservation[address][id]_' + service_id).value = '';
+
     for(i = 0; i < filtered_list.length; i++) {
-        div.innerHTML += "<a class='sugesstion' href='#'>" +
-                          filtered_list[i] + "</a><br />";
+        div.innerHTML += "<a class='suggestion' href='#' " +
+            "onclick='completeAddressInfo(" + filtered_list[i]['id'] +
+            "," + service_id + ")'>" + filtered_list[i]['street'] + "</a><br />";
     }
 }
 
 function showResult(str, div, service_id) {
-    if (str.length > 2) {
+    if (str.length > 1) {
       document.getElementById(div).style.display = "block";
       str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 
@@ -91,7 +105,7 @@ function showResult(str, div, service_id) {
               for(i = 0; i < results.length; i++) {
                   document.getElementById( div ).
 
-                  innerHTML += "<a class='suggestion' href='#' onclick='completeMakeForm(&#39;" +
+                  innerHTML += "<a class='suggestion' href='#' onclick='customer = completeMakeForm(&#39;" +
                       JSON.stringify( plain_results[i] ) + "&#39;, " +
                       service_id + ",&#39" + div + "&#39)'>" +
 
@@ -104,6 +118,5 @@ function showResult(str, div, service_id) {
 
     xmlhttp.open("GET","/customers?q=" + str, true);
     xmlhttp.send();
-
- }
+    }
 }

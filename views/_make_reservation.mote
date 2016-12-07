@@ -30,8 +30,9 @@
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
+           <input type="hidden" name="reservation[address_id]" id="reservation[address][id]_{{s.id}}" value="">
           <label for="reservation[address][street]">Calle</label>
-          <input id="reservation[address][street]_{{s.id}}" name="reservation[address][street]" type="text" onkeyup="showAddressResult(this.value,'{{ s.id }}')" autocomplete="off" required>
+          <input id="reservation[address][street]_{{s.id}}" name="reservation[address][street]" type="text" onkeyup="showAddressResult(this.value, customer,'{{ s.id }}')" autocomplete="off" required>
 
           <div class="livesearch" id="livesearch_street_hidden_{{ s.id }}" style="display:none;"></div>
           <div class="livesearch" id="livesearch_street_{{ s.id }}"></div>
