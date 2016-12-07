@@ -1,22 +1,42 @@
-<ul>
-  % s.reservations.each do |r|
-  <li>{{ r.customer.full_name }} |
-    <b>Direccion:</b> {{ r.full_address }} |
-    <b>Telofono:</b> {{ r.customer.phone_number }} |
-    <b>Tipo:</b> {{ r.reservation_type.name }} |
+<table class="pure-table pure-table-horizontal">
+  <tr>
+    <th class="header">#</th>
+    <th class="header">Nombre</th>
+    <th class="header">Direccion</th>
+    <th class="header">Telefono</th>
+    <th class="header">Tipo Reserva</th>
+    <th class="header">Asientos</th>
+    <th class="header">Cantidad</th>
 
-    % if r.use_seat?
-      <b>Cantidad de asientos:</b> {{ r.quantity }}
-    % end
+  </tr>
 
-    <form class="pure-form pure-form-stacked"
-          action="/reservations/{{r.id}}" method="POST"
-          onsubmit="return confirm('Esta seguro?');">
+  <tbody>
 
-      <button type="submit"
-              class="pure-button fa fa-trash">borrar
-      </button>
-    </form>
-  </li> <br />
+  % s.reservations.each_with_index do |r, index|
+    <tr>
+     <td>{{ index + 1 }}</td>
+     <td>{{ r.customer.full_name }}</td>
+     <td> {{ r.full_address }}</td>
+     <td>{{ r.customer.phone_number }}</td>
+     <td>{{ r.reservation_type.name }}</td>
+     <td>
+     % if r.use_seat?
+        {{ r.quantity }}
+       % end
+     </td>
+     <td>
+       <form class="pure-form pure-form-stacked"
+             action="/reservations/{{r.id}}" method="POST"
+             onsubmit="return confirm('Esta seguro?');">
+
+         <button type="submit"
+              class="button-warning pure-button fa fa-trash">
+        </button>
+       </form>
+     </td>
+
+    </tr>
   % end
-</ul>
+
+  </tbody>
+</table>

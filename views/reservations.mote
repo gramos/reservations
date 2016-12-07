@@ -80,14 +80,14 @@
         </td>
         <td>
 
-         <a class="button-success pure-button" href="#servicio_{{ s.id }}"
+         <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
                onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
                id="button-create-reservation-{{ s.id }}">
 
             <i class="fa fa-plus"></i>
           </a>
 
-          <a class="button-success pure-button" href="#"
+          <a class="button-secondary pure-button" href="#"
              % if s.reservations.empty?
                disabled
              % end
@@ -149,14 +149,14 @@
         </td>
         <td>
 
-         <a class="button-success pure-button" href="#servicio_{{ s.id }}"
+         <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
             onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
             id="button-create-reservation-{{ s.id }}">
 
             <i class="fa fa-plus"></i>
           </a>
 
-          <a class="button-success pure-button" href="#"
+          <a class="button-secondary pure-button" href="#"
              % if s.reservations.empty?
                disabled
              % end
