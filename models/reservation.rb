@@ -7,8 +7,8 @@ class Reservation < Sequel::Model
 
   def full_address
     a = address
-    "Calle: #{a.street} - Numero: #{a.number} " +
-    "Torre: #{a.tower} - Piso: #{a.floor} - Dpto: #{a.apartment}"
+    "<b>Calle:</b> #{a.street} <br /><b>Numero:</b>#{a.number} <br/>" +
+    "<b>Torre:</b>#{a.tower} <b>Piso:</b>#{a.floor} <b>Dpto:</b>#{a.apartment}"
   end
 
   def self.make(params)

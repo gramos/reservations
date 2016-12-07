@@ -20,6 +20,7 @@ function completeMakeForm(customer_json, service_id, div_id) {
 
     field_list = ['[customer][first_name]',
                   '[customer][last_name]',
+                  '[customer][mobile]',
                   '[address][phone_number]',
                   '[address][street]',
                   '[address][apartment]',

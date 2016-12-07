@@ -11,7 +11,7 @@
           <input id="reservation[customer][last_name]_{{s.id}}"
                  onkeyup="showResult(this.value,'livesearch_{{ s.id }}', {{ s.id }})"
                  name="reservation[customer][last_name]"
-                 type="text" autocomplete="off" onblur="closeDiv(livesearch_{{s.id}});"required>
+                 type="text" autocomplete="off" required>
 
           <div class="livesearch" id="livesearch_{{ s.id }}"></div>
 
@@ -25,8 +25,8 @@
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
-          <label for="reservation[address][phone_number]">Telefono</label>
-          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text"required>
+          <label for="reservation[customer][mobile]">Celular</label>
+          <input id="reservation[customer][mobile]_{{s.id}}" name="reservation[customer][mobile]" type="text"required>
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
@@ -53,6 +53,11 @@
           <label for="reservation[address][tower]">Torre</label>
           <input id="reservation[address][tower]_{{s.id}}"
                  name="reservation[address][tower]" type="text">
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-3">
+          <label for="reservation[address][phone_number]">Telefono</label>
+          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text"required>
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
