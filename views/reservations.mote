@@ -11,8 +11,6 @@
       document.getElementById(id_parent).style.background = "#f2f9fc";
     }
   }
-
-
 </script>
 
 <div class="header">

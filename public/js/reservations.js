@@ -36,12 +36,30 @@ function completeMakeForm(customer_json, service_id, div_id) {
 }
 
 function preloadAddress(customer, service_id){
-    var div_id = 'livesearch_street_' + service_id;
+    var div_id = 'livesearch_street_hidden_' + service_id;
     var div = document.getElementById(div_id);
     div.innerHTML = '';
 
     for(i = 0; i < customer['addresses'].length; i++) {
         div.innerHTML += customer['addresses'][i]['street'] + '<br/> ';
+    }
+}
+
+function showAddressResult(str, service_id) {
+    div_hidden = document.getElementById('livesearch_street_hidden_' + service_id)
+    div = document.getElementById('livesearch_street_' + service_id)
+
+    address_list = div_hidden.innerHTML.split("<br>");
+
+    filtered_list = address_list.filter( function(val){
+        var re = new RegExp(str, 'gi');
+        return val.match(re);
+    } )
+
+    div.innerHTML = '';
+    for(i = 0; i < filtered_list.length; i++) {
+        div.innerHTML += "<a class='sugesstion' href='#'>" +
+                          filtered_list[i] + "</a><br />";
     }
 }
 
