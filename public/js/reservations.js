@@ -66,9 +66,15 @@ function showAddressResult(str, customer, service_id) {
         return a['street'].match(re);
     } )
 
+
     div.style.display = "block";
     div.innerHTML = '';
     document.getElementById('reservation[address][id]_' + service_id).value = '';
+
+    if (filtered_list == '') {
+      div.innerHTML = 'No hay coincidencias...';
+    }
+
 
     for(i = 0; i < filtered_list.length; i++) {
         div.innerHTML += "<a class='suggestion' href='#' " +
@@ -119,4 +125,8 @@ function showResult(str, div, service_id) {
     xmlhttp.open("GET","/customers?q=" + str, true);
     xmlhttp.send();
     }
+}
+
+function closeDiv(div) {
+  div.style.display = 'none';
 }

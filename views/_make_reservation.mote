@@ -1,4 +1,4 @@
-    <form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
+<form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
       <input type="hidden" name="reservation[customer_id]" id="reservation[customer][id]_{{s.id}}" value="">
 
 
@@ -11,7 +11,7 @@
           <input id="reservation[customer][last_name]_{{s.id}}"
                  onkeyup="showResult(this.value,'livesearch_{{ s.id }}', {{ s.id }})"
                  name="reservation[customer][last_name]"
-                 type="text" autocomplete="off" required>
+                 type="text" autocomplete="off" onblur="closeDiv(livesearch_{{s.id}});"required>
 
           <div class="livesearch" id="livesearch_{{ s.id }}"></div>
 
