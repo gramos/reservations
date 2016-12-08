@@ -12,25 +12,7 @@ class Reservation < Sequel::Model
   end
 
   def self.make(params)
-
-    if params['customer_id'].nil? or params['customer_id'].empty?
-      customer = Customer.new params['customer']
-      customer.save
-
-      address  = Address.new params['address']
-      address.customer_id = customer.id
-      address.save
-    else
-      customer = Customer[ params['customer_id'].to_i ]
-      address  = Address.where(:street => params['address']['street'],
-                               :number => params['address']['number']).first
-
-      if address.nil?
-        address  = Address.new params['address']
-        address.customer_id = customer.id
-        address.save
-      end
-    end
+    customer, address = find_or_create_customer_address params
 
     q_non_seats = params['reservation'].delete('quantity_non_seats')
 
@@ -50,4 +32,30 @@ class Reservation < Sequel::Model
   def use_seat?
     ! ['Sobre', 'Paquete'].include? reservation_type.name
   end
+
+  private
+
+  def self.find_or_create_customer_address(params)
+    if params['customer_id'].nil? or params['customer_id'].empty?
+      customer = Customer.new params['customer']
+      customer.save
+
+      address  = Address.new params['address']
+      address.customer_id = customer.id
+      address.save
+    else
+      customer = Customer[ params['customer_id'].to_i ]
+      address  = Address.where(:street => params['address']['street'],
+                               :number => params['address']['number']).first
+
+      if address.nil?
+        address  = Address.new params['address']
+        address.customer_id = customer.id
+        address.save
+      end
+    end
+
+    [customer, address]
+  end
+
 end

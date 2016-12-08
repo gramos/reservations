@@ -85,6 +85,7 @@
             ( {{ s.reservations_like('Paquete').
                   reduce(0){ |sum, r| sum + r.quantity }  }})</i>
         </td>
+
         <td>
 
          <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
@@ -150,12 +151,14 @@
         </td>
 
         <td> <i class="fa fa-envelope fa-border">
-            ( {{ s.reservations_like('Sobre').size }})</i>
+            ( {{ s.reservations_like('Sobre').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
           | <i class="fa fa-gift">
-            ( {{ s.reservations_like('Paquete').size }} )</i>
+            ( {{ s.reservations_like('Paquete').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
         </td>
-        <td>
 
+        <td>
          <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
             onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
             id="button-create-reservation-{{ s.id }}">
