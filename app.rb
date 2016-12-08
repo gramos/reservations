@@ -80,14 +80,18 @@ Cuba.define do
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
-  on get, 'customers', param('q') do |q|
+  on get, ':city/customers', param('q') do |city, q|
     as_json do
+
+      city_id = DB[:cities].where( :name => URI.decode(city) ).first[:id]
+
       Customer.where(:last_name => /#{q}/i).all.map do |c|
 
-        address = Address.where(:customer_id => c.id).first
+        address = Address.where(:customer_id => c.id, :city_id => city_id).first
         address ||= {}
 
-        addresses   = Address.where(:customer_id => c.id).map{|a| a.to_hash}
+        addresses   = Address.where( :customer_id => c.id,
+                                     :city_id => city_id ).map{|a| a.to_hash}
         addresses ||= []
 
         c.to_hash.merge({:address => address.to_hash, :addresses => addresses})

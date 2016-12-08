@@ -107,7 +107,7 @@
 
       <tr style="display:none;" id="create-reservation-{{ s.id }}">
         <td colspan="5">
-          {{ app.partial '_make_reservation', :s => s }}
+          {{ app.partial '_make_reservation', :s => s, :city => 'Rosario' }}
         </td>
 
       </tr>
@@ -178,7 +178,7 @@
 
       <tr style="display:none;" id="create-reservation-{{ s.id }}">
         <td colspan="5">
-          {{ app.partial '_make_reservation', :s => s }}
+          {{ app.partial '_make_reservation', :s => s, :city => 'San Nicolas' }}
         </td>
 
       </tr>

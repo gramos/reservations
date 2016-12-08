@@ -109,7 +109,7 @@ function showAddressResult(str, customer, service_id) {
     }
 }
 
-function showResult(str, div, service_id) {
+function showResult(str, div, service_id, city_id) {
     if (str.length > 1) {
       document.getElementById(div).style.display = "block";
       str    = str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -148,7 +148,7 @@ function showResult(str, div, service_id) {
         }
     }
 
-    xmlhttp.open("GET","/customers?q=" + str, true);
+    xmlhttp.open("GET","/" + city_id + "/customers?q=" + str, true);
     xmlhttp.send();
     }
 }

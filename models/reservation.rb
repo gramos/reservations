@@ -36,6 +36,9 @@ class Reservation < Sequel::Model
   private
 
   def self.find_or_create_customer_address(params)
+    service = Service[params['service_id']]
+    params['address']['city_id'] = service.scheduled_time.city_id
+
     if params['customer_id'].nil? or params['customer_id'].empty?
       customer = Customer.new params['customer']
       customer.save
