@@ -40,25 +40,25 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][number]">Numero</label>
-          <input id="reservation[address][number]_{{s.id}}" name="reservation[address][number]" type="text">
+          <input id="reservation[address][number]_{{s.id}}" name="reservation[address][number]" type="text" size="6">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][apartment]">Depto</label>
           <input id="reservation[address][apartment]_{{s.id}}"
-                 name="reservation[address][apartment]" type="text">
+                 name="reservation[address][apartment]" type="text" size="5">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][floor]">Piso</label>
           <input id="reservation[address][floor]_{{s.id}}"
-                 name="reservation[address][floor]" type="text">
+                 name="reservation[address][floor]" type="text" size="5">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][tower]">Torre</label>
           <input id="reservation[address][tower]_{{s.id}}"
-                 name="reservation[address][tower]" type="text">
+                 name="reservation[address][tower]" type="text" size="5">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
@@ -68,7 +68,7 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[reservation][type_id]">Tipo Reserva</label>
-          <select id="reservation[reservation][type_id]_{{s.id}}"
+          <select onchange="val('reservation[reservation][type_id]_{{s.id}}')" id="reservation[reservation][type_id]_{{s.id}}"
                   name="reservation[reservation][type_id]">
             % s.available_reservation_types.each do |rt|
             <option value="{{ rt[:id] }}">{{ rt[:name] }}</option>
@@ -76,20 +76,37 @@
 
           </select>
         </div>
+
+        <div class="pure-u-1-2 pure-u-md-1-3">
         % if s.available_seats > 0
-        <div class="pure-u-1 pure-u-md-1-3">
+
+          <div id="quantity_select_{{s.id}}">
           <label for="reservation[reservation][quantity]">Cantidad de asientos</label>
-          <select id="reservation[reservation][quantity]_{{s.id}}" name="reservation[reservation][quantity]">
+          <select  id="reservation[reservation][quantity]_{{s.id}}" name="reservation[reservation][quantity]">
 
             % s.available_seats.times.each do |c|
             <option>{{c + 1}}</option>
             % end
 
           </select>
-        </div>
-        % end
-       </div>
+          </div>
+          % end
 
-      <button type="submit" class="pure-button pure-button-primary">Crear Reserva</button>
+          <div id="quantity_input_{{s.id}}" style="display:none;">
+            <label for="reservation[reservation][quantity]">Cantidad</label>
+            <input id="reservation[reservation][quantity]_input_{{s.id}}" name="reservation[reservation][quantity_non_seats]" size="2" type="number" min="1">
+          </div>
+
+        </div>
+
+        </div>
+
+
+        <div class="pure-u-1 pure-u-md-1-3" >
+        </div>
+
+      <div style="text-align:right;">
+        <button type="submit" class="pure-button pure-button-primary button-rounded">Crear Reserva</button>
+      </div>
     </fieldset>
   </form>

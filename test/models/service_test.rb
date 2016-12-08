@@ -26,7 +26,7 @@ end
 test '#available_reservation_types' do
   assert @service.available_reservation_types == DB[:reservation_types].all
 
-  @reservation_params['reservation']['quantity'] = 4
+  @reservation_params['reservation']['quantity'] = '4'
   reservation = Reservation.make @reservation_params 
 
   assert @service.available_reservation_types.

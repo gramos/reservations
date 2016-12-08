@@ -32,7 +32,13 @@ class Reservation < Sequel::Model
       end
     end
 
-    reservation = Reservation.new params['reservation']
+    q_non_seats = params['reservation'].delete('quantity_non_seats')
+
+    unless q_non_seats.nil? or q_non_seats.empty?
+      params['reservation']['quantity'] = q_non_seats
+    end
+
+    reservation             = Reservation.new params['reservation']
     reservation.customer_id = customer.id
     reservation.service_id  = params['service_id']
     reservation.address_id  = address.id

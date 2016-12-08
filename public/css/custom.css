@@ -51,6 +51,12 @@ table.pure-table-horizontal tr:hover td {
     background: rgb(66, 184, 221); /* this is a light blue */
 }
 
+.button-rounded {
+    border-radius: 4px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+}
+
 .header {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
     letter-spacing: 0.05em;

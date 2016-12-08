@@ -1,3 +1,26 @@
+function val(id_select){
+    var service_id = id_select.split('_')[2];
+    var id_quantity_input  = 'quantity_input_' + service_id;
+    var id_quantity_select = 'quantity_select_' + service_id;
+
+    select = document.getElementById(id_select);
+
+    if ( (select.options[select.selectedIndex].value == '5') ||
+         (select.options[select.selectedIndex].value == '2') ){
+
+        document.getElementById(id_quantity_input).style.display = "block";
+
+        if (document.getElementById(id_quantity_select) != null) {
+          document.getElementById(id_quantity_select).style.display = "none";
+        }
+
+    } else {
+
+        document.getElementById(id_quantity_input).style.display = "none";
+        document.getElementById(id_quantity_select).style.display = "block";
+    }
+}
+
 function fillField(name, customer, service_id) {
     var field_id   = 'reservation' + name + '_' + service_id;
 
@@ -59,12 +82,13 @@ function completeAddressInfo(address_id, service_id){
 }
 
 function showAddressResult(str, customer, service_id) {
+    var re;
     div = document.getElementById('livesearch_street_' + service_id)
 
     addresses = customer['addresses'];
 
     filtered_list = addresses.filter( function(a){
-        var re = new RegExp(str, 'gi');
+        re = new RegExp(str, 'gi');
         return a['street'].match(re);
     } )
 
@@ -79,7 +103,7 @@ function showAddressResult(str, customer, service_id) {
 
 
     for(i = 0; i < filtered_list.length; i++) {
-        div.innerHTML += "<a class='suggestion' href='#' " +
+        div.innerHTML += "<a class='suggestion' href='#servicio_" + service_id + "' " +
             "onclick='completeAddressInfo(" + filtered_list[i]['id'] +
             "," + service_id + ")'>" + filtered_list[i]['street'] + "</a><br />";
     }
@@ -113,7 +137,7 @@ function showResult(str, div, service_id) {
               for(i = 0; i < results.length; i++) {
                   document.getElementById( div ).
 
-                  innerHTML += "<a class='suggestion' href='#' onclick='customer = completeMakeForm(&#39;" +
+                  innerHTML += "<a class='suggestion' href='#servicio_" + service_id + "' onclick='customer = completeMakeForm(&#39;" +
                       JSON.stringify( plain_results[i] ) + "&#39;, " +
                       service_id + ",&#39" + div + "&#39)'>" +
 

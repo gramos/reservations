@@ -5,7 +5,7 @@
     <th class="header">Direccion</th>
     <th class="header">Telefono</th>
     <th class="header">Tipo Reserva</th>
-    <th class="header">Asientos</th>
+    <th class="header">Cantidad</th>
     <th class="header"></th>
 
   </tr>
@@ -20,9 +20,7 @@
      <td><b>Celular:</b>{{ r.customer.mobile }}<br /> <b>Fijo:</b>{{ r.address.phone_number }}</td>
      <td>{{ r.reservation_type.name }}</td>
      <td>
-     % if r.use_seat?
-        {{ r.quantity }}
-       % end
+       {{ r.quantity }}
      </td>
      <td>
        <form class="pure-form pure-form-stacked"

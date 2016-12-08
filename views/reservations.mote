@@ -1,16 +1,23 @@
 <script type="text/javascript">
   function showCreateReservation(id, id_parent){
     var style = document.getElementById(id).style.display;
+    var service_id = id.split('-')[2];
+    var select_type_reservation_id =  'reservation[reservation][type_id]_' + service_id;
 
     if (style == 'table-row') {
-     document.getElementById(id).style.display = "none";
-     document.getElementById(id_parent).style.background = "#fff";
+      document.getElementById(id).style.display = "none";
+      document.getElementById(id_parent).style.background = "#fff";
     } else {
-      document.getElementById(id).style.display = "table-row";
-      document.getElementById(id).style.background = "#f2f9fc";
-      document.getElementById(id_parent).style.background = "#f2f9fc";
-    }
-  }
+       document.getElementById(id).style.display = "table-row";
+       document.getElementById(id).style.background = "#f2f9fc";
+       document.getElementById(id_parent).style.background = "#f2f9fc";
+       var  select_type_reservation = document.getElementById(select_type_reservation_id);
+
+       select_type_reservation.onchange();
+
+   }
+ }
+
 </script>
 
 <div class="header">
@@ -72,9 +79,11 @@
         </td>
 
         <td> <i class="fa fa-envelope fa-border">
-            ( {{ s.reservations_like('Sobre').size }})</i>
+            ( {{ s.reservations_like('Sobre').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
           | <i class="fa fa-gift">
-            ( {{ s.reservations_like('Paquete').size }} )</i>
+            ( {{ s.reservations_like('Paquete').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
         </td>
         <td>
 
@@ -89,7 +98,7 @@
              % if s.reservations.empty?
                disabled
              % end
-             onclick="showCreateReservation('list-reservations-{{ s.id }}')">
+             onclick="showCreateReservation('list-reservations-{{ s.id }}', 'servicio_{{ s.id }}')">
             <i class="fa fa-list-ul"></i>
           </a>
         </td>
@@ -158,7 +167,7 @@
              % if s.reservations.empty?
                disabled
              % end
-             onclick="showCreateReservation('list-reservations-{{ s.id }}')">
+             onclick="showCreateReservation('list-reservations-{{ s.id }}', 'servicio_{{ s.id }}')">
             <i class="fa fa-list-ul"></i>
           </a>
         </td>
