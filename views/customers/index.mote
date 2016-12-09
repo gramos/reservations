@@ -1,0 +1,52 @@
+<div class="header">
+       <div class="pure-menu pure-menu-horizontal">
+         <ul class="pure-menu-list">
+           <li class="pure-menu-item pure-menu-selected">
+             <a href="/" class="pure-menu-link">Reservas</a>
+           </li>
+           <li class="pure-menu-item">
+             <a href="#" class="pure-menu-link">Servicios</a>
+           </li>
+           <li class="pure-menu-item">
+             <a href="/customers" class="pure-menu-link">Clientes</a>
+           </li>
+           <li class="pure-menu-item">
+             <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
+               <fieldset>
+                 <label for="datepicker">&nbsp;&nbsp;Buscar: </label>
+
+                 <input type="text" name="date" class="pure-input-rounded"  value="">
+                 <button type="submit" class="pure-button pure-button-primary">Ir</button>
+               </fieldset>
+             </form>
+           </li>
+         </ul>
+       </div>
+</div>
+
+<br/><hr/><br/>
+
+<div class="pure-g">
+
+    <div class="header"><h1>Clientes</h1></div>
+    <table class="pure-table" border="1" style="width:95%">
+      <tr>
+        <th class="highlight">Apellido</th>
+        <th class="highlight">Nombre</th>
+        <th class="highlight">Celular</th>
+        <th class="highlight">Dni</th>
+        <th class="highlight">Direccion</th>
+      </tr>
+      % customers.each do |c|
+      <tr>
+        <td>{{ c.last_name }}</td>
+        <td>{{ c.first_name }}</td>
+        <td>{{ c.mobile }}</td>
+        <td>{{ c.dni }}</td>
+        <td>{{ c.addresses.first.full }}</td>
+      </tr>
+      % end
+    </table>
+
+
+</div>

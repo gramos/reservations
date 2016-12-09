@@ -5,12 +5,6 @@ class Reservation < Sequel::Model
   many_to_one :address
   many_to_one :reservation_type, :key => :type_id
 
-  def full_address
-    a = address
-    "<b>Calle:</b> #{a.street} <br /><b>Numero:</b>#{a.number} <br/>" +
-    "<b>Torre:</b>#{a.tower} <b>Piso:</b>#{a.floor} <b>Dpto:</b>#{a.apartment}"
-  end
-
   def self.make(params)
     customer, address = find_or_create_customer_address params
 

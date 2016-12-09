@@ -16,7 +16,7 @@
     <tr>
      <td>{{ index + 1 }}</td>
      <td>{{ r.customer.full_name }}</td>
-     <td> {{ r.full_address }}</td>
+     <td> {{ r.address.full }}</td>
      <td><b>Celular:</b>{{ r.customer.mobile }}<br /> <b>Fijo:</b>{{ r.address.phone_number }}</td>
      <td>{{ r.reservation_type.name }}</td>
      <td>

@@ -99,6 +99,10 @@ Cuba.define do
     end
   end
 
+  on get, 'customers' do
+    render 'customers/index', { :customers => Customer.all }
+  end
+
   on root do
     on param('date') do |d|
       date = Date.parse d

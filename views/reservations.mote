@@ -30,7 +30,7 @@
              <a href="#" class="pure-menu-link">Servicios</a>
            </li>
            <li class="pure-menu-item">
-             <a href="#" class="pure-menu-link">Clientes</a>
+             <a href="/customers" class="pure-menu-link">Clientes</a>
            </li>
            <li class="pure-menu-item">
              <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
