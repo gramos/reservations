@@ -33,7 +33,7 @@ function fillField(name, customer, service_id) {
     customer_value = customer_value.replace(/\[/g, "['");
     customer_value = customer_value.replace(/\]/g, "']");
 
-    if( eval("customer" + customer_value) != "undefined") {
+    if( typeof eval("customer" + customer_value) != "undefined") {
         document.getElementById( field_id ).value = eval("customer" + customer_value) ;
     }
 }
