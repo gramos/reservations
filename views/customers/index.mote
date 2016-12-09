@@ -29,13 +29,14 @@
 <div class="pure-g">
 
     <div class="header"><h1>Clientes</h1></div>
-    <table class="pure-table" border="1" style="width:95%">
+    <table class="pure-table pure-table-horizontal" border="1" style="width:95%">
       <tr>
         <th class="highlight">Apellido</th>
         <th class="highlight">Nombre</th>
         <th class="highlight">Celular</th>
         <th class="highlight">Dni</th>
         <th class="highlight">Direccion</th>
+        <th class="highlight"></th>
       </tr>
       % customers.each do |c|
       <tr>
@@ -44,6 +45,19 @@
         <td>{{ c.mobile }}</td>
         <td>{{ c.dni }}</td>
         <td>{{ c.addresses.first.full }}</td>
+        <td>
+          <a class="button-secondary pure-button" href="/customers/{{c.id}}">
+          <i class="fa fa-edit"></i></a>
+
+          <form class="pure-form pure-form-stacked"
+             action="/customers/{{c.id}}" method="POST"
+             onsubmit="return confirm('Esta seguro?');">
+
+         <button type="submit"
+              class="button-warning pure-button fa fa-trash">
+        </button>
+        </form>
+       </td>
       </tr>
       % end
     </table>
