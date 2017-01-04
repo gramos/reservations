@@ -99,6 +99,10 @@ Cuba.define do
     end
   end
 
+  on get, 'customers/:id/edit' do |id|
+    render 'customers/edit', { :customer => Customer[id]}
+  end
+
   on get, 'customers' do
     render 'customers/index', { :customers => Customer.all }
   end

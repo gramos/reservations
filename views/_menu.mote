@@ -1,0 +1,25 @@
+<div class="header">
+  <div class="pure-menu pure-menu-horizontal">
+    <ul class="pure-menu-list">
+      <li class="pure-menu-item pure-menu-selected">
+        <a href="/" class="pure-menu-link">Reservas</a>
+      </li>
+      <li class="pure-menu-item">
+        <a href="#" class="pure-menu-link">Servicios</a>
+      </li>
+      <li class="pure-menu-item">
+        <a href="/customers" class="pure-menu-link">Clientes</a>
+      </li>
+      <li class="pure-menu-item">
+        <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
+          <fieldset>
+            <label for="datepicker">&nbsp;&nbsp;Buscar: </label>
+
+            <input type="text" name="date" class="pure-input-rounded"  value="">
+            <button type="submit" class="pure-button pure-button-primary">Ir</button>
+          </fieldset>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
