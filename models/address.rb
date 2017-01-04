@@ -3,9 +3,10 @@ class Address < Sequel::Model
   many_to_one :customer
 
   def full
-    "<b>Calle:</b> #{street} <br /><b>Numero:</b>#{number} <br/>" +
-    "<b>Torre:</b>#{tower} <b>Piso:</b>#{floor} <b>Dpto:</b>#{apartment}"
+    str = "#{street} #{number} "
+    str += "<b>Torre:</b>#{tower}" unless tower.to_s.empty?
+    str += "<b>Piso:</b>#{floor}" unless floor.to_s.empty?
+    str += "<b>Dpto:</b>#{apartment}" unless apartment.to_s.empty?
+    str
   end
-
-
 end
