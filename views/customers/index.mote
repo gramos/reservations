@@ -1,35 +1,11 @@
-<div class="header">
-       <div class="pure-menu pure-menu-horizontal">
-         <ul class="pure-menu-list">
-           <li class="pure-menu-item pure-menu-selected">
-             <a href="/" class="pure-menu-link">Reservas</a>
-           </li>
-           <li class="pure-menu-item">
-             <a href="#" class="pure-menu-link">Servicios</a>
-           </li>
-           <li class="pure-menu-item">
-             <a href="/customers" class="pure-menu-link">Clientes</a>
-           </li>
-           <li class="pure-menu-item">
-             <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
-               <fieldset>
-                 <label for="datepicker">&nbsp;&nbsp;Buscar: </label>
+% app.render '_menu'
 
-                 <input type="text" name="date" class="pure-input-rounded"  value="">
-                 <button type="submit" class="pure-button pure-button-primary">Ir</button>
-               </fieldset>
-             </form>
-           </li>
-         </ul>
-       </div>
-</div>
-
-<br/><hr/><br/>
+<hr/><br />
 
 <div class="pure-g">
-
+ <div class="pure-u-1 pure-u-md-1-2">
     <div class="header"><h1>Clientes</h1></div>
-    <table class="pure-table pure-table-horizontal" border="1" style="width:95%">
+    <table class="pure-table pure-table-horizontal" border="1">
       <tr>
         <th class="highlight">Apellido</th>
         <th class="highlight">Nombre</th>
@@ -46,21 +22,112 @@
         <td>{{ c.dni }}</td>
         <td>{{ c.addresses.first.full }}</td>
         <td>
-          <a class="button-secondary pure-button" href="/customers/{{c.id}}">
-          <i class="fa fa-edit"></i></a>
+         <div style="float:right">
+           <a style="margin-right:3px" class="button-secondary pure-button"
+              href="/customers?customer_id={{c.id}}">
+             <i class="fa fa-edit"></i>
+           </a>
 
-          <form class="pure-form pure-form-stacked"
-             action="/customers/{{c.id}}" method="POST"
-             onsubmit="return confirm('Esta seguro?');">
+           <form style="float:right;" action="/customers/{{c.id}}" method="POST"
+                onsubmit="return confirm('Esta seguro?');">
 
-         <button type="submit"
-              class="button-warning pure-button fa fa-trash">
-        </button>
-        </form>
+            <button type="submit"
+                    class="button-warning pure-button fa fa-trash">
+            </button>
+          </form>
+        </div>
        </td>
       </tr>
       % end
     </table>
+ </div>
 
+<!-- partial edit -->
 
-</div>
+<div class="pure-u-1 pure-u-md-1-2">
+  <div class="header"><h1>Agregar | Modificar</h1></div>
+   <div class="pure-g">
+     <form class="pure-form pure-form-stacked"
+           action="/customers/{{customer.id}}" method="POST"
+           onsubmit="return confirm('Esta seguro?');">
+
+       <div class="pure-u-1 pure-u-md-1-3">
+         <label for="customer[first_name]">Nombre</label>
+         <input id="customer[first_name]" name="customer[first_name]"
+                type="text" required value="{{customer.first_name}}">
+       </div>
+
+       <div class="pure-u-1 pure-u-md-1-3">
+         <label for="customer[last_name]">Apellido</label>
+         <input id="customer[last_name]" name="customer[last_name]"
+                type="text" required value="{{customer.last_name}}">
+       </div>
+
+       <div class="pure-u-1 pure-u-md-1-3">
+         <label for="customer[mobile]">Celular</label>
+         <input id="customer[mobile]" name="customer[mobile]"
+                type="text" value="{{customer.mobile}}" required>
+       </div>
+
+       <hr/>
+       <div class="pure-u-1 pure-u-md-1-1">
+       <b>Direcciones:</b>
+       % customer.addresses.each do |a|
+         <a href="/customers?customer_id={{customer.id}}&address_id={{a.id}}">
+           {{a.street}}
+         </a> |
+         % end
+       </div> </br></br>
+
+       % address   = Address[app.req.params["address_id"]]
+       % address ||= Address.new
+
+       <div class="pure-u-1 pure-u-md-1-3">
+         <label for="customer[address][street]">Calle</label>
+         <input id="customer[address][street]" name="customer[address][street]"
+                type="text" value="{{address.street}}" autocomplete="off" required>
+       </div>
+
+       <div class="pure-u-1 pure-u-md-1-3">
+         <label for="customer[address][number]">Numero</label>
+         <input id="customer[address][number]" name="customer[address][number]"
+                value="{{address.number}}" type="text" size="6">
+       </div>
+
+       <div class="pure-u-1 pure-u-md-1-3">
+         <label for="customer[address][apartment]">Depto</label>
+         <input id="customer[address][apartment]"
+                name="customer[address][apartment]" value="{{address.apartment}}"
+                type="text" size="5">
+       </div>
+
+         <div class="pure-u-1 pure-u-md-1-3">
+           <label for="customer[address][floor]">Piso</label>
+           <input id="customer[address][floor]"
+                  name="customer[address][floor]" value="{{address.floor}}" type="text" size="5">
+         </div>
+
+         <div class="pure-u-1 pure-u-md-1-3">
+           <label for="customer[address][tower]">Torre</label>
+           <input id="customer[address][tower]"
+                  name="customer[address][tower]" value="{{address.tower}}"
+                  type="text" size="5">
+         </div>
+
+         <div class="pure-u-1 pure-u-md-1-3">
+           <label for="customer[address][phone_number]">Telefono</label>
+           <input id="customer[address][phone_number]"
+                  name="customer[address][phone_number]" value="{{address.phone_number                  }}" type="text" required>
+         </div>
+
+        <div>
+          <button type="submit" class="pure-button pure-button-primary button-rounded">
+            Guardar
+          </button>
+         </div>
+     </form>
+
+     </div>
+
+   </div>
+ </div>

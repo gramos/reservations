@@ -22,6 +22,7 @@ Dir["./db/seeds/*.rb"].each { |rb| require rb }
 Cuba.use Rack::Static,
          urls: %w[/js /css /img],
          root: File.expand_path("./public", __dir__)
+
 # ----------------------------------------------------------------
 # Load settings and config var in ENV.
 #
@@ -99,12 +100,14 @@ Cuba.define do
     end
   end
 
-  on get, 'customers/:id/edit' do |id|
-    render 'customers/edit', { :customer => Customer[id]}
-  end
-
   on get, 'customers' do
-    render 'customers/index', { :customers => Customer.all }
+    on param('customer_id') do |id|
+      render 'customers/index', { :customers => Customer.all,
+                                  :customer => Customer[id] }
+    end
+
+    render 'customers/index', { :customers => Customer.all,
+                                :customer => Customer.new }
   end
 
   on root do
