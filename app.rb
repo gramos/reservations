@@ -81,6 +81,15 @@ Cuba.define do
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
+
+  on post, 'customers', param('customer'), param('address') do |c, a|
+    customer = Customer.create(c)
+    a.delete("id")
+    customer.add_address(a)
+
+    res.redirect "/customers"
+  end
+
   on get, ':city/customers', param('q') do |city, q|
     as_json do
 
