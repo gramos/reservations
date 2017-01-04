@@ -81,13 +81,21 @@ Cuba.define do
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
-
   on post, 'customers', param('customer'), param('address') do |c, a|
     customer = Customer.create(c)
     a.delete("id")
     customer.add_address(a)
 
     res.redirect "/customers"
+  end
+
+  on post, 'customers/:id' do |id|
+    DB.transaction do
+      Address.where("customer_id = ?", id).delete
+      Customer[id].delete
+
+      res.redirect "/customers"
+    end
   end
 
   on get, ':city/customers', param('q') do |city, q|
@@ -111,11 +119,11 @@ Cuba.define do
 
   on get, 'customers' do
     on param('customer_id') do |id|
-      render 'customers/index', { :customers => Customer.all,
+      render 'customers/index', { :customers => Customer.order(:last_name).all,
                                   :customer => Customer[id] }
     end
 
-    render 'customers/index', { :customers => Customer.all,
+    render 'customers/index', { :customers => Customer.order(:last_name).all,
                                 :customer => Customer.new }
   end
 
