@@ -24,7 +24,7 @@
         <td>{{ c.addresses.first.full }}</td>
         <td>
           <div style="float:right">
-           <a style="margin-right:3px" class="button-secondary pure-button"
+           <a style="margin-right:1px" class="button-secondary pure-button"
               href="/customers?customer_id={{c.id}}">
              <i class="fa fa-edit"></i>
            </a>
