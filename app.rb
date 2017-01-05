@@ -82,21 +82,26 @@ Cuba.define do
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
+  on post, 'customers/:id' do |id|
+    if req.params['http_method'] == 'DELETE'
+      DB.transaction do
+        Address.where("customer_id = ?", id).delete
+        Customer[id].delete
+
+        res.redirect "/customers"
+      end
+    else
+      Customer[id].update( req.params['customer'] )
+      res.redirect "/customers"
+    end
+  end
+
   on post, 'customers', param('customer'), param('address') do |c, a|
     customer = Customer.create(c)
     a.delete("id")
     customer.add_address(a)
 
     res.redirect "/customers"
-  end
-
-  on post, 'customers/:id' do |id|
-    DB.transaction do
-      Address.where("customer_id = ?", id).delete
-      Customer[id].delete
-
-      res.redirect "/customers"
-    end
   end
 
   on get, ':city/customers', param('q') do |city, q|
