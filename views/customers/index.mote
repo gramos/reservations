@@ -43,6 +43,15 @@
       </tr>
       % end
     </table>
+    <div>
+    % if customers.prev?
+      <a href="/customers?page={{customers.prev.number}}"><<</a>
+    % end
+      (Pagina: {{ customers.number }} / {{ customers.number_of_pages }})
+    % if customers.next?
+      <a href="/customers?page={{customers.next.number}}">>></a>
+      % end
+    </div>
  </div>
 
 <!-- partial edit -->

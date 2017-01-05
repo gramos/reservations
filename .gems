@@ -10,3 +10,4 @@ rake -v 10.3.2
 cutest -v 1.2.3
 capybara -v 2.7.1
 capybara-webkit -v 1.11.1
+paginator -v 1.2.0

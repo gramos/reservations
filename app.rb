@@ -6,6 +6,7 @@ require 'cuba/sugar/as'
 require 'sequel'
 require 'logger'
 require 'date'
+require 'paginator'
 
 Cuba.use Rack::Session::Cookie, :secret => "__a_very_long_string__"
 
@@ -118,12 +119,17 @@ Cuba.define do
   end
 
   on get, 'customers' do
+    @pager = Paginator.create(Customer.count, 8) do |offset, per_page|
+      Customer.limit(per_page).offset(offset)
+    end
+    @page = @pager.page( req.params['page'] )
+
     on param('customer_id') do |id|
-      render 'customers/index', { :customers => Customer.order(:last_name).all,
+      render 'customers/index', { :customers => @page,
                                   :customer => Customer[id] }
     end
 
-    render 'customers/index', { :customers => Customer.order(:last_name).all,
+    render 'customers/index', { :customers => @page,
                                 :customer => Customer.new }
   end
 
