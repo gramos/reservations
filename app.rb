@@ -58,6 +58,9 @@ Dir["./models/**/*.rb"].each { |rb| require rb }
 #
 Cuba.define do
 
+# ----------------------------------------------------------------
+# Post endpoints.
+#
   on post, 'services/:id/reservations/' do |service_id|
     on param(:reservation) do |params|
       params['service_id'] = service_id
@@ -82,28 +85,56 @@ Cuba.define do
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
-  on post, 'customers/:id' do |id|
-    if req.params['http_method'] == 'DELETE'
-      DB.transaction do
-        Address.where("customer_id = ?", id).delete
-        Customer[id].delete
-
-        res.redirect "/customers"
-      end
-    else
-      Customer[id].update( req.params['customer'] )
-      res.redirect "/customers"
+  # -----------------------------------------------------
+  # Delete customer
+  #
+  on post, 'customers/:id/delete' do |id|
+    DB.transaction do
+      Address.where("customer_id = ?", id).delete
+      Customer[id].delete
     end
   end
 
-  on post, 'customers', param('customer'), param('address') do |c, a|
-    customer = Customer.create(c)
-    a.delete("id")
-    customer.add_address(a)
+  # -----------------------------------------------------
+  # Update customer / create or update address
+  #
+  on post, 'customers/:id' do |id|
+    address_id = req.params['address'].delete('id')
+
+    puts "ADDRESS_ID #{address_id.inspect}"
+    puts "ADDRESS #{req.params['address']}"
+
+    customer   = Customer[id]
+
+    DB.transaction do
+      customer.update( req.params['customer'] )
+      if address_id.empty?
+        customer.add_address( req.params['address'] )
+      else
+        Address[address_id].update( req.params['address'] )
+      end
+    end
 
     res.redirect "/customers"
   end
 
+  # ----------------------------------------------------------
+  # Create customer
+  #
+  on post, 'customers', param('customer'), param('address') do |c, a|
+    a.delete('id')
+
+    DB.transaction do
+      customer = Customer.create(c)
+      customer.add_address(a)
+    end
+
+    res.redirect "/customers"
+  end
+
+# ----------------------------------------------------------------
+# Get endpoints.
+#
   on get, ':city/customers', param('q') do |city, q|
     as_json do
 
@@ -125,7 +156,7 @@ Cuba.define do
 
   on get, 'customers' do
     @pager = Paginator.create(Customer.count, 8) do |offset, per_page|
-      Customer.limit(per_page).offset(offset)
+      Customer.order(:last_name).limit(per_page).offset(offset)
     end
     @page = @pager.page( req.params['page'] )
 

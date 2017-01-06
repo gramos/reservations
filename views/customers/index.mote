@@ -29,9 +29,8 @@
              <i class="fa fa-edit"></i>
            </a>
 
-           <form style="float:right;" action="/customers/{{c.id}}" method="POST"
+           <form style="float:right;" action="/customers/{{c.id}}/delete" method="POST"
                  onsubmit="return confirm('Esta seguro?');">
-             <input type="hidden" name="http_method" value="DELETE">
              <button type="submit" class="button-warning pure-button fa fa-trash"
              % unless c.reservations.empty?
                disabled
@@ -63,10 +62,6 @@
    <div class="pure-g content-right">
      <form class="pure-form pure-form-stacked"
            action="/customers/{{customer.id}}" method="POST">
-
-       % unless customer.id.nil?
-         <input type="hidden" name="http_method" value="PUT">
-       % end
 
        <div class="pure-u-1 pure-u-md-1-3">
          <label for="customer[first_name]">Nombre</label>
