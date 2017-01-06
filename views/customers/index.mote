@@ -25,7 +25,7 @@
         <td>
           <div style="float:right">
            <a style="margin-right:1apx" class="button-secondary pure-button"
-              href="/customers?customer_id={{c.id}}">
+              href="/customers?customer_id={{c.id}}&page={{app.req.params['page']}}">
              <i class="fa fa-edit"></i>
            </a>
 
