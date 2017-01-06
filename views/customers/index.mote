@@ -22,23 +22,23 @@
         <td>{{ c.mobile }}</td>
         <td>{{ c.dni }}</td>
         <td>{{ c.addresses.first.full }}</td>
-        <td>
-          <div style="float:right">
-           <a style="margin-right:1apx" class="button-secondary pure-button"
-              href="/customers?customer_id={{c.id}}&page={{app.req.params['page']}}">
-             <i class="fa fa-edit"></i>
-           </a>
+        <td style="width:25%">
+          <div style="float:right;">
+            <a style="margin-right:1px;" class="button-secondary pure-button"
+                 href="/customers?customer_id={{c.id}}&page={{app.req.params['page']}}">
+                <i class="fa fa-edit"></i>
+              </a>
 
-           <form style="float:right;" action="/customers/{{c.id}}/delete" method="POST"
-                 onsubmit="return confirm('Esta seguro?');">
+            <form style="float:right;" action="/customers/{{c.id}}/delete" method="POST"
+                  onsubmit="return confirm('Esta seguro?');">
              <button type="submit" class="button-warning pure-button fa fa-trash"
              % unless c.reservations.empty?
                disabled
              % end
             >
             </button>
-          </form>
-        </div>
+           </form>
+          </div>
        </td>
       </tr>
       % end
