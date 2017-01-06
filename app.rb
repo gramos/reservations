@@ -154,10 +154,25 @@ Cuba.define do
     end
   end
 
+  on get, 'customers', param('q') do |q|
+    @pager = Paginator.create(Customer.count, 8) do |offset, per_page|
+      Customer.order(:last_name).where(
+        Sequel.like( Sequel.function(:lower, :last_name), "#{q.downcase}%") ).
+        limit(per_page).offset(offset)
+    end
+
+    @page = @pager.page( req.params['page'] )
+
+    render 'customers/index', { :customers => @page,
+                                :customer => Customer.new }
+
+  end
+
   on get, 'customers' do
     @pager = Paginator.create(Customer.count, 8) do |offset, per_page|
       Customer.order(:last_name).limit(per_page).offset(offset)
     end
+
     @page = @pager.page( req.params['page'] )
 
     on param('customer_id') do |id|

@@ -11,11 +11,11 @@
         <a href="/customers" class="pure-menu-link">Clientes</a>
       </li>
       <li class="pure-menu-item">
-        <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
+        <form action="/customers" method="GET" id="date_form" class="pure-form pure-form-aligned">
           <fieldset>
             <label for="datepicker">&nbsp;&nbsp;Buscar: </label>
 
-            <input type="text" name="date" class="pure-input-rounded"  value="">
+            <input type="text" name="q" class="pure-input-rounded"  value="">
             <button type="submit" class="pure-button pure-button-primary">Ir</button>
           </fieldset>
         </form>
