@@ -93,6 +93,8 @@ Cuba.define do
       Address.where("customer_id = ?", id).delete
       Customer[id].delete
     end
+
+    res.redirect "/customers"
   end
 
   # -----------------------------------------------------
@@ -155,10 +157,12 @@ Cuba.define do
   end
 
   on get, 'customers', param('q') do |q|
-    @pager = Paginator.create(Customer.count, 8) do |offset, per_page|
-      Customer.order(:last_name).where(
-        Sequel.like( Sequel.function(:lower, :last_name), "#{q.downcase}%") ).
-        limit(per_page).offset(offset)
+    customers_ds = Customer.order(:first_name).
+                   where( Sequel.function(:lower, :last_name).
+                          like("#{q.downcase}%") )
+
+    @pager = Paginator.create(customers_ds.count, 8) do |offset, per_page|
+      customers_ds.limit(per_page).offset(offset)
     end
 
     @page = @pager.page( req.params['page'] )

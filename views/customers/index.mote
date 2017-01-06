@@ -45,11 +45,11 @@
     </table>
     <div class="pure-u-1 pagination">
     % if customers.prev?
-      <a class="pure-button" href="/customers?page={{customers.prev.number}}"><<</a>
+      <a class="pure-button" href="/customers?page={{customers.prev.number}}&q={{app.req.params['q']}}"><<</a>
     % end
       (Pagina: {{ customers.number }} / {{ customers.number_of_pages }})
     % if customers.next?
-      <a class="pure-button" href="/customers?page={{customers.next.number}}">>></a>
+      <a class="pure-button" href="/customers?page={{customers.next.number}}&q={{app.req.params['q']}}">>></a>
       % end
     </div>
   </div>
