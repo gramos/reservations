@@ -188,6 +188,14 @@ Cuba.define do
                                 :customer => Customer.new }
   end
 
+  on get, 'services' do
+    @services = Service.last(10)
+    @drivers = DB[:drivers]
+    render 'services/index', {:drivers => @drivers,
+                              :services => @services,
+                              :service => Service.new}
+  end
+
   on root do
     on param('date') do |d|
       date = Date.parse d
