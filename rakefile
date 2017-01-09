@@ -5,6 +5,12 @@ Sequel.extension :migration
 
 task :default => 'test:all'
 
+namespace :dep do
+  task :install do
+    exec('dep install && dep -f ./gems.dev')
+  end
+end
+
 namespace :db do
 
   desc 'Run migrations in db/migrations'
