@@ -85,6 +85,15 @@ Cuba.define do
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
+  on post, 'services/:id', param('service') do |id, params|
+    service = Service[id]
+    service.update( params )
+    service.save
+    date = Service[id].date.strftime('%a %b %d %Y')
+    res.redirect "/services?date=#{URI.escape( date )}"
+  end
+
+
   # -----------------------------------------------------
   # Delete customer
   #

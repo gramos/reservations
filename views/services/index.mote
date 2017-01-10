@@ -11,7 +11,7 @@
              <a href="/customers" class="pure-menu-link">Clientes</a>
            </li>
            <li class="pure-menu-item">
-             <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
+             <form action="/services" method="GET" id="date_form" class="pure-form pure-form-aligned">
                <fieldset>
                  <label for="datepicker">&nbsp;&nbsp;Fecha: </label>
 
@@ -94,10 +94,10 @@
   </div>
 
    <div class="pure-u-1 pure-u-md-1-2">
-
     <div class="header"><h1>San Nicolas</h1></div>
     <table class="pure-table" border="1" style="width:95%">
       <tr>
+        <th class="highlight"></th>
         <th class="highlight">Horario</th>
         <th class="highlight">Chofer</th>
         <th class="highlight">Asiento Disp.</th>
@@ -106,9 +106,31 @@
       </tr>
 
       % services.by_city('san nicolas').each do |s|
+      <form class="pure-form pure-form-stacked" action="/services/{{s.id}}" method="POST">
       <tr class="pure-table" id="servicio_{{ s.id }}">
+        <td>
+          <label>
+            <input type=checkbox name="service[programmed]"
+                   % if s.programmed
+                   checked
+                   % end
+                   >
+          </label>
+        </td>
         <td>{{ s.scheduled_time.time }}</td>
-        <td>{{ s.driver.full_name }}</td>
+        <td>
+          <select id="driver" name="service[driver_id]">
+            % Driver.all.each do |d|
+            <option value="{{ d[:id] }}"
+                    % if s.driver_id == d.id
+                      selected
+                    % end
+                    >
+                {{ d.full_name }}
+            </option>
+            % end
+          </select>
+        </td>
         <td>
           % (s.driver.car_seats - s.available_seats).times do
             <i class="fa fa-male fa-2x" style="color:red"></i>
@@ -129,27 +151,12 @@
         </td>
 
         <td>
-          <form class="pure-form pure-form-stacked" action="/services" method="POST">
-            <button title="Desprogramar" type="submit" class="button-warning pure-button fa fa-calendar-times-o">
-            </button>
+          <button type="submit" class="button-secondary pure-button fa fa-save">
+          </button>
 
-          </form>
         </td>
       </tr>
-
-      <tr style="display:none;" id="create-reservation-{{ s.id }}">
-        <td colspan="5">
-          {{ app.partial '_make_reservation', :s => s, :city => 'San Nicolas' }}
-        </td>
-
-      </tr>
-
-      <tr style="display:none;" id="list-reservations-{{ s.id }}">
-        <td colspan="5">
-          {{ app.partial '_list_reservations', :s => s }}
-        </td>
-      </tr>
-
+      </form>
       % end
     </table>
 
@@ -162,7 +169,7 @@
       <input type="text" name="create_service_date" value="{{ date }}">
       <button type="submit" class="pure-button pure-button-primary">Crear Servicios del dia</button>
 
-    </form>
+    </form> 
   </p>
- % end
+  % end
 </div>
