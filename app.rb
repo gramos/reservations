@@ -189,12 +189,15 @@ Cuba.define do
   end
 
   on get, 'services' do
-    @services = Service.last(10)
-    @drivers  = DB[:drivers]
+    on param('date') do |d|
+      date = Date.parse d
+      services = Service.where(:date => date)
 
-    render 'services/index', { :drivers => @drivers,
-                               :services => @services,
-                               :service => Service.new}
+      render 'services/index', { :services => services }
+    end
+
+    services = Service.where(:date => Date.today)
+    render 'services/index', { :services => services }
   end
 
   on root do

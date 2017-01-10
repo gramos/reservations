@@ -11,7 +11,7 @@
              <a href="/customers" class="pure-menu-link">Clientes</a>
            </li>
            <li class="pure-menu-item">
-             <form action="/services" method="GET" id="date_form" class="pure-form pure-form-aligned">
+             <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
                <fieldset>
                  <label for="datepicker">&nbsp;&nbsp;Fecha: </label>
 
@@ -27,38 +27,142 @@
          </ul>
        </div>
 </div>
+
 <br/><hr/><br/>
+
 <div class="pure-g">
- <div class="pure-u-1 pure-u-md-1-2">
-   <div class="header"><h1>Servicios</h1></div>
-   <div class="pure-g">
-    <table class="pure-table pure-table-horizontal" border="1" style="width:95%;">
+  <div class="pure-u-1 pure-u-md-1-2">
+
+    <div class="header"><h1>Rosario</h1></div>
+    <table class="pure-table" border="1" style="width:95%">
       <tr>
-        <th class="highlight">Dia</th>
+        <th class="highlight">Horario</th>
         <th class="highlight">Chofer</th>
-        <th class="highlight">Hora</th>
-        <th class="highlight">Dia</th>
-        <th class="highlight">Ciudad</th>
+        <th class="highlight">Asiento Disp.</th>
+        <th class="highlight">Paquetes</th>
+        <th class="highlight"></th>
       </tr>
-      % services.each do |s|
-      <tr>
-        <td>{{ s.date }}</td>
+
+      % services.by_city('rosario').each do |s|
+      <tr class="pure-table" id="servicio_{{ s.id }}">
+        <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
-        <td>{{ s.scheduled_time.time}}</td>
-        <td>{{ s.scheduled_time.day_name }}</td>
-        <td>{{ s.scheduled_time.city.name }}</td>
+        <td>
+          % (s.driver.car_seats - s.available_seats).times do
+            <i class="fa fa-male fa-2x" style="color:red"></i>
+          % end
+
+          % s.available_seats.times do
+            <i class="fa fa-male fa-2x"></i>
+          % end
+          <i>( {{ s.available_seats }} )</i>
+        </td>
+
+        <td> <i class="fa fa-envelope fa-border">
+            ( {{ s.reservations_like('Sobre').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
+          | <i class="fa fa-gift">
+            ( {{ s.reservations_like('Paquete').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
+        </td>
+
+        <td>
+          <form class="pure-form pure-form-stacked" action="/services" method="POST">
+            <button title="Desprogramar" type="submit" class="button-warning pure-button fa fa-calendar-times-o">
+            </button>
+
+          </form>
+        </td>
       </tr>
+
+      <tr style="display:none;" id="create-reservation-{{ s.id }}">
+        <td colspan="5">
+          {{ app.partial '_make_reservation', :s => s, :city => 'Rosario' }}
+        </td>
+
+      </tr>
+
+      <tr style="display:none;" id="list-reservations-{{ s.id }}">
+        <td colspan="5">
+          {{ app.partial '_list_reservations', :s => s }}
+        </td>
+      </tr>
+
       % end
     </table>
-   </div>
- </div>
-
-<!-- partial edit -->
-
-<div class="pure-u-1 pure-u-md-1-2">
-  <div class="header"><h1>Agregar | Modificar</h1></div>
-  <div class="pure-g content-right shadow">
 
   </div>
 
+   <div class="pure-u-1 pure-u-md-1-2">
+
+    <div class="header"><h1>San Nicolas</h1></div>
+    <table class="pure-table" border="1" style="width:95%">
+      <tr>
+        <th class="highlight">Horario</th>
+        <th class="highlight">Chofer</th>
+        <th class="highlight">Asiento Disp.</th>
+        <th class="highlight">Paquetes</th>
+        <th class="highlight"></th>
+      </tr>
+
+      % services.by_city('san nicolas').each do |s|
+      <tr class="pure-table" id="servicio_{{ s.id }}">
+        <td>{{ s.scheduled_time.time }}</td>
+        <td>{{ s.driver.full_name }}</td>
+        <td>
+          % (s.driver.car_seats - s.available_seats).times do
+            <i class="fa fa-male fa-2x" style="color:red"></i>
+          % end
+
+          % s.available_seats.times do
+            <i class="fa fa-male fa-2x"></i>
+          % end
+          <i>( {{ s.available_seats }} )</i>
+        </td>
+
+        <td> <i class="fa fa-envelope fa-border">
+            ( {{ s.reservations_like('Sobre').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
+          | <i class="fa fa-gift">
+            ( {{ s.reservations_like('Paquete').
+                  reduce(0){ |sum, r| sum + r.quantity }  }})</i>
+        </td>
+
+        <td>
+          <form class="pure-form pure-form-stacked" action="/services" method="POST">
+            <button title="Desprogramar" type="submit" class="button-warning pure-button fa fa-calendar-times-o">
+            </button>
+
+          </form>
+        </td>
+      </tr>
+
+      <tr style="display:none;" id="create-reservation-{{ s.id }}">
+        <td colspan="5">
+          {{ app.partial '_make_reservation', :s => s, :city => 'San Nicolas' }}
+        </td>
+
+      </tr>
+
+      <tr style="display:none;" id="list-reservations-{{ s.id }}">
+        <td colspan="5">
+          {{ app.partial '_list_reservations', :s => s }}
+        </td>
+      </tr>
+
+      % end
+    </table>
+
+   </div>
+
+ % if services.empty?
+   <br /> <br />
+  <p>
+    <form class="pure-form pure-form-stacked" action="/services" method="POST">
+      <input type="text" name="create_service_date" value="{{ date }}">
+      <button type="submit" class="pure-button pure-button-primary">Crear Servicios del dia</button>
+
+    </form>
+  </p>
+ % end
 </div>
