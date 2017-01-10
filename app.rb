@@ -190,10 +190,11 @@ Cuba.define do
 
   on get, 'services' do
     @services = Service.last(10)
-    @drivers = DB[:drivers]
-    render 'services/index', {:drivers => @drivers,
-                              :services => @services,
-                              :service => Service.new}
+    @drivers  = DB[:drivers]
+
+    render 'services/index', { :drivers => @drivers,
+                               :services => @services,
+                               :service => Service.new}
   end
 
   on root do
