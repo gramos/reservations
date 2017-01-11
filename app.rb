@@ -87,6 +87,7 @@ Cuba.define do
 
   on post, 'services/:id', param('service') do |id, params|
     service = Service[id]
+    service.programmed = req.params['service']['programmed'].nil? ? false : true
     service.update( params )
     service.save
     date = Service[id].date.strftime('%a %b %d %Y')
@@ -198,9 +199,10 @@ Cuba.define do
   end
 
   on get, 'services' do
+
     on param('date') do |d|
       date = Date.parse d
-      services = Service.where(:date => date)
+      services = Service.ordered_by_time(date)
 
       render 'services/index', { :services => services }
     end

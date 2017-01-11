@@ -178,3 +178,7 @@ a:hover {
 input, select, textarea{
   color: #16151b;
 }
+
+.disabled{
+    background-color: #D8D8D8;
+}

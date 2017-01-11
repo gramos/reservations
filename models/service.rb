@@ -25,12 +25,21 @@ class Service < Sequel::Model
 end
 
 Service.dataset_module do
-
   def by_city(city_name)
     city_id = DB[:cities].where(:name => /#{city_name}/i ).first[:id]
     s_times_ids = DB[:scheduled_times].
                   where(:city_id => city_id).select_map(:id)
 
     where(:scheduled_time_id => s_times_ids)
+  end
+
+  def ordered_by_time(date = Date.today)
+    ids = DB.fetch("SELECT s.id
+               FROM services AS s, scheduled_times AS st
+               WHERE s.date = '#{ date }' AND
+               st.id = s.scheduled_time_id
+               ORDER BY st.time" ).map{|e| e[:id]}
+
+    Service.where(:id => ids)
   end
 end

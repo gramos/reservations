@@ -105,9 +105,17 @@
         <th class="highlight"></th>
       </tr>
 
-      % services.by_city('san nicolas').each do |s|
+      % san_nicolas_services = services.by_city('san nicolas').sort_by do |s|
+      %   s.scheduled_time.time.to_i
+      % end
+
+      % san_nicolas_services.each do |s|
       <form class="pure-form pure-form-stacked" action="/services/{{s.id}}" method="POST">
-      <tr class="pure-table" id="servicio_{{ s.id }}">
+      <tr class="pure-table
+          % if !s.programmed
+            disabled
+          % end
+          " id="servicio_{{ s.id }}">
         <td>
           <label>
             <input type=checkbox name="service[programmed]"
