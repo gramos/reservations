@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="/vendor/Pikaday/css/pikaday.css">
     <link rel="stylesheet" href="/vendor/Pikaday/css/site.css">
+    <link rel="stylesheet" href="/vendor/pure-css-select-style/pure-css-select-style.css">
 
   </head>
 

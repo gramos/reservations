@@ -1,11 +1,14 @@
+% date   = app.req.params['date']
+% date ||= Date.today.strftime('%a %b %d %Y')
+
 <div class="header">
        <div class="pure-menu pure-menu-horizontal">
          <ul class="pure-menu-list">
            <li class="pure-menu-item pure-menu-selected">
-             <a href="/" class="pure-menu-link">Reservas</a>
+             <a href="/?date={{ date }}" class="pure-menu-link">Reservas</a>
            </li>
            <li class="pure-menu-item">
-             <a href="/services" class="pure-menu-link">Servicios</a>
+             <a href="/services?date={{ date }}" class="pure-menu-link">Servicios</a>
            </li>
            <li class="pure-menu-item">
              <a href="/customers" class="pure-menu-link">Clientes</a>
@@ -15,8 +18,6 @@
                <fieldset>
                  <label for="datepicker">&nbsp;&nbsp;Fecha: </label>
 
-                 % date   = app.req.params['date']
-                 % date ||= Date.today.strftime('%a %b %d %Y')
 
                  <input type="text" id="datepicker" name="date" class="pure-input-rounded"
                         value="{{date}}">
@@ -32,10 +33,10 @@
 
 <div class="pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
-
     <div class="header"><h1>Rosario</h1></div>
     <table class="pure-table" border="1" style="width:95%">
       <tr>
+        <th class="highlight"></th>
         <th class="highlight">Horario</th>
         <th class="highlight">Chofer</th>
         <th class="highlight">Asiento Disp.</th>
@@ -44,9 +45,37 @@
       </tr>
 
       % services.by_city('rosario').each do |s|
-      <tr class="pure-table" id="servicio_{{ s.id }}">
+      <form class="pure-form pure-form-stacked" action="/services/{{s.id}}" method="POST">
+      <tr class="pure-table
+          % if !s.programmed
+            disabled
+          % end
+          " id="servicio_{{ s.id }}">
+        <td>
+          <label>
+            <input type=checkbox name="service[programmed]"
+                   % if s.programmed
+                   checked
+                   % end
+                   >
+          </label>
+        </td>
         <td>{{ s.scheduled_time.time }}</td>
-        <td>{{ s.driver.full_name }}</td>
+        <td>
+          <div class="pure-css-select-style theme-gradient">
+          <select id="driver" name="service[driver_id]">
+            % Driver.all.each do |d|
+            <option value="{{ d[:id] }}"
+                    % if s.driver_id == d.id
+                      selected
+                    % end
+                    >
+                {{ d.full_name }}
+            </option>
+            % end
+          </select>
+          </div>
+        </td>
         <td>
           % (s.driver.car_seats - s.available_seats).times do
             <i class="fa fa-male fa-2x" style="color:red"></i>
@@ -67,30 +96,14 @@
         </td>
 
         <td>
-          <form class="pure-form pure-form-stacked" action="/services" method="POST">
-            <button title="Desprogramar" type="submit" class="button-warning pure-button fa fa-calendar-times-o">
-            </button>
+          <button type="submit" class="button-secondary pure-button fa fa-save">
+          </button>
 
-          </form>
         </td>
       </tr>
-
-      <tr style="display:none;" id="create-reservation-{{ s.id }}">
-        <td colspan="5">
-          {{ app.partial '_make_reservation', :s => s, :city => 'Rosario' }}
-        </td>
-
-      </tr>
-
-      <tr style="display:none;" id="list-reservations-{{ s.id }}">
-        <td colspan="5">
-          {{ app.partial '_list_reservations', :s => s }}
-        </td>
-      </tr>
-
+      </form>
       % end
     </table>
-
   </div>
 
    <div class="pure-u-1 pure-u-md-1-2">
@@ -105,11 +118,7 @@
         <th class="highlight"></th>
       </tr>
 
-      % san_nicolas_services = services.by_city('san nicolas').sort_by do |s|
-      %   s.scheduled_time.time.to_i
-      % end
-
-      % san_nicolas_services.each do |s|
+      % services.by_city('san nicolas').each do |s|
       <form class="pure-form pure-form-stacked" action="/services/{{s.id}}" method="POST">
       <tr class="pure-table
           % if !s.programmed
@@ -127,6 +136,7 @@
         </td>
         <td>{{ s.scheduled_time.time }}</td>
         <td>
+          <div class="pure-css-select-style theme-gradient">
           <select id="driver" name="service[driver_id]">
             % Driver.all.each do |d|
             <option value="{{ d[:id] }}"
@@ -138,6 +148,7 @@
             </option>
             % end
           </select>
+          </div>
         </td>
         <td>
           % (s.driver.car_seats - s.available_seats).times do

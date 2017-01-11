@@ -207,19 +207,19 @@ Cuba.define do
       render 'services/index', { :services => services }
     end
 
-    services = Service.where(:date => Date.today)
+    services = Service.ordered_by_time(Date.today)
     render 'services/index', { :services => services }
   end
 
   on root do
     on param('date') do |d|
       date = Date.parse d
-      services = Service.where(:date => date)
+      services = Service.ordered_by_time(date)
 
       render 'reservations', { :services => services }
     end
 
-    services = Service.where(:date => Date.today)
+    services = Service.ordered_by_time(Date.today)
     render 'reservations', { :services => services }
   end
 end

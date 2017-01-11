@@ -20,6 +20,9 @@
 
 </script>
 
+% date   = app.req.params['date']
+% date ||= Date.today.strftime('%a %b %d %Y')
+
 <div class="header">
        <div class="pure-menu pure-menu-horizontal">
          <ul class="pure-menu-list">
@@ -27,7 +30,7 @@
              <a href="/" class="pure-menu-link">Reservas</a>
            </li>
            <li class="pure-menu-item">
-             <a href="/services" class="pure-menu-link">Servicios</a>
+             <a href="/services?date={{ date }}" class="pure-menu-link">Servicios</a>
            </li>
            <li class="pure-menu-item">
              <a href="/customers" class="pure-menu-link">Clientes</a>
@@ -37,8 +40,6 @@
                <fieldset>
                  <label for="datepicker">&nbsp;&nbsp;Fecha: </label>
 
-                 % date   = app.req.params['date']
-                 % date ||= Date.today.strftime('%a %b %d %Y')
 
                  <input type="text" id="datepicker" name="date" class="pure-input-rounded"
                         value="{{date}}">
@@ -50,6 +51,7 @@
        </div>
 </div>
 <br/><hr/><br/>
+
 <div class="pure-g">
   <div class="pure-u-1 pure-u-md-1-2">
 
@@ -64,7 +66,11 @@
       </tr>
 
       % services.by_city('rosario').each do |s|
-      <tr class="pure-table" id="servicio_{{ s.id }}">
+      <tr class="pure-table
+                % if !s.programmed
+                  disabled
+                % end
+               " id="servicio_{{ s.id }}">
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
@@ -89,17 +95,24 @@
         <td>
 
          <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
-               onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
-               id="button-create-reservation-{{ s.id }}">
+            id="button-create-reservation-{{ s.id }}"
+            % if !s.programmed
+              disabled
+            % else
+              onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
+            % end
+            >
 
             <i class="fa fa-plus"></i>
           </a>
 
           <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
-             % if s.reservations.empty?
+             % if s.reservations.empty? || !s.programmed
                disabled
+             % else
+               onclick="showCreateReservation('list-reservations-{{ s.id }}', 'servicio_{{ s.id }}')"
              % end
-             onclick="showCreateReservation('list-reservations-{{ s.id }}', 'servicio_{{ s.id }}')">
+             >
             <i class="fa fa-list-ul"></i>
           </a>
         </td>
@@ -136,7 +149,11 @@
       </tr>
 
       % services.by_city('san nicolas').each do |s|
-      <tr class="pure-table" id="servicio_{{ s.id }}">
+      <tr class="pure-table
+                % if !s.programmed
+                  disabled
+                % end
+               " id="servicio_{{ s.id }}">
         <td>{{ s.scheduled_time.time }}</td>
         <td>{{ s.driver.full_name }}</td>
         <td>
@@ -159,22 +176,31 @@
         </td>
 
         <td>
+
          <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
-            onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
-            id="button-create-reservation-{{ s.id }}">
+            id="button-create-reservation-{{ s.id }}"
+            % if !s.programmed
+              disabled
+            % else
+              onclick="showCreateReservation('create-reservation-{{ s.id }}', 'servicio_{{ s.id }}')"
+            % end
+            >
 
             <i class="fa fa-plus"></i>
           </a>
 
           <a class="button-secondary pure-button" href="#servicio_{{ s.id }}"
-             % if s.reservations.empty?
+             % if s.reservations.empty? || !s.programmed
                disabled
+             % else
+               onclick="showCreateReservation('list-reservations-{{ s.id }}', 'servicio_{{ s.id }}')"
              % end
-             onclick="showCreateReservation('list-reservations-{{ s.id }}', 'servicio_{{ s.id }}')">
+             >
             <i class="fa fa-list-ul"></i>
           </a>
         </td>
       </tr>
+
 
       <tr style="display:none;" id="create-reservation-{{ s.id }}">
         <td colspan="5">
