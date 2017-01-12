@@ -182,3 +182,8 @@ input, select, textarea{
 .disabled{
     background-color: #D8D8D8;
 }
+
+.canceled{
+    text-decoration: line-through;
+    background-color: #848484;
+}

@@ -81,7 +81,7 @@ Cuba.define do
     reservation = Reservation[id]
 
     date = reservation.service.date.strftime('%a %b %d %Y')
-    reservation.delete
+    reservation.update(:canceled => true)
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
@@ -89,7 +89,6 @@ Cuba.define do
     service = Service[id]
     service.programmed = req.params['service']['programmed'].nil? ? false : true
     service.update( params )
-    service.save
     date = Service[id].date.strftime('%a %b %d %Y')
     res.redirect "/services?date=#{URI.escape( date )}"
   end

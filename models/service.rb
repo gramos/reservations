@@ -12,7 +12,9 @@ class Service < Sequel::Model
 
   def reservations_like(type)
     type = DB[:reservation_types].where(:name => type).first
-    reservations(true).select{|r| r[:type_id] == type[:id] }
+    reservations(true).select do |r|
+      r[:type_id] == type[:id]  && !r[:canceled]
+    end
   end
 
   def available_reservation_types
@@ -22,6 +24,7 @@ class Service < Sequel::Model
       DB[:reservation_types].all
     end
   end
+
 end
 
 Service.dataset_module do
