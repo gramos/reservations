@@ -112,10 +112,6 @@ Cuba.define do
   #
   on post, 'customers/:id' do |id|
     address_id = req.params['address'].delete('id')
-
-    puts "ADDRESS_ID #{address_id.inspect}"
-    puts "ADDRESS #{req.params['address']}"
-
     customer   = Customer[id]
 
     DB.transaction do
@@ -199,7 +195,6 @@ Cuba.define do
   end
 
   on get, 'services' do
-
     on param('date') do |d|
       date = Date.parse d
       services = Service.ordered_by_time(date)
