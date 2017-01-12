@@ -1,6 +1,6 @@
 require_relative "integration_helper"
 
-scope 'Daily Services' do
+scope 'Services' do
   setup do
     @service = Service.where(:date => Date.today).first
   end
@@ -12,12 +12,12 @@ scope 'Daily Services' do
 
   test 'can edit and change driver for a particular service' do
     visit '/services'
-    select('Nestor Farina', from: "driver_service_#{@service.id}")
+    select('Marcelo Bissuti', from: "driver_service_#{@service.id}")
     click_button("save_service_#{@service.id}")
 
     visit '/'
     within("tr#servicio_#{@service.id}") do
-      assert has_content? 'Nestor Farinas'
+      assert has_content? 'Marcelo Bissuti'
     end
   end
 end
