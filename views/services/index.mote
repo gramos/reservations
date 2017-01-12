@@ -138,7 +138,7 @@
         <td>{{ s.scheduled_time.time }}</td>
         <td>
           <div class="pure-css-select-style theme-gradient">
-          <select id="driver" name="service[driver_id]">
+          <select id="driver_service_{{s.id}}" name="service[driver_id]">
             % Driver.all.each do |d|
             <option value="{{ d[:id] }}"
                     % if s.driver_id == d.id
