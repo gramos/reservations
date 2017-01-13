@@ -32,6 +32,9 @@
              onsubmit="return confirm('Esta seguro?');">
 
          <button type="submit"
+                 % if r.canceled
+                   disabled
+                 % end
               class="button-warning pure-button fa fa-trash">
         </button>
        </form>

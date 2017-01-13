@@ -1,8 +1,29 @@
+body {
+    background-color: #333333;
+    background-repeat: repeat-y;
+    color: #333333;
+    font-size: 13px;
+    line-height: 16px;
+    font-family: Arial, sans-serif;
+    margin: 0 10%;
+    overflow: scroll;
+    padding: 0;
+}
+
+#header{
+    background: url('../img/logo.png') no-repeat left top;
+}
+
 .content {
     line-height: 1.6em;
     margin: 4px 5px 50px;
-    //max-width: 1500px;
+    //max-width: 90%;
     padding: 0 2em;
+    //height: 100%;
+}
+
+.max-content {
+    height:80%;
 }
 
 html, table, button, input, select, textarea, .pure-g [class*="pure-u"] {

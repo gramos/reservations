@@ -27,7 +27,7 @@
 
   <body>
 
-    <div class="content">
+    <div class="content shadow" style="background-color:#fff">
        {{ content }}
 
     </div>

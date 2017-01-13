@@ -1,13 +1,13 @@
 % date   = app.req.params['date']
 % date ||= Date.today.strftime('%a %b %d %Y')
 
-<div class="header">
+<div class="header" id="header">
        <div class="pure-menu pure-menu-horizontal">
          <ul class="pure-menu-list">
-           <li class="pure-menu-item pure-menu-selected">
+           <li class="pure-menu-item">
              <a href="/?date={{ date }}" class="pure-menu-link">Reservas</a>
            </li>
-           <li class="pure-menu-item">
+           <li class="pure-menu-item pure-menu-selected">
              <a href="/services?date={{ date }}" class="pure-menu-link">Servicios</a>
            </li>
            <li class="pure-menu-item">
@@ -27,6 +27,7 @@
            </li>
          </ul>
        </div>
+   </br></br></br>
 </div>
 
 <br/><hr/><br/>

@@ -23,7 +23,7 @@
 % date   = app.req.params['date']
 % date ||= Date.today.strftime('%a %b %d %Y')
 
-<div class="header">
+<div class="header" id="header">
        <div class="pure-menu pure-menu-horizontal">
          <ul class="pure-menu-list">
            <li class="pure-menu-item pure-menu-selected">
@@ -49,6 +49,7 @@
            </li>
          </ul>
        </div>
+   </br></br></br>
 </div>
 <br/><hr/><br/>
 
