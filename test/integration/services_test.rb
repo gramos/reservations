@@ -8,7 +8,7 @@ scope 'Services' do
   test 'can edit and change driver for a particular service' do
     visit '/services'
     select('Marcelo Bissuti', from: "driver_service_#{@service.id}")
-    click_button("save_service_#{@service.id}")
+    click_button("save_service_rosario")
 
     visit '/'
     within("tr#servicio_#{@service.id}") do
@@ -20,10 +20,10 @@ scope 'Services' do
     visit '/services'
 
     within("tr#servicio_#{@service.id}") do
-      uncheck "service[programmed]"
+      uncheck "services[#{@service.id}][programmed]"
     end
 
-    click_button("save_service_#{@service.id}")
+    click_button("save_service_rosario")
 
     has_css? "tr#servicio_#{@service.id}.disabled"
   end

@@ -43,6 +43,8 @@ Service.dataset_module do
                st.id = s.scheduled_time_id
                ORDER BY st.time" ).map{|e| e[:id]}
 
-    Service.where(:id => ids)
+    data_set =  where(:id => ids)
+
+    ids.map{|id| data_set[id] }.compact
   end
 end

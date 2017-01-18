@@ -85,14 +85,18 @@ Cuba.define do
     res.redirect "/?date=#{URI.escape( date )}"
   end
 
-  on post, 'services/:id', param('service') do |id, params|
-    service = Service[id]
-    service.programmed = req.params['service']['programmed'].nil? ? false : true
-    service.update( params )
-    date = Service[id].date.strftime('%a %b %d %Y')
+  on post, 'services/bulk', param('services') do |params|
+    service = nil
+    params.each do |k, v|
+      id = k.to_i
+      service = Service[id]
+      service.programmed = v['programmed'].nil? ? false : true
+      service.update(v)
+    end
+
+    date = service.date.strftime('%a %b %d %Y')
     res.redirect "/services?date=#{URI.escape( date )}"
   end
-
 
   # -----------------------------------------------------
   # Delete customer
@@ -196,24 +200,24 @@ Cuba.define do
   on get, 'services' do
     on param('date') do |d|
       date = Date.parse d
-      services = Service.ordered_by_time(date)
+      services = Service.where(:date => date)
 
       render 'services/index', { :services => services }
     end
 
-    services = Service.ordered_by_time(Date.today)
+    services = Service.where(:date => Date.today)
     render 'services/index', { :services => services }
   end
 
   on root do
     on param('date') do |d|
       date = Date.parse d
-      services = Service.ordered_by_time(date)
+      services = Service.where(:date => date)
 
       render 'reservations', { :services => services }
     end
 
-    services = Service.ordered_by_time(Date.today)
+    services = Service.where(:date => Date.today)
     render 'reservations', { :services => services }
   end
 end
