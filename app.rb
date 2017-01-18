@@ -74,7 +74,7 @@ Cuba.define do
   on post, 'services', param('create_service_date') do |d|
     date = Date.parse d
     DBSeed::Services.run!(date)
-    res.redirect "/?date=#{URI.escape(d)}"
+    res.redirect "/#{req.params['from']}?date=#{URI.escape(d)}"
   end
 
   on post, 'reservations/:id' do |id|
