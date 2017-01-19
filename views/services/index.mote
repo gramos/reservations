@@ -72,7 +72,7 @@
         <td>
           <div class="pure-css-select-style theme-gradient">
           <select id="driver_service_{{s.id}}" name="services[{{s.id}}][driver_id]">
-            % Driver.all.each do |d|
+            % Driver.order_by(:last_name).each do |d|
             <option value="{{ d[:id] }}"
                     % if s.driver_id == d.id
                       selected

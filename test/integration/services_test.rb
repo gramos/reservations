@@ -7,12 +7,12 @@ scope 'Services' do
 
   test 'can edit and change driver for a particular service' do
     visit '/services'
-    select('Marcelo Bissuti', from: "driver_service_#{@service.id}")
+    select('Bissuti Marcelo', from: "driver_service_#{@service.id}")
     click_button("save_service_rosario")
 
     visit '/'
     within("tr#servicio_#{@service.id}") do
-      assert has_content? 'Marcelo Bissuti'
+      assert has_content? 'Bissuti Marcelo'
     end
   end
 
