@@ -39,9 +39,16 @@
     <script>
 
       var picker = new Pikaday({
+      i18n: {
+      previousMonth : 'Mes Anterior',
+      nextMonth     : 'Mes Siguiente',
+      months        : ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+      weekdays      : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      weekdaysShort : ['Dom','Lun','Mar','Mier','Jue','Vie','Sab']
+      },
       field: document.getElementById('datepicker'),
       onSelect: function() {
-        document.getElementById('date_form').submit()
+      document.getElementById('date_form').submit()
       }
       });
 
