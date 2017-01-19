@@ -20,7 +20,7 @@
      % end
      >
     <td>{{ index + 1 }}</td>
-    <td>{{ r.created_at.strftime('%d-%m-%Y %H:%M:%S') }}</td>
+    <td>{{ r.created_at.strftime('%d-%m-%Y <b>%H:%M:%S</b>') }}</td>
      <td>{{ r.customer.full_name }}</td>
      <td> {{ r.address.full }}</td>
      <td><b>Celular:</b>{{ r.customer.mobile }}<br /> <b>Fijo:</b>{{ r.address.phone_number }}</td>

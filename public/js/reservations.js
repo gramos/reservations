@@ -65,16 +65,18 @@ function completeAddressInfo(address_id, service_id){
     address = customer['addresses'].filter(function(a){
         return a['id'] == address_id;})[0];
 
-    var street =  document.getElementById('reservation[address][street]_' + service_id);
-    var number = document.getElementById('reservation[address][number]_' + service_id);
-    var tower =  document.getElementById('reservation[address][tower]_' + service_id);
-    var apartment =  document.getElementById('reservation[address][apartment]_' + service_id);
-    var id  =  document.getElementById('reservation[address][id]_' + service_id)
+    var street        =  document.getElementById('reservation[address][street]_' + service_id);
+    var number        =  document.getElementById('reservation[address][number]_' + service_id);
+    var tower         =  document.getElementById('reservation[address][tower]_' + service_id);
+    var apartment     =  document.getElementById('reservation[address][apartment]_' + service_id);
+    var id            =  document.getElementById('reservation[address][id]_' + service_id)
+    var phone_number  =  document.getElementById('reservation[address][phone_number]_' + service_id)
 
-    street.value = address['street'];
-    number.value = address['number'];
-    tower.value  = address['tower'];
-    apartment.value = address['apartment'];
+    street.value        = address['street'];
+    number.value        = address['number'];
+    tower.value         = address['tower'];
+    apartment.value     = address['apartment'];
+    phone_number.value  = address['phone_number'];
     id.value = address['id'];
     document.getElementById('livesearch_street_' + service_id).style.display = "none";
 
