@@ -208,3 +208,7 @@ input, select, textarea{
     text-decoration: line-through;
     background-color: #848484;
 }
+
+.right{
+    text-align:right;
+}
