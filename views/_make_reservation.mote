@@ -26,7 +26,7 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[customer][mobile]">Celular</label>
-          <input id="reservation[customer][mobile]_{{s.id}}" name="reservation[customer][mobile]" type="text"required>
+          <input id="reservation[customer][mobile]_{{s.id}}" name="reservation[customer][mobile]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
@@ -63,7 +63,7 @@
 
         <div class="pure-u-1 pure-u-md-1-3">
           <label for="reservation[address][phone_number]">Telefono</label>
-          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text"required>
+          <input id="reservation[address][phone_number]_{{s.id}}" name="reservation[address][phone_number]" type="text">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-3">
