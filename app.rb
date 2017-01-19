@@ -14,6 +14,8 @@ Cuba.plugin Cuba::Safe
 Cuba.plugin Mote::Render
 Cuba.plugin Cuba::Sugar::As
 
+Sequel::Model.plugin :timestamps
+
 Dir["./lib/**/*.rb"].each { |rb| require rb }
 Dir["./routes/**/*.rb"].each { |rb| require rb }
 Dir["./filters/**/*.rb"].each { |rb| require rb }
