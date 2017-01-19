@@ -4,8 +4,11 @@ class Service < Sequel::Model
   one_to_many :reservations
 
   def available_seats
-    reserved_seats = reservations_like('Comun').
-                     reduce(0){ |sum, r| sum = sum + r.quantity }
+    reserved_seats = reservations_like('Comun') +
+                     reservations_like('Abonox20') +
+                     reservations_like('Abonox40')
+
+    reserved_seats = reserved_seats.reduce(0){ |sum, r| sum = sum + r.quantity }
 
     driver.car_seats - reserved_seats
   end
