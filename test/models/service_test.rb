@@ -9,7 +9,7 @@ setup do
   @service = Service.first
 
   reservation_type = DB[:reservation_types].where(:name => 'Comun').first
-  
+
   @reservation_params = {'address' => {:street => 'Pje Lassaga',
                                       :number => '4732',
                                       :phone_number => '1223444'},

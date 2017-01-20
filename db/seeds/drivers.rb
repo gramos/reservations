@@ -3,6 +3,14 @@ module DBSeed
 
   class Drivers
     def self.run!
+      DB[:drivers].insert(:first_name => 'ASIGNADO',
+                          :last_name  => 'NO',
+                          :dni        => '00000000',
+                          :mobile     => '00000000',
+                          :car        => 'El batimovil',
+                          :car_color  => 'Negro',
+                          :car_license=> '123', :car_seats => 4)
+
       DB[:drivers].insert(:first_name => 'Nestor',
                           :last_name  => 'Farina',
                           :dni        => '13958149',
