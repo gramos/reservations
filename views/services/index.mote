@@ -123,6 +123,11 @@
 
    <div class="pure-u-1 pure-u-md-1-2">
      <div class="header"><h1>San Nicolas</h1></div>
+    <div>
+      {{ app.partial 'services/_make_service',
+         :city => City.find(:name => 'San Nicolas'),:date => date }}
+    </div>
+
      <form class="pure-form pure-form-stacked" action="/services/bulk" method="POST">
 
        <table class="pure-table" border="1" style="width:95%">

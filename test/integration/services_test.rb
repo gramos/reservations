@@ -30,9 +30,9 @@ scope 'Services' do
 
   test 'adding a new service/scheduled_time' do
     visit '/services'
-    fill_in "scheduled_time[time]", with: '01:01'
-    select 'Aguilar Ariel', from: "service[driver_id]"
-    click_button 'Agregar Servicio'
+    fill_in "scheduled_time_time_Rosario", with: '01:01'
+    select 'Aguilar Ariel', from: "service_driver_id_Rosario"
+    click_button 'agregar_servicio_Rosario'
     assert has_content? '01:01'
   end
 end
