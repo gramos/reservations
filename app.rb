@@ -100,6 +100,17 @@ Cuba.define do
     res.redirect "/services?date=#{URI.escape( date )}"
   end
 
+  on post, 'services', param('service'),
+     param('scheduled_time')  do |service_params, sch_time_params|
+
+    scheduled_time = ScheduledTime.create sch_time_params
+    service_params.merge!(:scheduled_time_id => scheduled_time.id)
+    service = Service.create service_params
+
+    date = service.date.strftime('%a %b %d %Y')
+    res.redirect "/services?date=#{URI.escape( date )}"
+  end
+
   # -----------------------------------------------------
   # Delete customer
   #
