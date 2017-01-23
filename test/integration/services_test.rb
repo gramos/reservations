@@ -27,4 +27,12 @@ scope 'Services' do
 
     has_css? "tr#servicio_#{@service.id}.disabled"
   end
+
+  test 'adding a new service/scheduled_time' do
+    visit '/services'
+    fill_in "scheduled_time[time]", with: '01:01'
+    select 'Aguilar Ariel', from: "service[driver_id]"
+    click_button 'Agregar Servicio'
+    assert has_content? '01:01'
+  end
 end
