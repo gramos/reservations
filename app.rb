@@ -132,6 +132,7 @@ Cuba.define do
 
     DB.transaction do
       customer.update( req.params['customer'] )
+
       if address_id.empty?
         customer.add_address( req.params['address'] )
       else
@@ -139,7 +140,7 @@ Cuba.define do
       end
     end
 
-    res.redirect "/customers"
+    res.redirect "/customers?customer_id=#{id}"
   end
 
   # ----------------------------------------------------------
@@ -148,12 +149,15 @@ Cuba.define do
   on post, 'customers', param('customer'), param('address') do |c, a|
     a.delete('id')
 
+    customer = nil
+    address  = nil
+
     DB.transaction do
       customer = Customer.create(c)
       customer.add_address(a)
     end
 
-    res.redirect "/customers"
+    res.redirect "/customers?customer_id=#{customer.id}"
   end
 
 # ----------------------------------------------------------------
