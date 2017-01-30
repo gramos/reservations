@@ -103,7 +103,8 @@ Cuba.define do
   on post, 'services', param('service'),
      param('scheduled_time')  do |service_params, sch_time_params|
 
-    scheduled_time = ScheduledTime.create sch_time_params
+    scheduled_time = ScheduledTime.create sch_time_params.merge!(:custom => true)
+
     service_params.merge!(:scheduled_time_id => scheduled_time.id)
     service = Service.create service_params
 
