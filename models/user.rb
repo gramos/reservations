@@ -9,14 +9,14 @@ class User < Sequel::Model
     check_current = Shield::Password.check(args['current_password'],
                                            crypted_password)
     unless check_current
-      errors.add(:current_password, 'Clave Incorrrecta')
+      errors.add(:current_password, 'La clave actual es incorrrecta')
       return false
     end
 
     check_confirmation = (args['new_password'] == args['password_confirmation'])
 
     unless check_confirmation
-      errors.add(:password_confirmation, 'no coincide')
+      errors.add(:password_confirmation, 'El password con coincide con la confirmacion')
       return false
     end
 

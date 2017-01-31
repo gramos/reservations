@@ -94,12 +94,12 @@ Cuba.define do
 
     on post, 'change_password', param('user') do |p|
       if u = authenticated(User)
-        if Shield::Password.check(p['current_password'], u.crypted_password)
-          u.password              = p['new_password']
-          # u.password_confirmation = p['password_confirmation']
-          u.save
+        if u.change_password(p)
           session[:success] = "La Clave se ha modificado correctamente"
           res.redirect '/logout'
+        else
+          session[:error] = "<b>Error!</b> #{u.errors.full_messages.join(" ")}"
+          render 'users/change_password'
         end
       else
         res.redirect '/login'
