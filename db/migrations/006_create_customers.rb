@@ -8,12 +8,11 @@ Sequel.migration do
       Date   :birthday,       :null => true
       String :phone_number,   :null => true
       String :mobile,         :null => true
-     
       foreign_key :address_id, :addresses
-   end  
+    end
   end
 
   down do
     drop_table :customers
   end
-end  
+end

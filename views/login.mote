@@ -1,0 +1,31 @@
+<form class="pure-form pure-form-aligned" method='post'>
+  <legend class="text-center"><h3>Login</h3></legend>
+  <fieldset>
+    <div class="pure-control-group">
+      <label>
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+      </label>
+      <input class="form-control" name="login[username]"
+             id="username"  value=""
+             placeholder="Ingrese su nombre de usuario">
+    </div>
+
+    <div class="pure-control-group">
+      <label>
+        <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+      </label>
+      <input class="form-control" name="login[password]"
+             id="password" type="password" value=""
+             placeholder="Ingrese su password">
+    </div>
+
+    <div class="pure-controls">
+      <label for="remember-me" class="pure-checkbox">
+        <input type="checkbox" id="remember-me" name="remember-me"><span></span> Recordarme
+      </label>
+      <button class="pure-button pure-button-primary" type="submit">
+        Ingresar
+      </button>
+    </div>
+  </fieldset>
+</form>

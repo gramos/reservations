@@ -15,5 +15,12 @@ end
 def test_js(str = nil, &block)
   Capybara.current_driver = :webkit
   test str, &block
-  Capybara.use_default_driver  
+  Capybara.use_default_driver
+end
+
+def login!(username = "lacasa", password = "12345678")
+  visit '/login'
+  fill_in 'login[username]', with: username
+  fill_in 'login[password]',  with: password
+  click_button 'Ingresar'
 end

@@ -3,6 +3,7 @@ require_relative "integration_helper"
 scope 'Services' do
   setup do
     @service = Service.where(:date => Date.today).first
+    login!
   end
 
   test 'can edit and change driver for a particular service' do

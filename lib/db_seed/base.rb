@@ -7,10 +7,11 @@ module DBSeed
       DBSeed::Drivers.run!
       DBSeed::ScheduledTimes.run!
       DBSeed::Services.run!
+      DBSeed::Users.run!
     end
 
     def self.delete_all!
-      [:reservations, :services, :reservation_types,
+      [:users, :reservations, :services, :reservation_types,
        :scheduled_times, :addresses, :customers, :cities,
        :drivers].each do |x|
         Sequel::Model.db.from(x).delete

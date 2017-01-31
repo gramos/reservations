@@ -3,6 +3,7 @@ require_relative "integration_helper"
 scope 'Daily Services' do
   setup do
     @service = Service.where(:date => Date.today).first
+    login!
   end
 
   test 'Reservation page should list days services' do

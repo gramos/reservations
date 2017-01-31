@@ -63,11 +63,24 @@ Dir["./models/**/*.rb"].each { |rb| require rb }
 #
 Cuba.define do
   on 'services'do
-    run Services
+    if authenticated(User)
+      run Services
+    else
+      res.redirect '/login'
+    end
   end
 
   on 'customers' do
-    run Customers
+    if authenticated(User)
+      run Customers
+    else
+      res.redirect '/login'
+    end
+  end
+
+  on get, 'logout' do
+    logout(User)
+    res.redirect '/login'
   end
 
   on 'login' do
@@ -90,5 +103,11 @@ Cuba.define do
     end
   end
 
-  run Reservations
+  on root do
+    if authenticated(User)
+      run Reservations
+    else
+      res.redirect '/login'
+    end
+  end
 end
