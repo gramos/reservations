@@ -150,7 +150,7 @@ function showResult(str, div, service_id, city_id) {
         }
     }
 
-    xmlhttp.open("GET","/" + city_id + "/customers?q=" + str, true);
+    xmlhttp.open("GET","/customers/" + city_id + "?q=" + str, true);
     xmlhttp.send();
     }
 }
