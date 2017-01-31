@@ -4,5 +4,4 @@ class User < Sequel::Model
   def self.fetch(username)
     User.where(username: username).first
   end
-
 end

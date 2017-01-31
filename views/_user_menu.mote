@@ -5,7 +5,7 @@
       {{ app.authenticated(User).username }}
     </button>
     <div class="dropdown-content">
-      <a href="#">Cambiar Password</a>
+      <a href="/users/change_password">Cambiar Password</a>
       <a href="/logout">Salir</a>
     </div>
   </div>

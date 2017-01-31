@@ -23,38 +23,6 @@
 % date   = app.req.params['date']
 % date ||= Date.today.strftime('%a %b %d %Y')
 
-<div class="header" id="header">
-  <div class="pure-menu pure-menu-horizontal">
-    <ul class="pure-menu-list">
-      <li class="pure-menu-item pure-menu-selected">
-        <a href="/" class="pure-menu-link">Reservas</a>
-      </li>
-      <li class="pure-menu-item">
-        <a href="/services?date={{ date }}" class="pure-menu-link">Servicios</a>
-      </li>
-      <li class="pure-menu-item">
-        <a href="/customers" class="pure-menu-link">Clientes</a>
-      </li>
-      <li class="pure-menu-item">
-        <form action="/" method="GET" id="date_form" class="pure-form pure-form-aligned">
-          <fieldset>
-            <label for="datepicker">&nbsp;&nbsp;Fecha: </label>
-
-
-            <input type="text" id="datepicker" name="date" class="pure-input-rounded"
-                   value="{{date}}">
-            <button type="submit" class="pure-button pure-button-primary">Ir</button>
-          </fieldset>
-        </form>
-      </li>
-
-    </ul>
-     {{ app.partial '_user_menu' }}
-    <br/><br/><br/>
-  </div>
-  </div>
-  <br/>
-
 % spanish_date = DateI18n.new(date)
 
 <div class="right"> <h2>{{ spanish_date }}</h2></div>

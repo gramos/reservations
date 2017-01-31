@@ -83,6 +83,29 @@ Cuba.define do
     res.redirect '/login'
   end
 
+  on 'users' do
+    on get, 'change_password' do
+      if authenticated(User)
+        render 'users/change_password'
+      else
+        res.redirect '/login'
+      end
+    end
+
+    on post, 'change_password', param('user') do |p|
+      if u = authenticated(User)
+        if Shield::Password.check(p['current_password'], u.crypted_password)
+          u.password              = p['new_password']
+          # u.password_confirmation = p['password_confirmation']
+          u.save
+          res.redirect '/logout'
+        end
+      else
+        res.redirect '/login'
+      end
+    end
+  end
+
   on 'login' do
     on get do
       render 'login'
