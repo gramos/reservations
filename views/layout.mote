@@ -28,8 +28,16 @@
 
   <body>
     <div class="content shadow" style="background-color:#fff">
-      {{ app.partial '_menu' }}
+      % if app.authenticated(User)
+        {{ app.partial '_menu' }}
+      % end
+
+      <p id="notices">
+        {{ app.partial("notice", session: app.session) }}
+      </p>
+
       {{ content }}
+
     </div>
 
     <script src="/js/reservations.js"></script>

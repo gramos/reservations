@@ -39,11 +39,11 @@
       </li>
 
     </ul>
-     {{ app.partial '_user_menu' }}
+    {{ app.partial '_user_menu' }}
     <br/><br/><br/>
   </div>
 </div>
 
-  <br/>
+<br/>
 
 

@@ -98,6 +98,7 @@ Cuba.define do
           u.password              = p['new_password']
           # u.password_confirmation = p['password_confirmation']
           u.save
+          session[:success] = "La Clave se ha modificado correctamente"
           res.redirect '/logout'
         end
       else
@@ -114,8 +115,10 @@ Cuba.define do
     on post, param('login') do |params|
       if login User, params['username'], params['password']
         remember if req[:remember_me]
+        session[:success] = "Bienvenido <b>#{ authenticated(User).username }</b>!"
         res.redirect(req[:return] || '/')
       else
+        session[:error] = "El usuario o la clave es incorrecto/a!"
         render 'login'
         res.status = 302
       end

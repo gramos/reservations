@@ -260,3 +260,18 @@ input, select, textarea{
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+/* NOTICES */
+
+#notices {
+    font-size: 14px;
+    text-align: center;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
