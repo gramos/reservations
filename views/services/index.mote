@@ -27,6 +27,7 @@
            </li>
          </ul>
        </div>
+       {{ app.partial '_user_menu' }}
    <br/><br/><br/>
 </div>
 

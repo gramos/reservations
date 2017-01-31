@@ -1,0 +1,12 @@
+<div class="pull-right" style="width:8%">
+  <div class="dropdown">
+    <button class="dropbtn">
+      <i class="fa fa-user"></i>
+      {{ app.authenticated(User).username }}
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Cambiar Password</a>
+      <a href="/logout">Salir</a>
+    </div>
+  </div>
+</div>
