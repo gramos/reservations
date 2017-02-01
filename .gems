@@ -9,3 +9,4 @@ pg -v 0.19.0
 rake -v 10.3.2
 paginator -v 1.2.0
 shield -v 2.1.1
+rack-protection -v 1.5.3

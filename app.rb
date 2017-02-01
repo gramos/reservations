@@ -8,8 +8,21 @@ require 'shield'
 require 'logger'
 require 'date'
 require 'paginator'
+require "rack/protection"
 
-Cuba.use Rack::Session::Cookie, :secret => "__a_very_long_string__"
+# ----------------------------------------------------------------
+# Load settings and config var in ENV.
+#
+module Settings
+  File.read("env.sh").scan(/(.*?)="?(.*)"?$/).each do |key, value|
+    ENV[key] ||= value
+  end
+end
+
+Cuba.use Rack::Session::Cookie, :secret => ENV['APP_SECRET']
+Cuba.use Rack::Protection, except: :http_origin
+Cuba.use Rack::Protection::RemoteReferrer
+
 Cuba.use Shield::Middleware
 
 Cuba.plugin Shield::Helpers
@@ -28,15 +41,6 @@ Dir["./db/seeds/*.rb"].each { |rb| require rb }
 Cuba.use Rack::Static,
          urls: %w[/js /css /img],
          root: File.expand_path("./public", __dir__)
-
-# ----------------------------------------------------------------
-# Load settings and config var in ENV.
-#
-module Settings
-  File.read("env.sh").scan(/(.*?)="?(.*)"?$/).each do |key, value|
-    ENV[key] ||= value
-  end
-end
 
 
 # ----------------------------------------------------------------
