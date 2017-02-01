@@ -1,5 +1,5 @@
 module DBSeed
-  Class Users
+  class Users
     def self.run!
       User.create(:first_name => 'La Casa',
                         :last_name => 'Tech',
