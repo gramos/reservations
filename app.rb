@@ -133,6 +133,14 @@ Cuba.define do
     end
   end
 
+  on post, 'reservations/:id' do |id|
+    reservation = Reservation[id]
+
+    date = reservation.service.date.strftime('%a %b %d %Y')
+    reservation.update(:canceled => true)
+    res.redirect "/?date=#{URI.escape( date )}"
+  end
+
   on root do
     if authenticated(User)
       run Reservations
