@@ -88,7 +88,7 @@
              % else
                onclick="showCreateReservation('list-reservations-{{ s.id }}', 'servicio_{{ s.id }}')"
              % end
-             >
+             id="list_reservation_link_{{ s.id }}">
             <i class="fa fa-list-ul"></i>
           </a>
         </td>

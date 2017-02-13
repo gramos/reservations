@@ -62,6 +62,38 @@ scope 'Daily Services' do
     assert customers_count == Customer.count
   end
 
+  test_js 'Elimino una reserva' do
+
+    customer = Customer.create(:first_name => 'Bruce',
+                               :last_name => 'Lee')
+
+    address = Address.create(:street => 'Hollywood Boulevard',
+                             :number => '1234')
+
+    @service.add_reservation(:quantity => 1, :type_id => ReservationType.first.id,
+                             :customer_id => customer.id, :address_id => address.id)
+
+    visit '/'
+
+    within "#servicio_#{@service.id}" do
+      page.has_content?('( 3 )')
+    end
+
+    @r = @service.reservations.last
+
+    click_link "list_reservation_link_#{@service.id}"
+    click_button "delete_reservation_#{@r.id}"
+
+    click_link "list_reservation_link_#{@service.id}"
+
+    within "#servicio_#{@service.id}" do
+      page.has_content?('( 3 )')
+    end
+
+    @r = Reservation[@r.id]
+    assert @r.canceled
+  end
+
   test 'creo los servicios del dia de hoy sin seleccionar desde el calendario' do
     DB[:services].where(:date => Date.today).delete
     visit '/'

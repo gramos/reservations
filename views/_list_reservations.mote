@@ -37,7 +37,8 @@
                  % if r.canceled
                    disabled
                  % end
-              class="button-warning pure-button fa fa-trash">
+                 class="button-warning pure-button fa fa-trash"
+                 id="delete_reservation_{{r.id}}">
         </button>
        </form>
      </td>
