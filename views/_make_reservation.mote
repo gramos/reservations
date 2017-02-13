@@ -6,7 +6,7 @@
       <legend>Reserva</legend>
       <div class="pure-g">
         <div class="pure-u-1 pure-u-md-1-3">
-          <label for="reservation[customer][last_name]">Apellido</label>
+          <label for="reservation[customer][last_name]">Apellido o Razon social</label>
 
           <input id="reservation[customer][last_name]_{{s.id}}"
                  onkeyup="showResult(this.value,'livesearch_{{ s.id }}', {{ s.id }}, '{{ city }}')"
