@@ -96,7 +96,7 @@
 
       <tr style="display:none;" id="create-reservation-{{ s.id }}">
         <td colspan="5">
-          {{ app.partial '_make_reservation', :s => s, :city => 'Rosario' }}
+          {{ app.partial '_make_reservation', :spanish_date => spanish_date, :s => s, :city => 'Rosario' }}
         </td>
 
       </tr>
