@@ -25,7 +25,7 @@
 
 % spanish_date = DateI18n.new(date)
 
-<div class="right"> <h2>{{ spanish_date }}</h2></div>
+<div class="header"> <h1><b>{{ spanish_date }}</b></h1></div>
 <hr/><br/>
 
 <div class="pure-g">
