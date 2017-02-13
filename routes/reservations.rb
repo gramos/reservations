@@ -3,12 +3,12 @@ class Reservations < Cuba
     on root do
       on get, param('date') do |d|
         date = Date.parse d
-        services = Service.where(:date => date)
+        services = Service.where(:date => date, :programmed => true)
 
         render 'reservations', { :services => services }
       end
 
-      services = Service.where(:date => Date.today)
+      services = Service.where(:date => Date.today, :programmed => true)
       render 'reservations', { :services => services }
     end
 
