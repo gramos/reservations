@@ -11,7 +11,8 @@ function innerTextHtml(service_id){
     first_name = document.getElementById("reservation[customer][first_name]_" + service_id);
     last_name = document.getElementById("reservation[customer][last_name]_" + service_id);
     mobile = document.getElementById("reservation[customer][mobile]_" + service_id);
-    tipo_reserva = document.getElementById("reservation[reservation][type_id]_" + service_id);
+
+    reservation_type = document.getElementById("reservation[reservation][type_id]_" + service_id);
     quantity = document.getElementById("reservation[reservation][quantity]_" +
                                        service_id);
     street = document.getElementById("reservation[address][street]_" +
@@ -35,7 +36,8 @@ function innerTextHtml(service_id){
     inner_text_html += "<b>Celular:</b> ";
     inner_text_html += mobile.value + "</div><div class='pure-u-1-2'>";
     inner_text_html += "<b>Tipo de Reserva</b> ";
-    inner_text_html += tipo_reserva.value + "</div><div class='pure-u-1-2'>";
+    inner_text_html += reservation_type.options[reservation_type.selectedIndex].text;
+    inner_text_html += "</div><div class='pure-u-1-2'>";
     inner_text_html += "<b>Cantidad:</b> ";
     inner_text_html += quantity.value + "</div><div class='pure-u-1-6'>";
     inner_text_html += "<b>Calle:</b> ";
@@ -46,8 +48,8 @@ function innerTextHtml(service_id){
     inner_text_html += tower.value + "</div><div class='pure-u-1-6'>";
     inner_text_html += "<b>Piso:</b> ";
     inner_text_html += floor.value + "</div><div class='pure-u-1-6'>";
-    inner_text_html += "<b>Departamento:</b> ";
-    inner_text_html += apartment.value + "</div><div class='pure-u-1-6'>";
+    inner_text_html += "<b>Depto:</b> ";
+    inner_text_html += apartment.value + "</div><div class='pure-u-1-6b'>";
     inner_text_html += "<b>Telefono:</b> ";
     inner_text_html += phone_number.value + "</div>";
     inner_text_html += "</div>";

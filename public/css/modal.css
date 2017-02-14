@@ -5,7 +5,7 @@
     position: absolute;
     top: -50%;
     visibility: hidden;
-    width: 45%;
+    width: 50%;
     box-shadow: 0 3px 7px rgba(0,0,0,.25);
     box-sizing: border-box;
     transition: all .4s ease-in-out;
