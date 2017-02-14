@@ -1,6 +1,5 @@
-<form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST">
+<form class="pure-form pure-form-stacked" action="/services/{{ s.id }}/reservations/" method="POST" id="make_reservation_servicio_{{ s.id }}">
       <input type="hidden" name="reservation[customer_id]" id="reservation[customer][id]_{{s.id}}" value="">
-
 
     <fieldset>
       <legend>Reserva para: <strong class="success-title"> [ {{ spanish_date }} {{ s.scheduled_time.time }}hs ]</strong></legend>
@@ -103,7 +102,34 @@
         </div>
 
       <div style="text-align:right;padding-top:2%;">
-        <button type="submit" class="pure-button pure-button-primary button-rounded">Crear Reserva</button>
+        <a href="#confirm_modal_{{s.id}}" onclick='modalConfirmation( "#confirm_modal_{{ s.id }}", {{ s.id }})' class="pure-button pure-button-primary button-rounded" data-modal-open >Crear Reserva</a>
       </div>
+
+      <button style="display: none;" type="submit" id="submit_button_{{s.id}}">
+        create hidden
+      </button>
     </fieldset>
-  </form>
+
+</form>
+
+
+
+<div id="confirm_modal_{{s.id}}" class="modal">
+  <div class="modal-content">
+    <div class="header">
+      <h2>Confirmacion de Reserva</h2>
+    </div>
+    <div id="contenido_{{s.id}}" class="copy">
+    </div>
+    <div class="modal-footer">
+      <a class="pure-button pure-button-primary button-rounded"
+         onclick='submitForm("submit_button_{{ s.id }}")'>
+        Confirmar
+      </a>
+      <a class="pure-button pure-button-secundary button-rounded" href='#'>
+        Cerrar
+      </a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</div>

@@ -1,3 +1,59 @@
+function modalConfirmation (id_modal, service_id) {
+    document.getElementById('contenido_' + service_id ).innerHTML = innerTextHtml(service_id);
+}
+
+function submitForm(id_button){
+    document.getElementById(id_button).click(); 
+}
+
+
+function innerTextHtml(service_id){
+    first_name = document.getElementById("reservation[customer][first_name]_" + service_id);
+    last_name = document.getElementById("reservation[customer][last_name]_" + service_id);
+    mobile = document.getElementById("reservation[customer][mobile]_" + service_id);
+    tipo_reserva = document.getElementById("reservation[reservation][type_id]_" + service_id);
+    quantity = document.getElementById("reservation[reservation][quantity]_" +
+                                       service_id);
+    street = document.getElementById("reservation[address][street]_" +
+                                     service_id);
+    number = document.getElementById("reservation[address][number]_" +
+                                     service_id);
+    tower = document.getElementById("reservation[address][tower]_" +
+                                    service_id);
+    floor = document.getElementById("reservation[address][floor]_" +
+                                    service_id);
+    apartment = document.getElementById("reservation[address][apartment]_"
+                                        + service_id);
+    phone_number = document.getElementById("reservation[address][phone_number]_"
+                                           + service_id);
+
+    inner_text_html = "<div class='pure-g'><div class='pure-u-1-3'>";
+    inner_text_html += "<b>Apellido o Razon Social:</b> ";
+    inner_text_html +=  last_name.value + "</div><div class='pure-u-1-3'>";
+    inner_text_html +="<b>Nombre:</b> ";
+    inner_text_html += first_name.value + "</div><div class='pure-u-1-3'>"
+    inner_text_html += "<b>Celular:</b> ";
+    inner_text_html += mobile.value + "</div><div class='pure-u-1-2'>";
+    inner_text_html += "<b>Tipo de Reserva</b> ";
+    inner_text_html += tipo_reserva.value + "</div><div class='pure-u-1-2'>";
+    inner_text_html += "<b>Cantidad:</b> ";
+    inner_text_html += quantity.value + "</div><div class='pure-u-1-6'>";
+    inner_text_html += "<b>Calle:</b> ";
+    inner_text_html += street.value + "</div><div class='pure-u-1-6'>";
+    inner_text_html += "<b>Numero:</b> ";
+    inner_text_html += number.value + "</div><div class='pure-u-1-6'>";
+    inner_text_html += "<b>Torre:</b> ";
+    inner_text_html += tower.value + "</div><div class='pure-u-1-6'>";
+    inner_text_html += "<b>Piso:</b> ";
+    inner_text_html += floor.value + "</div><div class='pure-u-1-6'>";
+    inner_text_html += "<b>Departamento:</b> ";
+    inner_text_html += apartment.value + "</div><div class='pure-u-1-6'>";
+    inner_text_html += "<b>Telefono:</b> ";
+    inner_text_html += phone_number.value + "</div>";
+    inner_text_html += "</div>";
+    return inner_text_html;
+}
+
 function val(id_select){
     var service_id = id_select.split('_')[2];
     var id_quantity_input  = 'quantity_input_' + service_id;
@@ -11,7 +67,7 @@ function val(id_select){
         document.getElementById(id_quantity_input).style.display = "block";
 
         if (document.getElementById(id_quantity_select) != null) {
-          document.getElementById(id_quantity_select).style.display = "none";
+            document.getElementById(id_quantity_select).style.display = "none";
         }
 
     } else {
