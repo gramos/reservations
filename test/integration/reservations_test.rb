@@ -25,7 +25,8 @@ scope 'Daily Services' do
     fill_in 'reservation[address][street]', with: 'Hollywood Boulevard'
     fill_in 'reservation[address][number]', with: '1234'
     select 'Comun', from: 'reservation[reservation][type_id]'
-    click_button 'Crear Reserva'
+
+    page.execute_script %Q{ document.getElementById('submit_button_#{@service.id}').click; }
 
     within "#servicio_#{@service.id}" do
       page.has_content?('( 3 )')
@@ -53,7 +54,8 @@ scope 'Daily Services' do
     click_link "Lee Bruce"
 
     select 'Comun', from: 'reservation[reservation][type_id]'
-    click_button 'Crear Reserva'
+
+    page.execute_script %Q{ document.getElementById('submit_button_#{@service.id}').click; }
 
     within "#servicio_#{@service.id}" do
       page.has_content?('( 3 )')

@@ -106,7 +106,7 @@
       </div>
 
       <button style="display: none;" type="submit" id="submit_button_{{s.id}}">
-        create hidden
+        create_hidden
       </button>
     </fieldset>
 
